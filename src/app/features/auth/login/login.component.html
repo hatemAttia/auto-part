@@ -1,0 +1,143 @@
+<div class="login-container">
+  <div class="login-content">
+    <div class="login-branding">
+      <h1 class="brand-logo">AutoParts<span class="highlight">B2B</span></h1>
+      <p class="brand-tagline">Your trusted source for automotive parts</p>
+    </div>
+
+    <p-card class="login-card">
+      <h2>Sign In to Your Account</h2>
+      <p class="welcome-text">
+        Welcome back! Please enter your credentials to access your account.
+      </p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="p-input-icon-left w-full">
+            <i class="pi pi-envelope"></i>
+            <input
+              id="email"
+              type="email"
+              pInputText
+              class="w-full"
+              placeholder="Enter your email"
+              formControlName="email"
+              [ngClass]="{ 'ng-invalid ng-dirty': isFieldInvalid('email') }"
+            />
+          </div>
+          <small class="p-error" *ngIf="isFieldInvalid('email')">
+            Please enter a valid email address
+          </small>
+        </div>
+
+        <div class="field">
+          <div class="flex justify-content-between align-items-center">
+            <label for="password">Password</label>
+            <a
+              href="javascript:void(0)"
+              class="forgot-password"
+              (click)="showForgotPasswordDialog()"
+            >
+              Forgot password?
+            </a>
+          </div>
+          <div class="p-input-icon-left w-full">
+            <i class="pi pi-lock"></i>
+            <input
+              id="password"
+              type="password"
+              pPassword
+              [feedback]="false"
+              class="w-full"
+              placeholder="Enter your password"
+              formControlName="password"
+              [ngClass]="{ 'ng-invalid ng-dirty': isFieldInvalid('password') }"
+            />
+          </div>
+          <small class="p-error" *ngIf="isFieldInvalid('password')">
+            Password is required
+          </small>
+        </div>
+
+        <div class="field-checkbox">
+          <p-checkbox
+            inputId="rememberMe"
+            formControlName="rememberMe"
+            [binary]="true"
+          ></p-checkbox>
+          <label for="rememberMe">Remember me</label>
+        </div>
+
+        <button
+          pButton
+          type="submit"
+          class="p-button-primary w-full"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+          <span>{{ isLoading ? "Signing in..." : "Sign In" }}</span>
+        </button>
+      </form>
+
+      <div class="business-info">
+        <p>Not registered yet?</p>
+        <p>
+          Contact our business team at <a href="mailto:sales@autopartsb2b.com">ssss</a> to
+          create your business account
+        </p>
+      </div>
+    </p-card>
+  </div>
+</div>
+
+<p-dialog
+  header="Reset Password"
+  [(visible)]="forgotPasswordVisible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  class="forgot-password-dialog"
+  [style]="{ width: '450px' }"
+>
+  <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPasswordSubmit()">
+    <div class="field">
+      <label for="resetEmail">Email</label>
+      <div class="p-input-icon-left w-full">
+        <i class="pi pi-envelope"></i>
+        <input
+          id="resetEmail"
+          type="email"
+          pInputText
+          class="w-full"
+          placeholder="Enter your email"
+          formControlName="email"
+          [ngClass]="{ 'ng-invalid ng-dirty': isFieldInvalid('email', forgotPasswordForm) }"
+        />
+      </div>
+      <small class="p-error" *ngIf="isFieldInvalid('email', forgotPasswordForm)">
+        Please enter a valid email address
+      </small>
+    </div>
+
+    <div class="dialog-actions">
+      <button
+        pButton
+        type="button"
+        label="Cancel"
+        class="p-button-text"
+        (click)="forgotPasswordVisible = false"
+        [disabled]="isResetting"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        label="Reset Password"
+        [disabled]="forgotPasswordForm.invalid || isResetting"
+      >
+        <i class="pi pi-spin pi-spinner" *ngIf="isResetting"></i>
+        <span>{{ isResetting ? "Sending..." : "Reset Password" }}</span>
+      </button>
+    </div>
+  </form>
+</p-dialog>

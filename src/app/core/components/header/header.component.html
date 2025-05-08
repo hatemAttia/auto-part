@@ -1,0 +1,65 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo" [routerLink]="isLoggedIn ? '/search' : '/login'">
+        <span class="logo-text">AutoParts<span class="highlight">B2B</span></span>
+      </div>
+
+      <div class="nav-actions" *ngIf="isLoggedIn">
+        <!-- <div
+          class="main-search-container d-flex justify-content-center"
+          style="max-width: 956px"
+        >
+          <div class="p-input-icon-left main-search">
+            <i class="pi pi-search"></i>
+            <input
+              type="text"
+              pInputText
+              placeholder="Search by keyword, part number, or description"
+              class="w-full"
+            />
+          </div>
+          <button
+            pButton
+            icon="pi pi-search"
+            label="Search"
+            class="p-button-primary search-button"
+          ></button>
+        </div> -->
+        <p-menubar [model]="menuItems" class="nav-menu">
+          <ng-template pTemplate="end">
+            <div class="user-section">
+              <button
+                pButton
+                icon="pi pi-shopping-cart"
+                class="p-button-rounded p-button-text cart-button"
+                [routerLink]="'/cart'"
+                style="overflow: inherit;"
+                pTooltip="View Cart"
+              >
+                <span class="p-badge p-badge-danger" *ngIf="cartItemCount > 0">{{
+                  cartItemCount
+                }}</span>
+              </button>
+
+              <span class="user-info">
+                <span class="user-name"
+                  >{{ currentUser?.firstName }} {{ currentUser?.lastName }}</span
+                >
+                <span class="user-company">{{ currentUser?.company }}</span>
+              </span>
+
+              <button
+                pButton
+                icon="pi pi-sign-out"
+                class="p-button-rounded p-button-text"
+                (click)="logout()"
+                pTooltip="Logout"
+              ></button>
+            </div>
+          </ng-template>
+        </p-menubar>
+      </div>
+    </div>
+  </div>
+</header>

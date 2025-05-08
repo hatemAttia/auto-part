@@ -1,0 +1,159 @@
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+.login-content {
+  max-width: 480px;
+  width: 100%;
+}
+
+.login-branding {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  color: white;
+}
+
+.brand-logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.5px;
+}
+
+.highlight {
+  color: var(--accent-light);
+}
+
+.brand-tagline {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.login-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-card ::ng-deep .p-card-body {
+  padding: var(--spacing-lg);
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  color: var(--neutral-900);
+}
+
+.welcome-text {
+  text-align: center;
+  color: var(--neutral-600);
+  margin-bottom: var(--spacing-lg);
+}
+
+.field {
+  margin-bottom: var(--spacing-md);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--neutral-800);
+}
+
+.p-input-icon-left {
+  width: 100%;
+}
+
+.field-checkbox {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+.field-checkbox label {
+  margin-bottom: 0;
+  margin-left: var(--spacing-xs);
+  color: var(--neutral-700);
+}
+
+.forgot-password {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+button.p-button {
+  margin-bottom: var(--spacing-md);
+}
+
+.business-info {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--neutral-200);
+}
+
+.business-info p {
+  margin: var(--spacing-xs) 0;
+}
+
+.business-info a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.business-info a:hover {
+  text-decoration: underline;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+@media screen and (max-width: 480px) {
+  .login-content {
+    width: 100%;
+  }
+
+  .login-card ::ng-deep .p-card-body {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Animation */
+.login-branding,
+.login-card {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,94 @@
+.header {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+}
+
+.logo {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.highlight {
+  color: var(--accent-light);
+}
+
+.nav-menu {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.nav-menu ::ng-deep .p-menubar-root-list {
+  margin-right: var(--spacing-lg);
+}
+
+.nav-menu ::ng-deep .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+  color: white;
+}
+
+.nav-menu ::ng-deep .p-menubar-root-list > .p-menuitem > .p-menuitem-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-right: var(--spacing-xs);
+}
+
+.user-name {
+  font-weight: 600;
+  color: black;
+}
+
+.user-company {
+  color: black;
+  font-size: 0.8rem;
+  //color: rgba(255, 255, 255, 0.8);
+}
+
+.cart-button {
+  position: relative;
+}
+
+::ng-deep .p-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+@media screen and (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .user-info {
+    display: none;
+  }
+}
