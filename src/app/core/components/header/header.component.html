@@ -5,27 +5,30 @@
         <span class="logo-text">AutoParts<span class="highlight">B2B</span></span>
       </div>
 
+      <!-- Search bar - positioned between logo and nav actions -->
+      <div class="main-search-container" *ngIf="isLoggedIn">
+        <div class="p-input-icon-left main-search">
+          <i class="pi pi-search"></i>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="searchTerm"
+            placeholder="Search by keyword, part number, or description"
+            (keyup.enter)="search()"
+            class="w-full"
+          />
+        </div>
+        <button
+          pButton
+          [style]="{ border: '1px solid white'}"
+          icon="pi pi-search"
+          label="Search"
+          class="p-button-primary search-button"
+          (click)="search()"
+        ></button>
+      </div>
+
       <div class="nav-actions" *ngIf="isLoggedIn">
-        <!-- <div
-          class="main-search-container d-flex justify-content-center"
-          style="max-width: 956px"
-        >
-          <div class="p-input-icon-left main-search">
-            <i class="pi pi-search"></i>
-            <input
-              type="text"
-              pInputText
-              placeholder="Search by keyword, part number, or description"
-              class="w-full"
-            />
-          </div>
-          <button
-            pButton
-            icon="pi pi-search"
-            label="Search"
-            class="p-button-primary search-button"
-          ></button>
-        </div> -->
         <p-menubar [model]="menuItems" class="nav-menu">
           <ng-template pTemplate="end">
             <div class="user-section">

@@ -36,7 +36,7 @@ import { provideNgxMask, NgxMaskDirective } from "ngx-mask";
     MessagesModule,
     MessageModule,
     DialogModule,
-    NgxMaskDirective,
+    
   ],
   providers: [MessageService, provideNgxMask()],
   templateUrl: './login.component.html',

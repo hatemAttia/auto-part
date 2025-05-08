@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -20,10 +20,12 @@ import { BadgeModule } from "primeng/badge";
 
 import { PartsService } from "../../../core/services/parts.service";
 import { CartService } from "../../../core/services/cart.service";
+import { SearchService } from "../../../core/services/search.service";
 import { Part } from "../../../shared/models/part.model";
 import { SearchFilters } from "../../../shared/models/search-filters.model";
 import { PartCardComponent } from "../part-card/part-card.component";
 import { finalize } from "rxjs/operators";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-search-landing",
@@ -51,11 +53,12 @@ import { finalize } from "rxjs/operators";
   templateUrl: "search-landing.components.html",
   styleUrls: ['./search-landing.component.scss']
 })
-export class SearchLandingComponent implements OnInit {
+export class SearchLandingComponent implements OnInit, OnDestroy {
   mainSearchTerm = "";
   isLoading = false;
   parts: Part[] = [];
   filterForm: FormGroup;
+  private searchSubscription: Subscription = new Subscription();
 
   // Filter options
   carBrands: any[] = [];
@@ -68,6 +71,7 @@ export class SearchLandingComponent implements OnInit {
     private fb: FormBuilder,
     private partsService: PartsService,
     private cartService: CartService,
+    private searchService: SearchService,
     private router: Router
   ) {
     this.filterForm = this.fb.group({
@@ -85,7 +89,24 @@ export class SearchLandingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFilterOptions();
-    this.search(); // Initial search to load all parts
+
+    // Subscribe to search service to get search term from header
+    this.searchSubscription = this.searchService.searchTerm$.subscribe(term => {
+      if (this.mainSearchTerm !== term) {
+        this.mainSearchTerm = term;
+        this.search(); // Trigger search when term changes
+      }
+    });
+
+    // Initial search to load all parts
+    this.search();
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscription to prevent memory leaks
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
   }
 
   loadFilterOptions(): void {
@@ -167,8 +188,13 @@ export class SearchLandingComponent implements OnInit {
       inStock: false,
       replacesOthers: false,
     });
+    
+    // Clear the search term in both the local component and the shared service
     this.mainSearchTerm = "";
+    this.searchService.updateSearchTerm("");
+    
     this.carModels = [];
+    this.search(); // Perform search with reset filters
   }
 
   onViewDetails(part: Part): void {

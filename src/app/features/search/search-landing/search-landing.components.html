@@ -1,30 +1,5 @@
 <div class="container">
-  <!-- <div class="search-header">
-    <h1>Find Auto Parts</h1>
-    <p class="subtitle">Search our extensive catalog of quality auto parts for your vehicles</p>
-  </div> -->
-
-  <!-- Main Search Bar -->
-  <div class="main-search-container d-flex justify-content-center" style="max-width: 1200px">
-    <div class="p-input-icon-left main-search">
-      <i class="pi pi-search"></i>
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="mainSearchTerm"
-        placeholder="Search by keyword, part number, or description"
-        (keyup.enter)="search()"
-        class="w-full"
-      />
-    </div>
-    <button
-      pButton
-      icon="pi pi-search"
-      label="Search"
-      class="p-button-primary search-button"
-      (click)="search()"
-    ></button>
-  </div>
+  <!-- Main search bar has been moved to the header component -->
 
   <div class="search-content">
     <!-- Filters -->
