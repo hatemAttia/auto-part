@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="search-header">
+    <h1>Find Auto Parts</h1>
+    <p class="subtitle">Search our extensive catalog of quality auto parts for your vehicles</p>
+  </div>
+
+  <!-- Main Search Bar -->
+  <div class="main-search-container">
+    <div class="p-input-icon-left main-search">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="mainSearchTerm"
+        placeholder="Search by keyword, part number, or description"
+        (keyup.enter)="search()"
+        class="w-full"
+      />
+    </div>
+    <button
+      pButton
+      icon="pi pi-search"
+      label="Search"
+      class="p-button-primary search-button"
+      (click)="search()"
+    ></button>
+  </div>
+
+  <div class="search-content">
+    <!-- Filters -->
+    <aside class="filters-panel">
+      <p-card header="Refine Search">
+        <form [formGroup]="filterForm">
+          <h3>Vehicle</h3>
+          <div class="field">
+            <label for="carBrand">Car Brand</label>
+            <p-dropdown
+              id="carBrand"
+              formControlName="carBrand"
+              [options]="carBrands"
+              placeholder="Select Brand"
+              [filter]="true"
+              [showClear]="true"
+              (onChange)="onCarBrandChange($event)"
+              styleClass="w-full"
+            ></p-dropdown>
+          </div>
+
+          <div class="field">
+            <label for="carModel">Car Model</label>
+            <p-dropdown
+              id="carModel"
+              formControlName="carModel"
+              [options]="carModels"
+              placeholder="Select Model"
+              [filter]="true"
+              [showClear]="true"
+              [disabled]="!filterForm.get('carBrand')?.value"
+              styleClass="w-full"
+            ></p-dropdown>
+          </div>
+
+          <div class="field">
+            <label for="year">Year</label>
+            <input
+              id="year"
+              type="number"
+              pInputText
+              formControlName="year"
+              placeholder="Year"
+              class="w-full"
+              min="1900"
+              max="2030"
+            />
+          </div>
+
+          <p-divider></p-divider>
+
+          <h3>Part Details</h3>
+          <div class="field">
+            <label for="category">Category</label>
+            <p-dropdown
+              id="category"
+              formControlName="category"
+              [options]="categories"
+              placeholder="Select Category"
+              [showClear]="true"
+              styleClass="w-full"
+            ></p-dropdown>
+          </div>
+
+          <div class="field">
+            <label for="brands">Brand</label>
+            <p-multiSelect
+              id="brands"
+              formControlName="brands"
+              [options]="brands"
+              placeholder="Select Brands"
+              [filter]="true"
+              styleClass="w-full"
+              [maxSelectedLabels]="2"
+            ></p-multiSelect>
+          </div>
+
+          <div class="field">
+            <label>Price Range</label>
+            <div class="price-slider">
+              <p-slider
+                formControlName="priceRange"
+                [range]="true"
+                [min]="0"
+                [max]="500"
+                styleClass="w-full"
+              ></p-slider>
+            </div>
+            <div class="price-inputs">
+              <span>${{filterForm.get('priceRange')?.value[0]}}</span>
+              <span>${{filterForm.get('priceRange')?.value[1]}}</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="providers">Provider</label>
+            <p-multiSelect
+              id="providers"
+              formControlName="providers"
+              [options]="providers"
+              optionLabel="name"
+              optionValue="id"
+              placeholder="Select Providers"
+              styleClass="w-full"
+              [maxSelectedLabels]="1"
+            ></p-multiSelect>
+          </div>
+
+          <p-divider></p-divider>
+
+          <h3>Availability</h3>
+          <div class="field-checkbox">
+            <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
+            <label for="inStock">In Stock Only</label>
+          </div>
+
+          <div class="field-checkbox">
+            <p-checkbox
+              formControlName="replacesOthers"
+              [binary]="true"
+              inputId="replacesOthers"
+            ></p-checkbox>
+            <label for="replacesOthers">Replaces Other Parts</label>
+          </div>
+
+          <div class="filter-actions">
+            <button
+              pButton
+              type="button"
+              label="Reset Filters"
+              class="p-button-outlined p-button-secondary"
+              (click)="resetFilters()"
+            ></button>
+            <button
+              pButton
+              type="button"
+              label="Apply Filters"
+              class="p-button-primary"
+              (click)="search()"
+            ></button>
+          </div>
+        </form>
+      </p-card>
+    </aside>
+
+    <!-- Results -->
+    <section class="results-panel">
+      <div class="results-header">
+        <h2>Search Results</h2>
+        <div class="results-meta" *ngIf="!isLoading">
+          <span *ngIf="parts.length > 0">{{parts.length}} parts found</span>
+          <span *ngIf="parts.length === 0">No parts found</span>
+        </div>
+      </div>
+
+      <div class="loading-container" *ngIf="isLoading">
+        <p-progressSpinner></p-progressSpinner>
+        <p>Searching for parts...</p>
+      </div>
+
+      <div class="no-results" *ngIf="!isLoading && parts.length === 0">
+        <p-message
+          severity="info"
+          text="No parts match your search criteria. Try adjusting your filters or search term."
+          styleClass="w-full"
+        ></p-message>
+      </div>
+
+      <div class="results-grid" *ngIf="!isLoading && parts.length > 0">
+        <app-part-card
+          *ngFor="let part of parts"
+          [part]="part"
+          (viewDetails)="onViewDetails($event)"
+          (addToCart)="onAddToCart($event)"
+        ></app-part-card>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+/* Global styles for AutoParts B2B Platform */
+
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.min.css';
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+:root {
+  /* Color System */
+  --primary-color: #0D47A1;
+  --primary-light: #5472D3;
+  --primary-dark: #002171;
+  --secondary-color: #607D8B;
+  --accent-color: #FF6D00;
+  --accent-light: #FF9E40;
+  --accent-dark: #C43C00;
+  --success-color: #388E3C;
+  --warning-color: #F9A825;
+  --error-color: #D32F2F;
+  --neutral-50: #FAFAFA;
+  --neutral-100: #F5F5F5;
+  --neutral-200: #EEEEEE;
+  --neutral-300: #E0E0E0;
+  --neutral-400: #BDBDBD;
+  --neutral-500: #9E9E9E;
+  --neutral-600: #757575;
+  --neutral-700: #616161;
+  --neutral-800: #424242;
+  --neutral-900: #212121;
+
+  /* Spacing System - 8px grid */
+  --spacing-xs: 0.5rem;   /* 8px */
+  --spacing-sm: 1rem;     /* 16px */
+  --spacing-md: 1.5rem;   /* 24px */
+  --spacing-lg: 2rem;     /* 32px */
+  --spacing-xl: 3rem;     /* 48px */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--neutral-800);
+  background-color: var(--neutral-100);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-top: 0;
+  color: var(--neutral-900);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Buttons and form elements */
+button.p-button {
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+button.p-button-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+button.p-button-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+button.p-button-accent {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+button.p-button-accent:hover {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+/* Card styling */
+.p-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  margin-bottom: var(--spacing-md);
+}
+
+.p-card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom part card */
+.part-card {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.part-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Responsive breakpoints */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-xs);
+  }
+}

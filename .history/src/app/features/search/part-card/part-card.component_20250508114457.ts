@@ -1,0 +1,202 @@
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CardModule } from "primeng/card";
+import { ButtonModule } from "primeng/button";
+import { TooltipModule } from "primeng/tooltip";
+import { TagModule } from "primeng/tag";
+import { BadgeModule } from "primeng/badge";
+import { RatingModule } from "primeng/rating";
+import { RippleModule } from "primeng/ripple";
+import { Part } from "../../../shared/models/part.model";
+import { FormsModule } from "@angular/forms";
+
+@Component({
+  selector: "app-part-card",
+  standalone: true,
+  imports: [
+    CommonModule,
+    CardModule,
+    ButtonModule,
+    TooltipModule,
+    TagModule,
+    BadgeModule,
+    RatingModule,
+    RippleModule,
+    FormsModule,
+  ],
+  templateUrl: "./part-card-component.html",
+  styles: [
+    `
+      .part-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        height: 100%;
+      }
+
+      .part-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .part-image {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        cursor: pointer;
+        border-radius: 6px 6px 0 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .part-image:hover {
+        opacity: 0.9;
+      }
+
+      .part-badges {
+        position: absolute;
+        top: var(--spacing-xs);
+        right: var(--spacing-xs);
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .part-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .part-header {
+        margin-bottom: var(--spacing-sm);
+        cursor: pointer;
+      }
+
+      .part-name {
+        margin: 0 0 4px 0;
+        font-size: 1.1rem;
+        color: var(--neutral-900);
+      }
+
+      .part-number {
+        color: var(--neutral-600);
+        font-size: 0.9rem;
+      }
+
+      .part-compatibility {
+        font-size: 0.85rem;
+        color: var(--neutral-700);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .more-models {
+        color: var(--primary-color);
+        cursor: pointer;
+        margin-left: 4px;
+      }
+
+      .more-models:hover {
+        text-decoration: underline;
+      }
+
+      .part-details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        margin-top: auto;
+      }
+
+      .provider-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .provider-name {
+        font-weight: 500;
+      }
+
+      .delivery-time {
+        font-size: 0.8rem;
+        color: var(--neutral-600);
+      }
+
+      .part-price-stock {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--neutral-900);
+      }
+
+      .stock {
+        font-size: 0.9rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .in-stock {
+        background-color: rgba(56, 142, 60, 0.1);
+        color: var(--success-color);
+      }
+
+      .low-stock {
+        background-color: rgba(249, 168, 37, 0.1);
+        color: var(--warning-color);
+      }
+
+      .out-of-stock {
+        background-color: rgba(211, 47, 47, 0.1);
+        color: var(--error-color);
+      }
+
+      .part-actions {
+        display: flex;
+        gap: var(--spacing-sm);
+      }
+
+      .part-actions button {
+        flex: 1;
+      }
+
+      ::ng-deep .p-card-body {
+        padding: var(--spacing-sm);
+      }
+
+      ::ng-deep .p-card-content {
+        padding: 0;
+        height: 100%;
+      }
+
+      ::ng-deep p-rating .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
+        color: var(--warning-color);
+      }
+
+      ::ng-deep .p-card .p-card-footer {
+        padding-top: var(--spacing-sm);
+      }
+    `,
+  ],
+})
+export class PartCardComponent {
+  @Input() part!: Part;
+  @Output() viewDetails = new EventEmitter<Part>();
+  @Output() addToCart = new EventEmitter<Part>();
+
+  get displayedModels() {
+    return this.part.compatibleModels.slice(0, 2);
+  }
+
+  getStockLabel(): string {
+    if (this.part.stock === 0) {
+      return "Out of Stock";
+    } else if (this.part.stock <= 10) {
+      return "Low Stock: " + this.part.stock;
+    } else {
+      return "In Stock: " + this.part.stock;
+    }
+  }
+}
