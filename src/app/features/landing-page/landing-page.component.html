@@ -1,0 +1,133 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-container">
+    <div class="hero-content flex">
+      <div class="p-card">
+        <div class="search-box fade-in" style="animation-delay: 0.6s">
+          <h3 class="mb-3">
+            Sélectionnez votre modèle de voiture pour rechercher des pièces détachées auto
+          </h3>
+
+          <div class="search-form">
+            <!-- (1) Make dropdown with icon -->
+            <div class="form-group mb-3" style="position: relative">
+              <span class="step-circle">1</span>
+
+              <p-dropdown
+                inputId="make"
+                [options]="makes"
+                [(ngModel)]="selectedMake"
+                [style]="{ width: '100%' }"
+                optionLabel="name"
+                optionValue="id"
+                placeholder="Choisir la marque"
+                (onChange)="onMakeChange()"
+              >
+                <!-- Template for dropdown options -->
+                <ng-template let-option pTemplate="item">
+                  <div class="flex align-items-center">
+                    <!-- <span class="step-circle">1</span> -->
+                    <span class="ml-2">{{ option.name }}</span>
+                  </div>
+                </ng-template>
+
+                <!-- Template for selected item or placeholder -->
+                <ng-template let-selectedOption pTemplate="selectedItem">
+                  <div class="flex align-items-center">
+                    <span class="step-circle active">1</span>
+                    <span class="ml-2" style="padding-left: 50px">
+                      {{ selectedOption?.name || "Choisir la marque" }}
+                    </span>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+
+            <!-- (2) Model dropdown with icon -->
+            <div class="form-group mb-3" style="position: relative">
+              <span class="step-circle">2</span>
+              <p-dropdown
+                inputId="year"
+                [options]="years"
+                [(ngModel)]="selectedYear"
+                placeholder="Année"
+                [style]="{ width: '100%' }"
+                [disabled]="!selectedMake"
+              >
+                <ng-template let-option pTemplate="item">
+                  <div class="flex align-items-center">
+                    <!-- <span class="step-circle">2</span> -->
+                    <span class="ml-2">{{ option }}</span>
+                  </div>
+                </ng-template>
+
+                <ng-template let-selectedOption pTemplate="selectedItem">
+                  <div class="flex align-items-center">
+                    <span class="step-circle active">2</span>
+                    <span class="ml-2" style="padding-left: 50px">
+                      {{ selectedOption || "Année" }}
+                    </span>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+
+            <!-- (3) Year dropdown with icon -->
+            <div class="form-group mb-3" style="position: relative">
+              <span class="step-circle">3</span>
+
+              <p-dropdown
+                inputId="model"
+                [options]="models"
+                [(ngModel)]="selectedModel"
+                [style]="{ width: '100%' }"
+                optionLabel="name"
+                optionValue="id"
+                placeholder="Choisir le modèle"
+                [disabled]="!selectedMake"
+              >
+                <ng-template let-option pTemplate="item">
+                  <div class="flex align-items-center">
+                    <!-- <span class="step-circle">3</span> -->
+                    <span class="ml-2">{{ option.name }}</span>
+                  </div>
+                </ng-template>
+
+                <ng-template let-selectedOption pTemplate="selectedItem">
+                  <div class="flex align-items-center">
+                    <span class="step-circle active">3</span>
+                    <span class="ml-2" style="padding-left: 50px">
+                      {{ selectedOption?.name || "Choisir le modèle" }}
+                    </span>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+
+            <!-- Submit button -->
+            <button
+              pButton
+              [disabled]="!canSearch() || isLoading"
+              (click)="search()"
+              type="button"
+              class="p-button p-button-primary w-full flex justify-content-center"
+            >
+              <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+              <span>{{ isLoading ? "Connexion..." : "Valider" }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 text-center">
+        <h1 class="slide-up">Votre partenaire pour toutes vos pièces automobiles.</h1>
+        <p class="slide-up" style="font-weight: 100">
+          Trouvez la pièce auto qu’il vous faut, en quelques clics, Des pièces de qualité, pour
+          toutes les marques et modèles.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<app-features></app-features>
+<app-suppliers></app-suppliers>
+<app-brands></app-brands>

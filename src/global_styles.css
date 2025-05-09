@@ -39,6 +39,26 @@
   --spacing-md: 1.5rem; /* 24px */
   --spacing-lg: 2rem; /* 32px */
   --spacing-xl: 3rem; /* 48px */
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Typography */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
 }
 
 body {
@@ -95,7 +115,7 @@ button.p-button-accent:hover {
 
 /* Card styling */
 .p-card {
-  border-radius: 8px;
+  border-radius: 0px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   margin-bottom: var(--spacing-md);
@@ -103,6 +123,10 @@ button.p-button-accent:hover {
 
 .p-card:hover {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.p-button {
+  border-radius: 0 !important;
 }
 
 /* Custom part card */

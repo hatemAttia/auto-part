@@ -36,11 +36,10 @@ import { provideNgxMask, NgxMaskDirective } from "ngx-mask";
     MessagesModule,
     MessageModule,
     DialogModule,
-    
   ],
   providers: [MessageService, provideNgxMask()],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -71,15 +70,14 @@ export class LoginComponent {
       return;
     }
 
-    this.isLoading = true;
     const { email, password, rememberMe } = this.loginForm.value;
-
+    this.isLoading = true;
     this.authService
       .login(email, password, rememberMe)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe({
         next: () => {
-          this.router.navigate(["/search"]);
+          this.router.navigate(["/private/home"]);
         },
         error: (error) => {
           this.messageService.add({
