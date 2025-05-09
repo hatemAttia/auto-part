@@ -31,8 +31,8 @@ import { CartItem } from "../../../shared/models/cart-item.model";
     ToastModule,
   ],
   providers: [ConfirmationService, MessageService],
-  templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.scss']
+  templateUrl: "./cart-page.component.html",
+  styleUrls: ["./cart-page.component.scss"],
 })
 export class CartPageComponent implements OnInit {
   cartItems: CartItem[] = [];
