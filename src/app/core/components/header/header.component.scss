@@ -93,7 +93,7 @@
         font-size: 1rem;
         width: 100%;
         height: 100%;
-        color: var(--border-color);
+        color: gray;
         background-color: var(--primary-light);
 
         &::placeholder {
@@ -104,7 +104,7 @@
   }
 
   .button {
-
+    cursor: pointer;
     width: 60px;
     height: 100%;
     color: var(--border-color);
@@ -113,6 +113,15 @@
     justify-content: center;
     border: var(--border-thickness) solid var(--border-color);
     background-color: var(--primary-light);
+    transition: all 0.2s ease;
+    outline: var(--border-thickness) solid transparent;
+
+    &:hover {
+      background-color: var(--secondary-color);
+      color: var(--primary-light);
+      border: var(--border-thickness) solid var(--primary-light);
+      outline: var(--border-thickness) solid var(--secondary-color);
+    }
 
   }
 
@@ -160,65 +169,46 @@
 
 }
 
+.user-actions {
+  height: 100%;
+  width: fit-content;
 
+  .user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
 
+    i {
+      color: black;
+      font-size: xx-large;
+    }
 
+    .user {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
 
-.nav-actions {
-  flex-shrink: 0;
+      span {
+        color: black;
+        margin: 0;
+        padding: 0;
+        font-size: normal;
+
+      &.logout {
+        font-weight: 500;
+        color: var(--accent-light);
+      }
+      }
+    }
+  }
 }
 
-.nav-menu {
-  background: transparent;
-  border: none;
-  padding: 0;
-}
 
-.nav-menu ::ng-deep .p-menubar-root-list {
-  margin-right: var(--spacing-lg);
-}
 
-.nav-menu ::ng-deep .p-menubar-root-list>.p-menuitem>.p-menuitem-link {
-  color: white;
-}
 
-.nav-menu ::ng-deep .p-menubar-root-list>.p-menuitem>.p-menuitem-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.user-section {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-  margin-right: var(--spacing-xs);
-}
-
-.user-name {
-  font-weight: 600;
-  color: black;
-}
-
-.user-company {
-  color: black;
-  font-size: 0.8rem;
-  //color: rgba(255, 255, 255, 0.8);
-}
-
-.cart-button {
-  position: relative;
-}
-
-::ng-deep .p-badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-}
 
 /* Responsive design */
 @media screen and (max-width: 992px) {
