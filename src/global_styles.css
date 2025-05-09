@@ -7,6 +7,7 @@
 
 :root {
   /* Color System */
+  --main-font-color: #35343D;
   --primary-color: #F5F8FA;
   --primary-light: #ffffff;
   --primary-dark: #002171;
@@ -28,7 +29,7 @@
   --neutral-800: #424242;
   --neutral-900: #212121;
 
-  --border-color: #35343D29;
+  --border-color: #b5b4b8;
   /* --border-color: red; */
   --border-radius: 5px;
   --border-thickness: 1px;
@@ -39,6 +40,7 @@
   --spacing-md: 1.5rem; /* 24px */
   --spacing-lg: 2rem; /* 32px */
   --spacing-xl: 3rem; /* 48px */
+  --spacing-xxl: 4rem; /* 64px */
 
   --space-xs: 4px;
   --space-sm: 8px;
@@ -93,8 +95,8 @@ button.p-button {
 }
 
 button.p-button-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 button.p-button-primary:hover {

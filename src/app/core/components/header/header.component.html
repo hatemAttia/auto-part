@@ -1,53 +1,36 @@
 <header class="header">
   <div class="container">
     <div class="header-content">
-      <div class="logo" [routerLink]="isLoggedIn ? '/search' : '/login'">
-        <span class="logo-text">AutoParts<span class="highlight">B2B</span></span>
+      <div class="logo-nav-links">
+        <div class="logo" [routerLink]="isLoggedIn ? '/search' : '/login'">
+          <img src="assets/img/logo-t.png" alt="">
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a>Commandes</a>
+          </li>
+          <li>
+            <a>Factures</a>
+          </li>
+          <li>
+            <a>Bons de livraison</a>
+          </li>
+          <li>
+            <a>Historique</a>
+          </li>
+        </ul>
       </div>
 
-      <!-- Search bar - positioned between logo and nav actions -->
-      <!-- <div class="main-search-container" *ngIf="isLoggedIn">
-        <div class="p-input-icon-left main-search">
-          <i class="pi pi-search" ></i>
-          <input
-            type="text"
-            pInputText
-            [(ngModel)]="searchTerm"
-            placeholder="Search by keyword, part number, or description"
-            (keyup.enter)="search()"
-            class="w-full"
-          />
-        </div>
-        <button
-          pButton
-          icon="pi pi-search"
-          label="Search"
-          class="p-button-primary search-button"
-          (click)="search()"
-        ></button>
-      </div> -->
-      <!-- <div class="">
-        <div class="main-search-container">
-          <button class="btn-1">
-            <i class="pi pi-shopping-cart iconn"></i>
-          </button>
-          <div class="main-search">
-            <input type="text" placeholder="Search by keyword, part number, or description" />
-          </div>
-          <button class="btn-3">
-            button
-          </button>
-        </div>
-      </div> -->
+
 
       <div class="search-bar-container">
         <div class="button history-button">
           <i class="pi pi-history"></i>
         </div>
-      
+
         <div class="outer-search-container">
           <div class="search-container">
-            <input type="text" placeholder="Search by keyword, part number, or description" />
+            <input type="text" placeholder="Entrer la référence ou la piéce" />
           </div>
         </div>
 
@@ -57,7 +40,7 @@
       </div>
 
 
-      <div class="nav-actions" *ngIf="isLoggedIn">
+      <!-- <div class="nav-actions" *ngIf="isLoggedIn">
         <p-menubar [model]="menuItems" class="nav-menu">
           <ng-template pTemplate="end">
             <div class="user-section">
@@ -78,7 +61,7 @@
             </div>
           </ng-template>
         </p-menubar>
-      </div>
+      </div> -->
     </div>
   </div>
 </header>
