@@ -1,7 +1,9 @@
 .login-container {
   min-height: 100vh;
   // background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-  background-color: #0d47a1;
+  background: url("/assets/img/bg-login.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +11,7 @@
 }
 
 .login-content {
-  max-width: 480px;
+  max-width: 650px;
   width: 100%;
 }
 
