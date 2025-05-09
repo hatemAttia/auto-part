@@ -6,9 +6,9 @@
       </div>
 
       <!-- Search bar - positioned between logo and nav actions -->
-      <div class="main-search-container" *ngIf="isLoggedIn">
+      <!-- <div class="main-search-container" *ngIf="isLoggedIn">
         <div class="p-input-icon-left main-search">
-          <i class="pi pi-search"></i>
+          <i class="pi pi-search" ></i>
           <input
             type="text"
             pInputText
@@ -25,39 +25,63 @@
           class="p-button-primary search-button"
           (click)="search()"
         ></button>
+      </div> -->
+      <!-- <div class="">
+        <div class="main-search-container">
+          <button class="btn-1">
+            <i class="pi pi-shopping-cart iconn"></i>
+          </button>
+          <div class="main-search">
+            <input type="text" placeholder="Search by keyword, part number, or description" />
+          </div>
+          <button class="btn-3">
+            button
+          </button>
+        </div>
+      </div> -->
+
+      <div class="search-bar-container">
+        <div class="trapazoid">
+          <div class="left-left">
+
+          </div>
+          <div class="icon-history">
+            <i class="pi pi-history"></i>
+          </div>
+          <div class="left-center"></div>
+          <div class="search-container">
+            <input type="text" placeholder="Search by keyword, part number, or description" />
+          </div>
+          <div class="right-center"></div>
+          <div class="search-button">
+            <i class="pi pi-search"></i>
+          </div>
+          <div class="right-left"></div>
+          <div class="bottom-left"></div>
+          <div class="bottom-right"></div>
+        </div>
       </div>
+
+
 
       <div class="nav-actions" *ngIf="isLoggedIn">
         <p-menubar [model]="menuItems" class="nav-menu">
           <ng-template pTemplate="end">
             <div class="user-section">
-              <button
-                pButton
-                icon="pi pi-shopping-cart"
-                class="p-button-rounded p-button-text cart-button"
-                [routerLink]="'/cart'"
-                style="overflow: inherit;"
-                pTooltip="View Cart"
-              >
+              <button pButton icon="pi pi-shopping-cart" class="p-button-rounded p-button-text cart-button"
+                [routerLink]="'/cart'" style="overflow: inherit;" pTooltip="View Cart">
                 <span class="p-badge p-badge-danger" *ngIf="cartItemCount > 0">{{
                   cartItemCount
-                }}</span>
+                  }}</span>
               </button>
 
               <span class="user-info">
-                <span class="user-name"
-                  >{{ currentUser?.firstName }} {{ currentUser?.lastName }}</span
-                >
+                <span class="user-name">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</span>
                 <span class="user-company">{{ currentUser?.company }}</span>
               </span>
 
-              <button
-                pButton
-                icon="pi pi-sign-out"
-                class="p-button-rounded p-button-text"
-                (click)="logout()"
-                pTooltip="Logout"
-              ></button>
+              <button pButton icon="pi pi-sign-out" class="p-button-rounded p-button-text" (click)="logout()"
+                pTooltip="Logout"></button>
             </div>
           </ng-template>
         </p-menubar>
