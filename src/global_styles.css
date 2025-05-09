@@ -8,11 +8,11 @@
 :root {
   /* Color System */
   --primary-color: #F5F8FA;
-  --primary-light: #5472d3;
+  --primary-light: #ffffff;
   --primary-dark: #002171;
   --secondary-color: #003984;
-  --accent-color: #ff6d00;
-  --accent-light: #ff9e40;
+  --accent-color: #FF0000;
+  --accent-light: #FF0000;
   --accent-dark: #c43c00;
   --success-color: #388e3c;
   --warning-color: #f9a825;
