@@ -215,11 +215,13 @@
   }
 
   .cart-container {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
 
     i {
       color: black;
@@ -252,6 +254,11 @@
           color: var(--light-font-color);
         }
       }
+    }
+
+    &:hover {
+      background-color: gainsboro;
+      border-radius: var(--border-radius);
     }
   }
 

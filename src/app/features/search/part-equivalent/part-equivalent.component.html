@@ -1,0 +1,43 @@
+<div class="container" *ngIf="part">
+    <div class="part-equivalent-header">
+        <h1>Produits Equivalents à: </h1>
+        <div class="part-badges">
+            <span class="part-badge">{{ part.name }}</span>
+            <span class="part-badge">Réf: {{ part.partNumber}}</span>
+            <span class="part-badge"><img src="/assets/img/logo.png" alt=""></span>
+        </div>
+    </div>
+
+    <div class="cards-container" *ngIf="equivalentParts && equivalentParts.length > 0">
+        <div class="card" *ngFor="let equivalent of equivalentParts">
+            <div class="card-header">
+                <img [src]="equivalent.imageUrl" [alt]="equivalent.name" class="part-image" />
+            </div>
+            <div class="card-body">
+                <h2>{{ equivalent.name }}</h2>
+                <p>Réf: {{ equivalent.partNumber }}</p>
+                <p>Fournisseur: {{ equivalent.provider.name }}</p>
+                <div class="part-purchase-container">
+                    <div class="part-availibility-section">
+                        <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
+                        <span class="availability-text">{{ getStockStatusText() }}</span>
+                    </div>
+                    <hr>
+                    <div class="part-price-section">
+                        <span class="part-price">{{ formatPrice(equivalent.price) }}</span>
+                    </div>
+                    <div class="part-quantity-purchase">
+                        <div class="part-quantity">
+                            <p-inputNumber [ngModel]="getQuantity(equivalent.id)" (ngModelChange)="setQuantity(equivalent.id, $event)" [min]="0" [max]="equivalent.stock" [showButtons]="true"
+                                inputId="stacked" mode="decimal" currency="USD" />
+                        </div>
+                        <button pButton label="Acheter" icon="pi pi-shopping-cart" class="p-button-primary cart-button"
+                            [disabled]="equivalent.stock === 0" (click)="addToCart(equivalent)"></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

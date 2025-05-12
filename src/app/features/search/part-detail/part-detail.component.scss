@@ -224,7 +224,7 @@
   }
 }
 
-.part-quantity{
+.part-quantity {
   display: flex;
 }
 
@@ -239,7 +239,6 @@
   border-color: var(--neutral-300);
   background-color: transparent;
   color: var(--main-font-color)
-
 }
 
 .label {
@@ -409,7 +408,7 @@
   margin-top: var(--spacing-md);
 }
 
-:host ::ng-deep .p-tabview-nav{
+:host ::ng-deep .p-tabview-nav {
   margin: 1px;
 }
 

@@ -231,6 +231,19 @@ export class PartsService {
     return of(part).pipe(delay(500)); // Simulate network delay
   }
 
+  getEquivalentParts(id: string): Observable<Part[]> {
+    const part = this.mockParts.find(p => p.id === id);
+    if (!part) {
+      return of([]).pipe(delay(500)); // Simulate network delay
+    }
+    const relatedParts = this.mockParts.filter(p => 
+      part.relatedParts.includes(p.id) || 
+      part.replacedBy.includes(p.id) || 
+      part.replaces.includes(p.id)
+    );
+    return of(relatedParts).pipe(delay(500)); // Simulate network delay
+  }
+
   getRelatedParts(partIds: string[]): Observable<Part[]> {
     const parts = this.mockParts.filter(p => partIds.includes(p.id));
     return of(parts).pipe(delay(500)); // Simulate network delay

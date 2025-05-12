@@ -42,6 +42,14 @@ export const appRoutes: Routes = [
         canActivate: [authGuard],
       },
       {
+        path: "equivalents",
+        loadComponent: () =>
+          import("./features/search/part-equivalent/part-equivalent.component").then(
+            (m) => m.PartEquivalentComponent
+          ),
+        canActivate: [authGuard],
+      },
+      {
         path: "cart",
         loadComponent: () =>
           import("./features/cart/cart-page/cart-page.component").then((m) => m.CartPageComponent),
