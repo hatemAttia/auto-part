@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   currentUser: User | null = null;
   cartItemCount = 0;
+  cartTotal = 0;
   menuItems: MenuItem[] = [];
   searchTerm = '';
 
@@ -52,6 +53,10 @@ export class HeaderComponent implements OnInit {
 
     this.cartService.getItemCount().subscribe((count) => {
       this.cartItemCount = count;
+    });
+
+    this.cartService.getTotalPrice().subscribe((total) => {
+      this.cartTotal = total;
     });
 
     // Subscribe to search service to keep the search bar in sync
@@ -87,6 +92,11 @@ export class HeaderComponent implements OnInit {
     if (!this.router.url.includes('/search')) {
       this.router.navigate(['/search']);
     }
+  }
+
+  formatPrice(price: number): string {
+    // make it a string with 3 digits after the decimal point and a 'dt' at the end
+    return price.toFixed(3) + ' dt';
   }
 
   logout(): void {

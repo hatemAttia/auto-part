@@ -77,6 +77,10 @@ export class CartService {
       this.cartItems.value.reduce((count, item) => count + item.quantity, 0)
     ).asObservable();
   }
+
+  getTotalPrice(): Observable<number> {
+    return this.cartTotal.asObservable();
+  }
   
   private updateCartTotal(): void {
     const total = this.cartItems.value.reduce(

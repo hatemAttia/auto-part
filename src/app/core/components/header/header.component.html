@@ -29,6 +29,19 @@
             <span class="logout"> Déconnexion </span>
           </div>
         </div>
+
+        <div class="cart-container">
+          <i class="pi pi-shopping-cart">
+            <span class="p-badge p-badge-danger cart-count" *ngIf="cartItemCount > 0">
+              {{ cartItemCount }}
+            </span>
+          </i>
+          <div class="cart">
+            <span>Mon panier</span>
+            
+            <span class="totalPrice">{{ formatPrice(cartTotal) }} </span>
+          </div>
+        </div>
       </div>
 
 
