@@ -11,6 +11,7 @@
   --light-font-color: #A6A6A6;
   --primary-color: #F5F8FA;
   --primary-light: #ffffff;
+  --primary-contrast-color: #e8edf4;
   --primary-dark: #002171;
   --secondary-color: #003984;
   --accent-color: #FF0000;
@@ -71,6 +72,23 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+app-base {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 h1,

@@ -87,10 +87,12 @@ export class HeaderComponent implements OnInit {
   }
 
   search(): void {
+    console.log("Searching for:", this.searchTerm);
+    
     this.searchService.updateSearchTerm(this.searchTerm);
     // Navigate to the search page if we're not already there
-    if (!this.router.url.includes('/search')) {
-      this.router.navigate(['/search']);
+    if (!this.router.url.includes('/priavte/search')) {
+      this.router.navigate(['/private/search']);
     }
   }
 

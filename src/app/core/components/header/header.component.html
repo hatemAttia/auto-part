@@ -47,19 +47,22 @@
 
 
       <div class="search-bar-container">
+
         <div class="button history-button">
           <i class="pi pi-history"></i>
         </div>
 
         <div class="outer-search-container">
           <div class="search-container">
-            <input type="text" placeholder="Entrer la référence ou la piéce" />
+            <input type="text" [(ngModel)]="searchTerm" placeholder="Entrer la référence ou la piéce" 
+              (keyup.enter)="search()"/>
           </div>
         </div>
 
-        <div class="button search-button">
+        <div class="button search-button" (click)="search()">
           <i class="pi pi-search"></i>
         </div>
+
       </div>
 
 

@@ -34,7 +34,7 @@ export const appRoutes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: "part/:id",
+        path: "part",
         loadComponent: () =>
           import("./features/search/part-detail/part-detail.component").then(
             (m) => m.PartDetailComponent

@@ -4,7 +4,7 @@
 }
 
 .breadcrumb a {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   text-decoration: none;
 }
 
@@ -34,6 +34,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -57,16 +58,64 @@
   margin-bottom: var(--spacing-md);
 }
 
+.part-detail {
+  background-color: var(--primary-light);
+  padding: var(--spacing-lg);
+  flex: 1;
+}
+
 .part-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-md);
+
+  .part-badges {
+    padding: var(--spacing-xs);
+
+    .part-badge {
+      background-color: var(--primary-contrast-color);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      color: var(--main-font-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        max-width: 64px;
+        max-height: 20px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.availability-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.dot-available {
+  background-color: var(--success-color);
+}
+
+.dot-unavailable {
+  background-color: var(--error-color);
+}
+
+.availability-text {
+  font-weight: 600;
 }
 
 .part-title {
   margin: 0;
-  color: var(--neutral-900);
+  color: var(--main-font-color);
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .part-badges {
@@ -76,20 +125,44 @@
 
 .part-main-content {
   display: flex;
+  flex-direction: column;
   gap: var(--spacing-lg);
 }
 
 .part-image-section {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-xxl);
+  align-items: flex-start;
+  justify-content: flex-start;
+
+
+}
+
+.part-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-xs);
   flex: 1;
-  max-width: 400px;
+
+  img {
+    width: 100%;
+    max-width: 64px;
+    max-height: 1rempx;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
 }
 
 .part-image-container {
   background-color: white;
+  max-width: 50%;
   border-radius: 8px;
   overflow: hidden;
-  margin-bottom: var(--spacing-md);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
 }
 
 .part-image {
@@ -97,29 +170,91 @@
   display: block;
 }
 
-.purchase-card {
-  margin-bottom: var(--spacing-md);
+.part-title-purchase-section {
+  margin-top: var(--spacing-md);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-xxl);
+
+  .part-title-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .part-purchase-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
+    max-width: 400px;
+
+    hr {
+      width: 100%;
+      border: 1px solid var(--neutral-200);
+    }
+
+    .part-price-section {
+      .part-price {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+
 }
 
-.purchase-header {
+.part-quantity-purchase {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  gap: var(--spacing-xs);
   align-items: center;
-  margin-bottom: var(--spacing-sm);
+  justify-content: center;
+
+  button {
+    height: 100%;
+    width: 100%;
+    margin: 0
+  }
 }
 
-.part-number-section {
+.part-quantity{
   display: flex;
-  flex-direction: column;
+}
+
+:host ::ng-deep .p-inputnumber-input {
+  width: 64px !important;
+  text-align: center;
+  max-width: 100px;
+}
+
+:host ::ng-deep .p-inputnumber-button-up,
+:host ::ng-deep .p-inputnumber-button-down {
+  border-color: var(--neutral-300);
+  background-color: transparent;
+  color: var(--main-font-color)
+
 }
 
 .label {
-  font-size: 0.9rem;
-  color: var(--neutral-600);
+  font-size: 1rem;
+  color: var(--main-font-color);
+  white-space: nowrap;
 }
 
-.part-number {
-  font-weight: 600;
+.value {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--neutral-900);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 .part-price-section .price {
@@ -272,6 +407,10 @@
   justify-content: flex-end;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
+}
+
+:host ::ng-deep .p-tabview-nav{
+  margin: 1px;
 }
 
 @media screen and (max-width: 992px) {

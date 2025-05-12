@@ -62,17 +62,31 @@ export class PartDetailComponent implements OnInit {
     private partsService: PartsService,
     private cartService: CartService,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const partId = params.get("id");
-      if (partId) {
-        this.loadPartDetails(partId);
-      } else {
-        this.isLoading = false;
-      }
-    });
+    // Original code that gets part ID from route params
+    // this.route.paramMap.subscribe((params) => {
+    //   const partId = params.get("id");
+    //   if (partId) {
+    //     this.loadPartDetails(partId);
+    //   } else {
+    //     this.isLoading = false;
+    //   }
+    // });
+
+    // For testing: always use part ID 1
+    this.loadPartDetails("1");
+  }
+
+  getStockStatusClass(): string {
+    if (!this.part) return '';
+    return this.part.stock > 0 ? 'dot-available' : 'dot-unavailable';
+  }
+
+  getStockStatusText(): string {
+    if (!this.part) return '';
+    return this.part.stock > 0 ? 'En stock' : 'Épuisé';
   }
 
   loadPartDetails(partId: string): void {
@@ -134,6 +148,11 @@ export class PartDetailComponent implements OnInit {
   goToCart(): void {
     this.addedToCartDialog = false;
     this.router.navigate(["/cart"]);
+  }
+
+  formatPrice(price: number): string {
+    // make it a string with 3 digits after the decimal point and a 'dt' at the end
+    return price.toFixed(3) + ' TND';
   }
 
   onRelatedPartClick(part: Part): void {
