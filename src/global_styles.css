@@ -12,7 +12,7 @@
   --primary-color: #F5F8FA;
   --primary-light: #ffffff;
   --primary-contrast-color: #e8edf4;
-  --primary-dark: #002171;
+  --secondary-dark: #002171;
   --secondary-color: #003984;
   --accent-color: #FF0000;
   --accent-light: #FF0000;
@@ -119,8 +119,8 @@ button.p-button-primary {
 }
 
 button.p-button-primary:hover {
-  background-color: var(--primary-dark);
-  border-color: var(--primary-dark);
+  background-color: var(--secondary-dark);
+  border-color: var(--secondary-dark);
 }
 
 button.p-button-accent {

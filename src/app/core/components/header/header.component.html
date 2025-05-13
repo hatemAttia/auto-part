@@ -6,17 +6,8 @@
           <img src="assets/img/logo-t.png" alt="">
         </div>
         <ul class="nav-links">
-          <li>
-            <a>Commandes</a>
-          </li>
-          <li>
-            <a>Factures</a>
-          </li>
-          <li>
-            <a>Bons de livraison</a>
-          </li>
-          <li>
-            <a>Historique</a>
+          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents' : '/login'">
+            <a>Mes documents</a>
           </li>
         </ul>
       </div>

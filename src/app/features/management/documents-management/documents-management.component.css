@@ -1,0 +1,163 @@
+.main-documents-management-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--spacing-xxl);
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: var(--main-font-color);
+    font-weight: 500;
+    margin: 0 0 2rem 0;
+    padding: 0;
+}
+
+p-tabView {
+    width: 100%;
+}
+
+.table-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-xs);
+
+    padding: var(--spacing-sm) 0;
+}
+
+.date-select {
+    padding: 0;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--main-font-color);
+    font-weight: 400;
+
+    p {
+        font-weight: 400;
+        white-space: nowrap;
+        color: var(--main-font-color);
+    }
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+
+    input {
+        width: 70%;
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius);
+        border: var(--border-thickness) solid var(--primary-contrast-color);
+        background-color: var(--primary-light);
+        color: var(--main-font-color);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            border: var(--border-thickness) solid var(--secondary-color);
+        }
+    }
+
+    button {
+        width: 30%;
+        background-color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
+        padding: var(--spacing-md);
+        color: var(--primary-light);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            background-color: var(--secondary-dark);
+            color: var(--primary-light);
+        }
+    }
+}
+
+:host ::ng-deep .p-tabview-panels {
+    width: 100%;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav {
+    background-color: transparent;
+    border: none;
+}
+
+:host ::ng-deep .p-tabview-nav li a {
+    background-color: var(--primary-contrast-color);
+    color: var(--secondary-color);
+    border-radius: 0;
+    font-weight: 400;
+    transition: all 0.2s ease-in-out;
+}
+
+:host ::ng-deep .p-tabview-nav li a:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-light);
+}
+
+:host ::ng-deep .p-tabview-nav li.p-highlight a {
+    background-color: var(--secondary-color) !important;
+    color: var(--primary-light);
+}
+
+:host ::ng-deep .p-tabview-panels {
+    background-color: transparent;
+    padding: 0;
+}
+
+:host ::ng-deep .p-calendar-w-btn input {
+    padding: var(--spacing-md);
+    background-color: var(--primary-light);
+    border: var(--border-thickness) solid var(--primary-contrast-color);
+    padding: var(--spacing-md);
+    color: var(--main-font-color);
+    border-right: var(--border-thickness) solid var(--primary-light);
+
+
+}
+
+:host ::ng-deep .p-calendar-w-btn input:hover {
+    border: var(--border-thickness) solid var(--secondary-color);
+}
+
+:host ::ng-deep .p-calendar-w-btn button {
+    background-color: var(--primary-light);
+    border: var(--border-thickness) solid var(--primary-contrast-color);
+    color: #000;
+    border-left: none;
+}
+
+:host ::ng-deep .p-datatable-header {
+    border: none;
+    background-color: transparent;
+}
+
+.text-center {
+    text-align: center;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+    background-color: var(--secondary-color);
+    color: var(--primary-light);
+    font-weight: 400;
+}
+
+:host ::ng-deep .p-badge {
+    border-radius: 0 !important;
+}

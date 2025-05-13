@@ -151,9 +151,16 @@
                 background-color: rgb(230, 230, 230);
                 border: var(--border-thickness) solid var(--border-color);
                 color: var(--secondary-color);
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: var(--primary-contrast-color);
+                    border-color: var(--secondary-color);
+                }
 
                 .p-button-label {
                     font-weight: 400 !important;
+
 
                 }
             }
