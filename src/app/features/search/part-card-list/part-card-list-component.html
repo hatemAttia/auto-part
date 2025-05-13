@@ -1,0 +1,158 @@
+<p-card styleClass="part-card" [style]="{'height': '100%'}">
+  <!-- <ng-template pTemplate="header"> </ng-template> -->
+
+  <div class="part-content">
+    <div class="flex">
+      <div
+        class="part-image"
+        style="width: 200px"
+        [style.background-image]="'url(' + part.imageUrl + ')'"
+      >
+        <div class="part-badges">
+          <p-tag *ngIf="part.replaces.length > 0" severity="info" value="Replacement Part"></p-tag>
+          <p-tag
+            *ngIf="part.stock <= 10 && part.stock > 0"
+            severity="warning"
+            value="Low Stock"
+          ></p-tag>
+          <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
+        </div>
+      </div>
+      <div class="p-3" style="flex-grow: 1">
+        <div class="part-header">
+          <h3 class="part-name">{{ part.name }}</h3>
+          <span class="part-number">{{ part.partNumber }}</span>
+        </div>
+
+        <div class="part-compatibility">
+          <span class="compatibility-item" *ngFor="let model of displayedModels; let i = last">
+            {{ model.brand }} {{ model.model }} ({{ model.yearFrom }}-{{ model.yearTo }})
+            <span *ngIf="!i">, </span>
+          </span>
+          <span
+            *ngIf="part.compatibleModels.length > 2"
+            class="more-models"
+            pTooltip="View all compatible models"
+            (click)="viewDetails.emit(part)"
+          >
+            +{{ part.compatibleModels.length - 2 }} more
+          </span>
+        </div>
+
+        <div class="part-details">
+          <!-- <div class="provider-info">
+        <span class="provider-name">{{ part.provider.name }}</span>
+        <p-rating
+          [ngModel]="part.provider.rating"
+          [readonly]="true"
+          [cancel]="false"
+          [stars]="5"
+        ></p-rating>
+        <span class="delivery-time">{{ part.provider.deliveryTime }}</span>
+      </div> -->
+        </div>
+      </div>
+      <div>
+        <div class="flex align-items-end h-full">
+          <div>
+            <div class="py-5">
+              <div class="part-price-stock">
+                <span class="price">${{ part.price.toFixed(2) }}</span>
+                <span
+                  class="stock"
+                  [ngClass]="{'in-stock': part.stock > 10, 'low-stock': part.stock <= 10 && part.stock > 0, 'out-of-stock': part.stock === 0}"
+                >
+                  {{ getStockLabel() }}
+                </span>
+              </div>
+              <!-- <div class="quantity-section">
+                <p-inputNumber
+                  [(ngModel)]="part.quantity"
+                  [showButtons]="true"
+                  buttonLayout="horizontal"
+                  [min]="1"
+                  [max]="part.stock"
+                  [inputStyle]="{ width: '100%' }"
+                  [disabled]="part.stock === 0"
+                  inputId="quantity"
+                  styleClass="custom-quantity-input"
+                  [step]="1"
+                ></p-inputNumber>
+              </div> -->
+            </div>
+            <button
+              pButton
+              type="button"
+              label="Details"
+              icon="pi pi-info-circle"
+              class="p-button-outlined p-button-secondary"
+              (click)="viewDetails.emit(part)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              label="Ajouter au panier"
+              icon="pi pi-shopping-cart"
+              [disabled]="part.stock === 0"
+              class="p-button-primary"
+              (click)="addToCart.emit(part)"
+              pRipple
+            ></button>
+            <div class="py-2">
+              <button
+                pButton
+                type="button"
+                label="Voir equivalence de la piéce"
+                [disabled]="part.stock === 0"
+                class="p-button-primary w-full"
+                (click)="addToCart.emit(part)"
+                pRipple
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <h3 style="text-decoration: underline" (click)="part.ShowOririn =!part.ShowOririn">
+      {{(ShowAllOririn || part.ShowOririn)?'À savoir :':'Voir Plus'}}
+    </h3>
+
+    <div class="grid" *ngIf="ShowAllOririn || part.ShowOririn">
+      <div class="col-6 grid p-3">
+        <div class="col-6 p-0">
+          <div class="th">Références d'origine</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+        </div>
+        <div class="col-6 p-0">
+          <div class="th">Véhicules compatibles</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+        </div>
+      </div>
+
+      <div class="col-6 grid p-3">
+        <div class="col-6 p-0">
+          <div class="th">Références d'origine</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+        </div>
+        <div class="col-6 p-0">
+          <div class="th">Véhicules compatibles</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+          <div class="td">1.6 102ch04-2015</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

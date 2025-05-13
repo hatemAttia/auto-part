@@ -26,6 +26,7 @@ import { SearchFilters } from "../../../shared/models/search-filters.model";
 import { PartCardComponent } from "../part-card/part-card.component";
 import { finalize } from "rxjs/operators";
 import { Subscription } from "rxjs";
+import { PartCardListComponent } from "../part-card-list/part-card-list.component";
 
 @Component({
   selector: "app-search-landing",
@@ -49,9 +50,10 @@ import { Subscription } from "rxjs";
     RatingModule,
     BadgeModule,
     PartCardComponent,
+    PartCardListComponent,
   ],
   templateUrl: "search-landing.components.html",
-  styleUrls: ['./search-landing.component.scss']
+  styleUrls: ["./search-landing.component.scss"],
 })
 export class SearchLandingComponent implements OnInit, OnDestroy {
   mainSearchTerm = "";
@@ -59,14 +61,14 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
   parts: Part[] = [];
   filterForm: FormGroup;
   private searchSubscription: Subscription = new Subscription();
-
+  isGrid = true;
   // Filter options
   carBrands: any[] = [];
   carModels: any[] = [];
   categories: any[] = [];
   brands: any[] = [];
   providers: any[] = [];
-
+  ShowAllOririn = false;
   constructor(
     private fb: FormBuilder,
     private partsService: PartsService,
@@ -80,7 +82,7 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
       year: [null],
       category: [null],
       brands: [[]],
-      priceRange: [[0, 500]],
+      priceRange: [[0, 50000]],
       providers: [[]],
       inStock: [false],
       replacesOthers: [false],
@@ -91,7 +93,7 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
     this.loadFilterOptions();
 
     // Subscribe to search service to get search term from header
-    this.searchSubscription = this.searchService.searchTerm$.subscribe(term => {
+    this.searchSubscription = this.searchService.searchTerm$.subscribe((term) => {
       if (this.mainSearchTerm !== term) {
         this.mainSearchTerm = term;
         this.search(); // Trigger search when term changes
@@ -115,6 +117,7 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
     // Load car brands
     this.partsService.getAllCarBrands().subscribe((brands) => {
       this.carBrands = brands.map((brand) => ({ label: brand, value: brand }));
+      this.carModels = brands.map((brand) => ({ label: brand, value: brand }));
     });
 
     // Load categories
@@ -183,22 +186,22 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
       year: null,
       category: null,
       brands: [],
-      priceRange: [0, 500],
+      priceRange: [0, 50000],
       providers: [],
       inStock: false,
       replacesOthers: false,
     });
-    
+
     // Clear the search term in both the local component and the shared service
     this.mainSearchTerm = "";
     this.searchService.updateSearchTerm("");
-    
+
     this.carModels = [];
     this.search(); // Perform search with reset filters
   }
 
   onViewDetails(part: Part): void {
-    this.router.navigate(["/part", part.id]);
+    this.router.navigate(["/private/part", part.id]);
   }
 
   onAddToCart(part: Part): void {

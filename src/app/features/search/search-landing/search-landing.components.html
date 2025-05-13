@@ -1,15 +1,31 @@
-<div class="container">
+<div class="container mt-3">
   <!-- Main search bar has been moved to the header component -->
 
+  <div class="card-car-choiced flex justify-content-between mb-2">
+    <div class="flex">
+      <div class="flex align-items-center justify-content-center p-3">
+        <img src="assets/img/ix_car-filled.png" alt="" />
+      </div>
+      <div class="flex align-items-center justify-content-center p-3">
+        <div>
+          <h2 class="">Dacia 2015</h2>
+          <p>DOKKER Monospace (KE_) ( 11-2012 > )</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex align-items-center justify-content-center p-3">
+      <button pButton type="button" label="Modifier" class="p-button-primary"></button>
+    </div>
+  </div>
   <div class="search-content">
     <!-- Filters -->
     <aside class="filters-panel">
-      <p-card header="Refine Search">
+      <p-card header="Filtres">
         <form [formGroup]="filterForm">
           <h3>Vehicle</h3>
-          <div class="field">
-            <label for="carBrand">Car Brand</label>
-            <p-dropdown
+          <div class="field" style="max-height: 250px; overflow: auto">
+            <label for="carBrand">Marque de produit</label>
+            <!-- <p-dropdown
               id="carBrand"
               formControlName="carBrand"
               [options]="carBrands"
@@ -18,12 +34,16 @@
               [showClear]="true"
               (onChange)="onCarBrandChange($event)"
               styleClass="w-full"
-            ></p-dropdown>
+            ></p-dropdown> -->
+            <div *ngFor="let item of carBrands" class="flex">
+              <p-checkbox formControlName="carBrand" [value]="item.label" [inputId]="item.id" />
+              <label for="ny" class="ml-2">{{item.label}}</label>
+            </div>
           </div>
 
           <div class="field">
-            <label for="carModel">Car Model</label>
-            <p-dropdown
+            <label for="carModel">Catégorie</label>
+            <!-- <p-dropdown
               id="carModel"
               formControlName="carModel"
               [options]="carModels"
@@ -32,10 +52,15 @@
               [showClear]="true"
               [disabled]="!filterForm.get('carBrand')?.value"
               styleClass="w-full"
-            ></p-dropdown>
+            ></p-dropdown> -->
+
+            <div *ngFor="let item of carModels" class="flex">
+              <p-checkbox formControlName="carModel" [value]="item.label" [inputId]="item.id" />
+              <label for="ny" class="ml-2">{{item.label}}</label>
+            </div>
           </div>
 
-          <div class="field">
+          <!-- <div class="field">
             <label for="year">Year</label>
             <input
               id="year"
@@ -47,12 +72,12 @@
               min="1900"
               max="2030"
             />
-          </div>
+          </div> -->
 
           <p-divider></p-divider>
 
-          <h3>Part Details</h3>
-          <div class="field">
+          <h3 class="">Pieces Details</h3>
+          <!-- <div class="field">
             <label for="category">Category</label>
             <p-dropdown
               id="category"
@@ -62,9 +87,9 @@
               [showClear]="true"
               styleClass="w-full"
             ></p-dropdown>
-          </div>
+          </div> -->
 
-          <div class="field">
+          <!-- <div class="field">
             <label for="brands">Brand</label>
             <p-multiSelect
               id="brands"
@@ -75,26 +100,26 @@
               styleClass="w-full"
               [maxSelectedLabels]="2"
             ></p-multiSelect>
-          </div>
+          </div> -->
 
           <div class="field">
-            <label>Price Range</label>
+            <label>Prix </label>
             <div class="price-slider">
               <p-slider
                 formControlName="priceRange"
                 [range]="true"
                 [min]="0"
-                [max]="500"
+                [max]="50000"
                 styleClass="w-full"
               ></p-slider>
             </div>
             <div class="price-inputs">
-              <span>${{filterForm.get('priceRange')?.value[0]}}</span>
-              <span>${{filterForm.get('priceRange')?.value[1]}}</span>
+              <span>TND {{filterForm.get('priceRange')?.value[0]}}</span>
+              <span>TND {{filterForm.get('priceRange')?.value[1]}}</span>
             </div>
           </div>
 
-          <div class="field">
+          <!-- <div class="field">
             <label for="providers">Provider</label>
             <p-multiSelect
               id="providers"
@@ -106,24 +131,34 @@
               styleClass="w-full"
               [maxSelectedLabels]="1"
             ></p-multiSelect>
-          </div>
+          </div> -->
 
           <p-divider></p-divider>
 
-          <h3>Availability</h3>
+          <h3>Disponibilité</h3>
           <div class="field-checkbox">
             <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
-            <label for="inStock">In Stock Only</label>
+            <label for="inStock">En stock seulement</label>
           </div>
+          <h3>afficher les origines</h3>
 
           <div class="field-checkbox">
+            <p-checkbox
+              [(ngModel)]="ShowAllOririn"
+              [binary]="true"
+              [ngModelOptions]="{standalone: true}"
+              inputId="ShowOrigin"
+            ></p-checkbox>
+            <label for="ShowOrigin">afficher les origines</label>
+          </div>
+          <!-- <div class="field-checkbox">
             <p-checkbox
               formControlName="replacesOthers"
               [binary]="true"
               inputId="replacesOthers"
             ></p-checkbox>
             <label for="replacesOthers">Replaces Other Parts</label>
-          </div>
+          </div> -->
 
           <div class="filter-actions">
             <button
@@ -148,10 +183,43 @@
     <!-- Results -->
     <section class="results-panel">
       <div class="results-header">
-        <h2>Search Results</h2>
-        <div class="results-meta" *ngIf="!isLoading">
-          <span *ngIf="parts.length > 0">{{parts.length}} parts found</span>
-          <span *ngIf="parts.length === 0">No parts found</span>
+        <div>
+          <h2>Résultats de la recherche</h2>
+          <div class="results-meta" *ngIf="!isLoading">
+            <span *ngIf="parts.length > 0">{{parts.length}} résultats compatibles</span>
+            <span *ngIf="parts.length === 0">Aucune pièce trouvée</span>
+          </div>
+        </div>
+        <div class="p-1 flex">
+          <div class="p-1 flex justify-content-center align-items-center">
+            <div class="p-2" style="cursor: pointer" (click)="isGrid=true">
+              <i
+                class="pi pi-th-large"
+                style="font-size: 28px"
+                [ngStyle]="{color:(isGrid)?'#000':'#35343d44'}"
+              ></i>
+            </div>
+            <div style="height: 100%; border-left: 1px #35343d44 solid"></div>
+            <div class="p-2" style="cursor: pointer" (click)="isGrid=false">
+              <i
+                class="pi pi-list"
+                [ngStyle]="{color:(!isGrid)?'#000':'#35343d44'}"
+                style="font-size: 28px"
+              ></i>
+            </div>
+          </div>
+          <div [formGroup]="filterForm" class="px-3">
+            <p-dropdown
+              id="carBrand"
+              formControlName="carBrand"
+              [options]="carBrands"
+              placeholder="Populaire"
+              [filter]="true"
+              [showClear]="true"
+              (onChange)="onCarBrandChange($event)"
+              styleClass="w-full"
+            ></p-dropdown>
+          </div>
         </div>
       </div>
 
@@ -168,13 +236,22 @@
         ></p-message>
       </div>
 
-      <div class="results-grid" *ngIf="!isLoading && parts.length > 0">
+      <div class="results-grid" *ngIf=" isGrid && !isLoading && parts.length > 0">
         <app-part-card
           *ngFor="let part of parts"
           [part]="part"
           (viewDetails)="onViewDetails($event)"
           (addToCart)="onAddToCart($event)"
         ></app-part-card>
+      </div>
+      <div class="results-list" *ngIf=" !isGrid && !isLoading && parts.length > 0">
+        <app-part-card-list
+          *ngFor="let part of parts"
+          [part]="part"
+          [ShowAllOririn]="ShowAllOririn"
+          (viewDetails)="onViewDetails($event)"
+          (addToCart)="onAddToCart($event)"
+        ></app-part-card-list>
       </div>
     </section>
   </div>

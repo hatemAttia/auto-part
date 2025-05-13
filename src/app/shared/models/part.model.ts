@@ -13,6 +13,8 @@ export interface Part {
   replaces: string[];
   imageUrl: string;
   description: string;
+  quantity?: any;
+  ShowOririn?: any;
 }
 
 export interface CompatibleModel {

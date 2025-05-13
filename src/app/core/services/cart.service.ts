@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { CartItem } from '../../shared/models/cart-item.model';
-import { Part } from '../../shared/models/part.model';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
+import { CartItem } from "../../shared/models/cart-item.model";
+import { Part } from "../../shared/models/part.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CartService {
   // The actual cart items array
@@ -21,17 +21,18 @@ export class CartService {
 
   constructor() {
     // Load cart from localStorage if available
-    const savedCart = localStorage.getItem('cart');
+    const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       const items = JSON.parse(savedCart);
       this.cartItems.next(items);
       this.updateCartTotal();
+      this.updateItemCount();
     }
   }
 
   addToCart(part: Part, quantity: number = 1): void {
     const currentItems = this.cartItems.value;
-    const existingItemIndex = currentItems.findIndex(item => item.part.id === part.id);
+    const existingItemIndex = currentItems.findIndex((item) => item.part.id === part.id);
 
     if (existingItemIndex !== -1) {
       // Update quantity if item already exists
@@ -55,7 +56,7 @@ export class CartService {
     }
 
     const currentItems = this.cartItems.value;
-    const updatedItems = currentItems.map(item =>
+    const updatedItems = currentItems.map((item) =>
       item.part.id === partId ? { ...item, quantity } : item
     );
 
@@ -67,7 +68,7 @@ export class CartService {
 
   removeFromCart(partId: string): void {
     const currentItems = this.cartItems.value;
-    const updatedItems = currentItems.filter(item => item.part.id !== partId);
+    const updatedItems = currentItems.filter((item) => item.part.id !== partId);
 
     this.cartItems.next(updatedItems);
     this.updateCartTotal();
@@ -77,19 +78,15 @@ export class CartService {
   clearCart(): void {
     this.cartItems.next([]);
     this.cartTotal.next(0);
-    localStorage.removeItem('cart');
+    localStorage.removeItem("cart");
   }
 
   getItemCount(): Observable<number> {
-    return new BehaviorSubject<number>(
-      this.cartItems.value.reduce((count, item) => count + item.quantity, 0)
-    ).asObservable();
+    return this.itemCount.asObservable();
   }
 
   private updateItemCount(): void {
-    const count = this.cartItems.value.reduce(
-      (sum, item) => sum + item.quantity, 0
-    );
+    const count = this.cartItems.value.reduce((sum, item) => sum + item.quantity, 0);
     this.itemCount.next(count);
   }
 
@@ -99,13 +96,13 @@ export class CartService {
 
   private updateCartTotal(): void {
     const total = this.cartItems.value.reduce(
-      (sum, item) => sum + (item.part.price * item.quantity),
+      (sum, item) => sum + item.part.price * item.quantity,
       0
     );
     this.cartTotal.next(total);
   }
 
   private saveCartToLocalStorage(): void {
-    localStorage.setItem('cart', JSON.stringify(this.cartItems.value));
+    localStorage.setItem("cart", JSON.stringify(this.cartItems.value));
   }
 }
