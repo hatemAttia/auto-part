@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <div class="cart-container">
+        <div class="cart-container" (click)="goToCart()">
           <i class="pi pi-shopping-cart">
             <span class="p-badge p-badge-danger cart-count" *ngIf="cartItemCount > 0">
               {{ cartItemCount }}

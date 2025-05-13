@@ -35,7 +35,7 @@ export class PartsService {
     },
     {
       id: '2',
-      name: 'Brake Pad Set',
+      name: 'Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set Brake Pad Set ',
       partNumber: 'BP-5678',
       category: 'Braking System',
       brand: 'BremboTech',

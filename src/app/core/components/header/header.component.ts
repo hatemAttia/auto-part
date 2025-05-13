@@ -85,6 +85,9 @@ export class HeaderComponent implements OnInit {
       this.menuItems = [];
     }
   }
+  goToCart(): void {
+    this.router.navigate(["/private/cart"]);
+  }
 
   search(): void {
     console.log("Searching for:", this.searchTerm);
