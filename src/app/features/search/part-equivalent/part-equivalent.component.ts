@@ -6,10 +6,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CartService } from '../../../core/services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { AddToCartComponent } from '../../../shared/components/add-to-cart/add-to-cart.component';
 
 @Component({
   selector: 'app-part-equivalent',
-  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule],
+  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule, AddToCartComponent],
   templateUrl: './part-equivalent.component.html',
   styleUrl: './part-equivalent.component.scss'
 })
@@ -63,10 +64,10 @@ export class PartEquivalentComponent {
     );
   }
 
-  addToCart(part: Part): void {
-    const quantity = this.getQuantity(part.id);
-    if (part && quantity > 0) {
-      this.cartService.addToCart(part, quantity);
+  addToCart(quantity: number): void {
+    if (this.part && quantity > 0) {
+      this.cartService.addToCart(this.part, quantity);
+      this.quantity = quantity; // Save quantity for dialog
       this.addedToCartDialog = true;
     }
   }

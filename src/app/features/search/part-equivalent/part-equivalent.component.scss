@@ -44,7 +44,7 @@
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     justify-content: center;
 
     align-items: stretch;
@@ -107,6 +107,8 @@
         }
 
         .part-purchase-container {
+            border: 1px solid red;
+            width: 100%;
             margin-top: auto;
             display: flex;
             flex-direction: column;
@@ -114,6 +116,11 @@
             justify-content: flex-start;
             align-items: flex-start;
             max-width: 400px;
+
+            app-add-to-cart {
+                width: 100%;
+                margin: 1rem 0 0 0;
+            }
 
             hr {
                 width: 100%;
