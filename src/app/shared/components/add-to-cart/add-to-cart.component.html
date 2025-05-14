@@ -1,0 +1,18 @@
+<div class="part-purchase-container">
+  <div class="part-availibility-section">
+    <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
+    <span class="availability-text">{{ getStockStatusText() }}</span>
+  </div>
+  <hr>
+  <div class="part-price-section">
+    <span class="part-price" [ngClass]="'price-' + priceSize">{{ formatPrice(price) }}</span>
+  </div>
+  <div class="part-quantity-purchase">
+    <div class="part-quantity">
+      <p-inputNumber [(ngModel)]="quantity" [min]="0" [max]="stock" [showButtons]="true" inputId="stacked" mode="decimal"
+        currency="USD" />
+    </div>
+    <button pButton label="Acheter" icon="pi pi-shopping-cart" class="p-button-primary cart-button"
+      [disabled]="!isAvailable || stock === 0" (click)="onAddToCart()"></button>
+  </div>
+</div>

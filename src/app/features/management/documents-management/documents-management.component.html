@@ -34,13 +34,15 @@
                     </ng-container>
                 </td>
                 <td class="text-center">
+                    <button pButton icon="pi pi-eye" [text]="true"></button>
+
                     <button pButton icon="pi pi-print" [text]="true"></button>
-                    <ng-container *ngIf="currentDocType === 'deliveries'">
+                    <!-- <ng-container *ngIf="currentDocType === 'deliveries'">
                         <button pButton icon="pi pi-eye" [text]="true"></button>
                     </ng-container>
                     <ng-container *ngIf="currentDocType === 'invoices'">
                         <button pButton icon="pi pi-download" [text]="true"></button>
-                    </ng-container>
+                    </ng-container> -->
                 </td>
             </tr>
         </ng-template>

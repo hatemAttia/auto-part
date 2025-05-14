@@ -39,8 +39,6 @@
           <img [src]="part.imageUrl" [alt]="part.name" class="part-image" />
         </div>
 
-        <div class="part-title-purchase-section">
-
           <div class="part-title-container">
             <p class="part-title">{{ part.name }}</p>
             <div class="part-info part-number-section">
@@ -60,26 +58,10 @@
 
           </div>
 
-          <div class="part-purchase-container">
-            <div class="part-availibility-section">
-              <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
-              <span class="availability-text">{{ getStockStatusText() }}</span>
-            </div>
-            <hr>
-            <div class="part-price-section">
-              <span class="part-price">{{ formatPrice(part.price) }}</span>
-            </div>
-            <div class="part-quantity-purchase">
-              <div class="part-quantity">
-                <p-inputNumber [(ngModel)]="quantity" [min]="0" [max]="part.stock" [showButtons]="true" inputId="stacked" mode="decimal"
-                  currency="USD" />
-              </div>
-                <button pButton label="Acheter" icon="pi pi-shopping-cart" class="p-button-primary cart-button"
-                  [disabled]="part.stock === 0" (click)="addToCart()"></button>
-
-            </div>
-          </div>
-        </div>
+          <app-add-to-cart [stock]="part.stock" [price]="part.price" [isAvailable]="part.stock > 0" priceSize="large"
+            (addToCart)="addToCart($event)">
+          </app-add-to-cart>
+        
 
 
 

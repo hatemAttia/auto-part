@@ -19,6 +19,7 @@ import { PartsService } from "../../../core/services/parts.service";
 import { CartService } from "../../../core/services/cart.service";
 import { Part } from "../../../shared/models/part.model";
 import { PartCardComponent } from "../part-card/part-card.component";
+import { AddToCartComponent } from "../../../shared/components/add-to-cart/add-to-cart.component";
 import { finalize } from "rxjs/operators";
 import { forkJoin, of } from "rxjs";
 
@@ -42,6 +43,7 @@ import { forkJoin, of } from "rxjs";
     DialogModule,
     FormsModule,
     PartCardComponent,
+    AddToCartComponent,
   ],
   providers: [MessageService],
   templateUrl: './part-detail.component.html',
@@ -78,17 +80,6 @@ export class PartDetailComponent implements OnInit {
     // For testing: always use part ID 1
     this.loadPartDetails("1");
   }
-
-  getStockStatusClass(): string {
-    if (!this.part) return '';
-    return this.part.stock > 0 ? 'dot-available' : 'dot-unavailable';
-  }
-
-  getStockStatusText(): string {
-    if (!this.part) return '';
-    return this.part.stock > 0 ? 'En stock' : 'Épuisé';
-  }
-
   loadPartDetails(partId: string): void {
     this.isLoading = true;
 
@@ -137,10 +128,10 @@ export class PartDetailComponent implements OnInit {
       return `In Stock: ${this.part.stock} available`;
     }
   }
-
-  addToCart(): void {
-    if (this.part && this.quantity > 0) {
-      this.cartService.addToCart(this.part, this.quantity);
+  addToCart(quantity: number): void {
+    if (this.part && quantity > 0) {
+      this.cartService.addToCart(this.part, quantity);
+      this.quantity = quantity; // Save quantity for dialog
       this.addedToCartDialog = true;
     }
   }
