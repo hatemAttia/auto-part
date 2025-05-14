@@ -78,6 +78,7 @@ export class CartService {
   clearCart(): void {
     this.cartItems.next([]);
     this.cartTotal.next(0);
+    this.itemCount.next(0);
     localStorage.removeItem("cart");
   }
 

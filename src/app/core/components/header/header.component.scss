@@ -21,6 +21,27 @@
   gap: var(--spacing-xxl);
   align-items: center;
   justify-content: center;
+
+  .nav-links {
+
+    .nav-link {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: var(--border-thickness) solid transparent;
+      padding: var(--spacing-xs);
+
+      &:hover,
+      &:focus ,
+      &.active {
+
+        a {
+          color: var(--secondary-color);
+        }
+
+        border-bottom: var(--border-thickness) solid var(--secondary-color);
+      }
+    }
+  }
 }
 
 .logo {
@@ -33,6 +54,8 @@
     max-height: 100%;
     object-fit: cover;
   }
+
+
 }
 
 .logo:hover {
@@ -77,11 +100,6 @@
     overflow: hidden;
     transition: all 0.2s ease;
 
-    &:hover {
-      background-color: var(--secondary-color);
-    }
-
-
     .search-container {
       clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
       display: flex;
@@ -100,6 +118,15 @@
         height: 100%;
         color: gray;
         background-color: var(--primary-light);
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: gainsboro;
+          color: var(--main-font-color);
+          &::placeholder {
+            color: var(--main-font-color);
+          }
+        }
 
         &::placeholder {
           color: var(--border-color);
@@ -122,10 +149,8 @@
     outline: var(--border-thickness) solid transparent;
 
     &:hover {
-      background-color: var(--secondary-color);
-      color: var(--primary-light);
-      border: var(--border-thickness) solid var(--primary-light);
-      outline: var(--border-thickness) solid var(--secondary-color);
+      background-color: gainsboro;
+      color: var(--main-font-color);
     }
 
   }
@@ -241,7 +266,7 @@
       align-items: flex-start;
       justify-content: center;
 
-      
+
 
       span {
         color: black;
@@ -272,7 +297,7 @@
     gap: var(--spacing-sm);
   }
 
-  .user-actions{
+  .user-actions {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
@@ -283,10 +308,10 @@
   .header-content {
     flex-direction: column;
     align-items: stretch;
-    
+
   }
 
-  .user-actions{
+  .user-actions {
     margin-bottom: 2rem;
   }
 }
