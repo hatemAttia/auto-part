@@ -4,10 +4,18 @@
       <div class="logo-nav-links">
         <div class="logo" [routerLink]="isLoggedIn ? '/search' : '/login'">
           <img src="assets/img/logo-t.png" alt="">
-        </div>
-        <ul class="nav-links">
-          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents' : '/login'">
+        </div>        <ul class="nav-links">
+          <!-- <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents' : '/login'">
             <a>Mes documents</a>
+          </li> -->
+          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents/orders' : '/login'" [routerLinkActive]="'active'" >
+            <a>Mes commandes</a>
+          </li>
+          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents/deliveries' : '/login'" [routerLinkActive]="'active'">
+            <a>Mes bons de livraison</a>
+          </li>
+          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents/invoices' : '/login'" [routerLinkActive]="'active'">
+            <a>Mes factures</a>
           </li>
         </ul>
       </div>

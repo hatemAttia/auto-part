@@ -1,126 +1,59 @@
 <div class="main-documents-management-container">
-    <h2>Mes documents</h2>
+    <h2>Mes {{getHeader()}}</h2>
 
-    <p-tabView (onChange)="handleTabChange($event)">
-        <p-tabPanel header="Mes commandes">
-            <p-table [value]="orders" [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template pTemplate="caption">
-                    <ng-container *ngTemplateOutlet="tableHeader">
+    <p-table [value]="displayData" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
+        <ng-template pTemplate="caption">
+            <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <!-- Dynamic column definitions based on document type -->
+            <tr>
+                <th *ngFor="let col of columns" class="text-center">{{ col.header }}</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td *ngFor="let col of columns" class="text-center">
+                    <ng-container [ngSwitch]="col.type">
+                        <ng-container *ngSwitchCase="'date'">
+                            {{ item[col.field] | date: 'dd/MM/yyyy' }}
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'price'">
+                            {{ formatPrice(item[col.field]) }}
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'status'">
+                            {{ getStatusValue(item[col.field]) }}
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'boolean'">
+                            {{ item[col.field] ? 'Payée' : 'Non payée' }}
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            {{ item[col.field] }}
+                        </ng-container>
                     </ng-container>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th class="text-center">N° commande</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">Prix HT</th>
-                        <th class="text-center">Prix TTC</th>
-                        <th class="text-center">Statut</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-order>
-                    <tr>
-                        <td class="text-center">{{ order.orderNumber }}</td>
-                        <td class="text-center">{{ order.date | date: 'dd/MM/yyyy' }}</td>
-                        <td class="text-center">{{ formatPrice(order.priceHT) }}</td>
-                        <td class="text-center">{{ formatPrice(order.priceTTC) }}</td>
-                        <td class="text-center">
-                            <p-badge [value]="getStatusValue(order.status)"
-                                [severity]="getStatusSeverity(order.status)"></p-badge>
-                        </td>
-                        <td class="text-center">
-                            <button pButton icon="pi pi-print" [text]="true"></button>
-                        </td>
-
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="emptymessage">
-                    <tr>
-                        <td colspan="6" style="text-align: center">
-                            <p> Aucune commande trouvée </p>
-                        </td>
-                    </tr>
-
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Mes bons de livraison">
-            <p-table [value]="deliveries" [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template pTemplate="caption">
-                    <ng-container *ngTemplateOutlet="tableHeader; context: {$implicit: 'deliveries'}">
+                </td>
+                <td class="text-center">
+                    <button pButton icon="pi pi-print" [text]="true"></button>
+                    <ng-container *ngIf="currentDocType === 'deliveries'">
+                        <button pButton icon="pi pi-eye" [text]="true"></button>
                     </ng-container>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th class="text-center">N° bon de livraison</th>
-                        <th class="text-center">Date de livraison</th>
-                        <th class="text-center">N° commande</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-delivery>
-                    <tr>
-                        <td class="text-center">{{ delivery.deliveryNumber }}</td>
-                        <td class="text-center">{{ delivery.deliveryDate | date: 'dd/MM/yyyy' }}</td>
-                        <td class="text-center">{{ delivery.orderNumber }}</td>
-                        <td class="text-center">
-                            <button pButton icon="pi pi-print" [text]="true"></button>
-                            <button pButton icon="pi pi-eye" [text]="true"></button>
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="emptymessage">
-                    <tr>
-                        <td colspan="5" style="text-align: center">
-                            <p>Aucun bon de livraison trouvé</p>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Mes factures">
-            <p-table [value]="invoices" [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template pTemplate="caption">
-                    <ng-container *ngTemplateOutlet="tableHeader; context: {$implicit: 'invoices'}">
+                    <ng-container *ngIf="currentDocType === 'invoices'">
+                        <button pButton icon="pi pi-download" [text]="true"></button>
                     </ng-container>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th class="text-center">N° facture</th>
-                        <th class="text-center">Date</th>
-                        <!-- <th class="text-center">N° commande</th>
-                        <th class="text-center">Montant</th> -->
-                        <th class="text-center">Statut</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-invoice>
-                    <tr>
-                        <td class="text-center">{{ invoice.invoiceNumber }}</td>
-                        <td class="text-center">{{ invoice.date | date: 'dd/MM/yyyy' }}</td>
-                        <!-- <td class="text-center">{{ invoice.orderNumber }}</td>
-                        <td class="text-center">{{ formatPrice(invoice.amount) }}</td> -->
-                        <td class="text-center">
-                            <p-badge [value]="invoice.isPaid ? 'Payée' : 'Non payée'"
-                                [severity]="invoice.isPaid ? 'success' : 'danger'">
-                            </p-badge>
-                        </td>
-                        <td class="text-center">
-                            <button pButton icon="pi pi-print" [text]="true"></button>
-                            <button pButton icon="pi pi-download" [text]="true"></button>
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="emptymessage">
-                    <tr>
-                        <td colspan="6" style="text-align: center">
-                            <p>Aucune facture trouvée</p>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-    </p-tabView>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]="columns.length + 1" style="text-align: center">
+                    <p *ngIf="currentDocType === 'orders'">Aucune commande trouvée</p>
+                    <p *ngIf="currentDocType === 'deliveries'">Aucun bon de livraison trouvé</p>
+                    <p *ngIf="currentDocType === 'invoices'">Aucune facture trouvée</p>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
 
 <ng-template #tableHeader let-docType>
@@ -134,9 +67,7 @@
 
         <div class="search">
             <input type="text" pInputText placeholder="Rechercher" />
-
             <button class="btn search-btn">Rechercher</button>
         </div>
-
     </div>
 </ng-template>

@@ -1,19 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
-import { TabViewModule } from 'primeng/tabview';
-import { DocumentsManagementService } from '../../../core/services/documents-management.service';
 import { BadgeModule } from 'primeng/badge';
+import { DocumentsManagementService } from '../../../core/services/documents-management.service';
 import { formatPrice } from '../../../core/utils/format.utils';
+
+interface Column {
+  field: string;
+  header: string;
+  type?: 'text' | 'date' | 'price' | 'status' | 'boolean';
+}
 
 @Component({
   selector: 'app-documents-management',
   imports: [
-    TabViewModule, 
     TableModule, 
     CommonModule, 
     FormsModule, 
@@ -21,18 +26,16 @@ import { formatPrice } from '../../../core/utils/format.utils';
     ButtonModule, 
     InputTextModule,
     BadgeModule,
+    RouterModule
   ],
   templateUrl: './documents-management.component.html',
   styleUrl: './documents-management.component.css'
 })
 export class DocumentsManagementComponent implements OnInit {
-
-  constructor(
-    private documentsService: DocumentsManagementService
-  ) {
-
-  }
-
+  currentDocType: string = 'orders';
+  displayData: any[] = [];
+  columns: Column[] = [];
+  
   orders: any[] = [];
   deliveries: any[] = [];
   invoices: any[] = [];
@@ -40,27 +43,78 @@ export class DocumentsManagementComponent implements OnInit {
   startDate: Date | null = null;
   endDate: Date | null = null;
 
+  constructor(
+    private documentsService: DocumentsManagementService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
-    this.loadOrders();
+    this.route.params.subscribe(params => {
+      this.currentDocType = params['type'] || 'orders';
+      this.setColumns();
+      this.loadData();
+    });
   }
 
-  handleTabChange(event: any): void {
-    // event.index is the index of the selected tab (0-based)
-    switch (event.index) {
-      case 0:
-        if (!this.orders || this.orders.length === 0) {          
-          this.loadOrders();
-        }
+  getHeader() {
+    switch (this.currentDocType) {
+      case 'orders':
+        return 'commandes';
+      case 'deliveries':
+        return 'bons de livraisons';
+      case 'invoices':
+        return 'factures';
+      default:
+        return '';
+    }
+  }
+  setColumns(): void {
+    switch (this.currentDocType) {
+      case 'orders':
+        this.columns = [
+          { field: 'orderNumber', header: 'N° commande', type: 'text' },
+          { field: 'date', header: 'Date', type: 'date' },
+          { field: 'priceHT', header: 'Prix HT', type: 'price' },
+          { field: 'priceTTC', header: 'Prix TTC', type: 'price' },
+          { field: 'status', header: 'Statut', type: 'status' }
+        ];
         break;
-      case 1:
-        if (!this.deliveries || this.deliveries.length === 0) {
-          this.loadDeliveries();
-        }
+      case 'deliveries':
+        this.columns = [
+          { field: 'deliveryNumber', header: 'N° bon de livraison', type: 'text' },
+          { field: 'deliveryDate', header: 'Date de livraison', type: 'date' },
+          { field: 'orderNumber', header: 'N° commande', type: 'text' }
+        ];
         break;
-      case 2:
-        if (!this.invoices || this.invoices.length === 0) {
-          this.loadInvoices();
-        }
+      case 'invoices':
+        this.columns = [
+          { field: 'invoiceNumber', header: 'N° facture', type: 'text' },
+          { field: 'date', header: 'Date', type: 'date' },
+          { field: 'isPaid', header: 'Statut', type: 'boolean' }
+        ];
+        break;
+      default:
+        this.columns = [];
+        break;
+    }
+  }
+
+  loadData(): void {
+    switch (this.currentDocType) {
+      case 'orders':
+        this.loadOrders();
+        break;
+      case 'deliveries':
+        this.loadDeliveries();
+        break;
+      case 'invoices':
+        this.loadInvoices();
+        break;
+      default:
+        // Default to orders if no valid type is provided
+        this.loadOrders();
+        this.router.navigate(['/private/documents/orders']);
         break;
     }
   }
@@ -68,6 +122,7 @@ export class DocumentsManagementComponent implements OnInit {
   loadOrders(): void {
     this.documentsService.getOrders().subscribe((data: any) => {
       this.orders = data;
+      this.displayData = this.orders;
     }, (error: any) => {
       console.error('Error loading orders:', error);
     });
@@ -76,6 +131,7 @@ export class DocumentsManagementComponent implements OnInit {
   loadDeliveries(): void {
     this.documentsService.getDeliveries().subscribe((data: any) => {
       this.deliveries = data;
+      this.displayData = this.deliveries;
     }, (error: any) => {
       console.error('Error loading deliveries:', error);
     });
@@ -84,6 +140,7 @@ export class DocumentsManagementComponent implements OnInit {
   loadInvoices(): void {
     this.documentsService.getInvoices().subscribe((data: any) => {
       this.invoices = data;
+      this.displayData = this.invoices;
     }, (error: any) => {
       console.error('Error loading invoices:', error);
     });
@@ -122,5 +179,4 @@ export class DocumentsManagementComponent implements OnInit {
   formatPrice(price: number): string {
     return formatPrice(price);
   }
-
 }

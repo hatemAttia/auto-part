@@ -48,6 +48,15 @@ export const appRoutes: Routes = [
             (m) => m.DocumentsManagementComponent
           ),
         canActivate: [authGuard],
+        children: []
+      },
+      {
+        path: "documents/:type",
+        loadComponent: () =>
+          import("./features/management/documents-management/documents-management.component").then(
+            (m) => m.DocumentsManagementComponent
+          ),
+        canActivate: [authGuard],
       },
       {
         path: "equivalents",

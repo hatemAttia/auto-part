@@ -30,7 +30,9 @@
       border: var(--border-thickness) solid transparent;
       padding: var(--spacing-xs);
 
-      &:hover {
+      &:hover,
+      &:focus ,
+      &.active {
 
         a {
           color: var(--secondary-color);
