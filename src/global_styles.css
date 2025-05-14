@@ -7,15 +7,15 @@
 
 :root {
   /* Color System */
-  --main-font-color: #35343D;
+  --main-font-color: #35343d;
   --light-font-color: #909090;
-  --primary-color: #F5F8FA;
+  --primary-color: #f5f8fa;
   --primary-light: #ffffff;
   --primary-contrast-color: #e8edf4;
   --primary-dark: #002171;
   --secondary-color: #003984;
-  --accent-color: #FF0000;
-  --accent-light: #FF0000;
+  --accent-color: #ff0000;
+  --accent-light: #ff0000;
   --accent-dark: #c43c00;
   --success-color: #388e3c;
   --warning-color: #f9a825;
@@ -66,7 +66,8 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Montserrat", Roboto, Helvetica, Arial, sans-serif;
+  /* font-family: Montserrat; */
   color: var(--neutral-800);
   background-color: var(--primary-color);
   margin: 0;
@@ -76,7 +77,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  
 }
 
 app-root {

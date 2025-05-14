@@ -8,7 +8,7 @@
         style="width: 200px"
         [style.background-image]="'url(' + part.imageUrl + ')'"
       >
-        <div class="part-badges">
+        <!-- <div class="part-badges">
           <p-tag *ngIf="part.replaces.length > 0" severity="info" value="Replacement Part"></p-tag>
           <p-tag
             *ngIf="part.stock <= 10 && part.stock > 0"
@@ -16,12 +16,14 @@
             value="Low Stock"
           ></p-tag>
           <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
-        </div>
+        </div> -->
       </div>
       <div class="p-3" style="flex-grow: 1">
         <div class="part-header">
           <h3 class="part-name">{{ part.name }}</h3>
-          <span class="part-number">{{ part.partNumber }}</span>
+          <span class="part-number"> Réf : {{ part.partNumber }}</span><br />
+          <span class="part-number"> Fournisseur : {{ part.partNumber }}</span> <br />
+          <span class="part-number"> Autre infos : : {{ part.partNumber }}</span>
         </div>
 
         <div class="part-compatibility">

@@ -61,7 +61,7 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
   parts: Part[] = [];
   filterForm: FormGroup;
   private searchSubscription: Subscription = new Subscription();
-  isGrid = true;
+  isGrid = false;
   // Filter options
   carBrands: any[] = [];
   carModels: any[] = [];

@@ -23,7 +23,7 @@ export const appRoutes: Routes = [
           import("./features/landing-page/landing-page.component").then(
             (m) => m.LandingPageComponent
           ),
-        canActivate: [authGuard],
+        // canActivate: [authGuard],
       },
       {
         path: "search",
@@ -31,7 +31,7 @@ export const appRoutes: Routes = [
           import("./features/search/search-landing/search-landing.component").then(
             (m) => m.SearchLandingComponent
           ),
-        canActivate: [authGuard],
+        //    canActivate: [authGuard],
       },
       {
         path: "part",
@@ -39,7 +39,7 @@ export const appRoutes: Routes = [
           import("./features/search/part-detail/part-detail.component").then(
             (m) => m.PartDetailComponent
           ),
-        canActivate: [authGuard],
+        //     canActivate: [authGuard],
       },
       {
         path: "equivalents",
@@ -47,13 +47,13 @@ export const appRoutes: Routes = [
           import("./features/search/part-equivalent/part-equivalent.component").then(
             (m) => m.PartEquivalentComponent
           ),
-        canActivate: [authGuard],
+        //    canActivate: [authGuard],
       },
       {
         path: "cart",
         loadComponent: () =>
           import("./features/cart/cart-page/cart-page.component").then((m) => m.CartPageComponent),
-        canActivate: [authGuard],
+        //      canActivate: [authGuard],
       },
       {
         path: "**",
