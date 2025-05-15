@@ -15,6 +15,7 @@ export interface Part {
   description: string;
   quantity?: any;
   ShowOririn?: any;
+  quantityDemanded?: number;
 }
 
 export interface CompatibleModel {

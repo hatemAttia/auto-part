@@ -3,7 +3,7 @@
     <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
     <span class="availability-text">{{ getStockStatusText() }}</span>
   </div>
-  <hr>
+  <hr />
   <div class="part-price-section">
     <span class="part-price" [ngClass]="'price-' + priceSize">{{ formatPrice(price) }}</span>
   </div>
@@ -11,26 +11,31 @@
     <div class="part-quantity">
       <!-- <p-inputNumber [(ngModel)]="quantity" [min]="0" [max]="stock" [showButtons]="true" inputId="stacked" mode="decimal"
         currency="USD" /> -->
-        <p-inputNumber
-                    [(ngModel)]="quantity"
-                    [showButtons]="true"
-                    buttonLayout="horizontal"
-                    [min]="1"
-                    [max]="stock"
-                    [inputStyle]="{ width: '80px' }"
-                    [disabled]="stock === 0"
-                    styleClass="p-inputnumber-sm"
-                  >
-                    <ng-template pTemplate="decrementbuttonicon">
-                      <i class="pi pi-minus" style="color: black; font-size: 12px; margin: 5px"></i>
-                    </ng-template>
-                    <ng-template pTemplate="incrementbuttonicon">
-                      <i class="pi pi-plus" style="color: black; font-size: 13px"></i>
-                    </ng-template>
-                  </p-inputNumber>
-        
+      <p-inputNumber
+        [(ngModel)]="quantity"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        [min]="1"
+        [max]="stock"
+        [inputStyle]="{ width: '80px' }"
+        [disabled]="stock === 0"
+        styleClass="p-inputnumber-sm"
+      >
+        <ng-template pTemplate="decrementbuttonicon">
+          <i class="pi pi-minus" style="color: black; font-size: 12px; margin: 5px"></i>
+        </ng-template>
+        <ng-template pTemplate="incrementbuttonicon">
+          <i class="pi pi-plus" style="color: black; font-size: 13px"></i>
+        </ng-template>
+      </p-inputNumber>
     </div>
-    <button pButton label="Commander" icon="pi pi-shopping-cart" class="p-button-primary cart-button"
-      [disabled]="!isAvailable || stock === 0" (click)="onAddToCart()"></button>
+    <button
+      pButton
+      label="Commander"
+      icon="pi pi-shopping-cart"
+      class="p-button-primary cart-button"
+      [disabled]="!isAvailable || stock === 0"
+      (click)="onAddQuantity()"
+    ></button>
   </div>
 </div>

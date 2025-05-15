@@ -2,13 +2,15 @@
   <!-- <ng-template pTemplate="header"> </ng-template> -->
 
   <div class="part-content">
-    <div class="flex">
-      <div
-        class="part-image"
-        style="width: 200px"
-        [style.background-image]="'url(' + part.imageUrl + ')'"
-      >
-        <!-- <div class="part-badges">
+    <div class="flex justify-content-between">
+      <div class="">
+        <div class="flex w-full">
+          <div
+            class="part-image"
+            style="width: 200px"
+            [style.background-image]="'url(' + part.imageUrl + ')'"
+          >
+            <!-- <div class="part-badges">
           <p-tag *ngIf="part.replaces.length > 0" severity="info" value="Replacement Part"></p-tag>
           <p-tag
             *ngIf="part.stock <= 10 && part.stock > 0"
@@ -17,80 +19,114 @@
           ></p-tag>
           <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
         </div> -->
-      </div>
-      <div class="p-3" style="flex-grow: 1">
-        <div class="part-header">
-          <h3 class="part-name">{{ part.name }}</h3>
-          <span class="part-number"> Réf : {{ part.partNumber }}</span><br />
-          <span class="part-number"> Fournisseur : {{ part.partNumber }}</span> <br />
-          <span class="part-number"> Autre infos : : {{ part.partNumber }}</span>
-        </div>
+          </div>
+          <div class="p-3" style="flex-grow: 1">
+            <div class="part-header">
+              <h3 class="part-name">{{ part.name }}</h3>
+              <span class="part-number"> Réf : {{ part.partNumber }}</span><br />
+              <span class="part-number">
+                Fournisseur : <img src="assets/img/ticket.png" style="height: 20px" alt=""
+              /></span>
+              <br />
+              <span class="part-number"> Autre infos : : {{ part.partNumber }}</span>
+            </div>
 
-        <div class="part-compatibility">
-          <span class="compatibility-item" *ngFor="let model of displayedModels; let i = last">
-            {{ model.brand }} {{ model.model }} ({{ model.yearFrom }}-{{ model.yearTo }})
-            <span *ngIf="!i">, </span>
-          </span>
-          <span
-            *ngIf="part.compatibleModels.length > 2"
-            class="more-models"
-            pTooltip="View all compatible models"
-            (click)="viewDetails.emit(part)"
-          >
-            +{{ part.compatibleModels.length - 2 }} more
-          </span>
+            <div class="part-compatibility">
+              <span class="compatibility-item" *ngFor="let model of displayedModels; let i = last">
+                {{ model.brand }} {{ model.model }} ({{ model.yearFrom }}-{{ model.yearTo }})
+                <span *ngIf="!i">, </span>
+              </span>
+              <span
+                *ngIf="part.compatibleModels.length > 2"
+                class="more-models"
+                pTooltip="View all compatible models"
+                (click)="viewDetails.emit(part)"
+              >
+                +{{ part.compatibleModels.length - 2 }} more
+              </span>
+            </div>
+          </div>
         </div>
-
+        <p-divider></p-divider>
         <div class="part-details">
-          <!-- <div class="provider-info">
-        <span class="provider-name">{{ part.provider.name }}</span>
-        <p-rating
-          [ngModel]="part.provider.rating"
-          [readonly]="true"
-          [cancel]="false"
-          [stars]="5"
-        ></p-rating>
-        <span class="delivery-time">{{ part.provider.deliveryTime }}</span>
-      </div> -->
+          <h3>Informations</h3>
+
+          <div class="grid">
+            <div class="col-6 grid p-3">
+              <div class="col-6 p-0">
+                <div class="th">Références d'origine</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+              </div>
+              <div class="col-6 p-0">
+                <div class="th">Véhicules compatibles</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+              </div>
+            </div>
+
+            <div class="col-6 grid p-3">
+              <div class="col-6 p-0">
+                <div class="th">Références d'origine</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+              </div>
+              <div class="col-6 p-0">
+                <div class="th">Véhicules compatibles</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+                <div class="td">1.6 102ch04-2015</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div>
         <div class="flex align-items-end h-full">
           <div>
-            <div class="py-5">
-              <div class="part-price-stock">
-                <span class="price">${{ part.price.toFixed(2) }}</span>
-                <span
-                  class="stock"
-                  [ngClass]="{'in-stock': part.stock > 10, 'low-stock': part.stock <= 10 && part.stock > 0, 'out-of-stock': part.stock === 0}"
-                >
-                  {{ getStockLabel() }}
-                </span>
+            <!-- <div class="py-5">
+              <div class="part-purchase-container mb-3">
+                <div class="part-availibility-section">
+                  <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
+                  <span class="availability-text">{{ getStockStatusText() }}</span>
+                </div>
+                <hr />
+                <div class="part-price-section">
+                  <span class="part-price">{{ formatPrice(part.price) }}</span>
+                </div>
               </div>
-              <!-- <div class="quantity-section">
-                <p-inputNumber
-                  [(ngModel)]="part.quantity"
-                  [showButtons]="true"
-                  buttonLayout="horizontal"
-                  [min]="1"
-                  [max]="part.stock"
-                  [inputStyle]="{ width: '100%' }"
-                  [disabled]="part.stock === 0"
-                  inputId="quantity"
-                  styleClass="custom-quantity-input"
-                  [step]="1"
-                ></p-inputNumber>
-              </div> -->
-            </div>
-            <button
-              pButton
-              type="button"
-              label="Details"
-              icon="pi pi-info-circle"
-              class="p-button-outlined p-button-secondary"
-              (click)="viewDetails.emit(part)"
-            ></button>
-            <button
+              <div class="part-quantity-purchase">
+                <div class="part-quantity grid gap-1">
+                  <p-inputNumber
+                    [(ngModel)]="part.quantityDemanded"
+                    [min]="0"
+                    [max]="part.stock"
+                    [showButtons]="true"
+                    inputId="stacked"
+                    mode="decimal"
+                    currency="USD"
+                  />
+                  <button
+                    pButton
+                    label="Commander"
+                    icon="pi pi-shopping-cart"
+                    class="p-button-primary cart-button"
+                    [disabled]="part.stock === 0"
+                    (click)="addToCart.emit(part)"
+                  ></button>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <button
               pButton
               type="button"
               label="Ajouter au panier"
@@ -99,7 +135,14 @@
               class="p-button-primary"
               (click)="addToCart.emit(part)"
               pRipple
-            ></button>
+            ></button> -->
+            <app-add-to-cart
+              [part]="part"
+              [stock]="part.stock"
+              [price]="part.price"
+              (getQuantity)="getQuantity($event)"
+              [isAvailable]="part.stock > 0"
+            ></app-add-to-cart>
             <div class="py-2">
               <button
                 pButton
@@ -111,50 +154,19 @@
                 pRipple
               ></button>
             </div>
+            <button
+              pButton
+              type="button"
+              label="Details"
+              icon="pi pi-info-circle"
+              class="p-button-outlined p-button-secondary w-full"
+              (click)="viewDetails.emit(part)"
+            ></button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <ng-template pTemplate="footer">
-    <h3 style="text-decoration: underline" (click)="part.ShowOririn =!part.ShowOririn">
-      {{(ShowAllOririn || part.ShowOririn)?'À savoir :':'Voir Plus'}}
-    </h3>
 
-    <div class="grid" *ngIf="ShowAllOririn || part.ShowOririn">
-      <div class="col-6 grid p-3">
-        <div class="col-6 p-0">
-          <div class="th">Références d'origine</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-        </div>
-        <div class="col-6 p-0">
-          <div class="th">Véhicules compatibles</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-        </div>
-      </div>
-
-      <div class="col-6 grid p-3">
-        <div class="col-6 p-0">
-          <div class="th">Références d'origine</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-        </div>
-        <div class="col-6 p-0">
-          <div class="th">Véhicules compatibles</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-          <div class="td">1.6 102ch04-2015</div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
+  <ng-template pTemplate="footer"> </ng-template>
 </p-card>

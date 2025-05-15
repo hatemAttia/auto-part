@@ -205,6 +205,6 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
   }
 
   onAddToCart(part: Part): void {
-    this.cartService.addToCart(part, 1);
+    this.cartService.addToCart(part, part.quantity);
   }
 }

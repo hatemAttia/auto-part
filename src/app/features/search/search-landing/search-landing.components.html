@@ -184,7 +184,11 @@
           <h3>Disponibilité</h3>
           <div class="field-checkbox">
             <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
-            <label for="inStock">En stock seulement</label>
+            <label for="inStock">En stock</label>
+          </div>
+          <div class="field-checkbox">
+            <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
+            <label for="inStock">Non disponible</label>
           </div>
           <h3>afficher les origines</h3>
 
@@ -197,6 +201,8 @@
             ></p-checkbox>
             <label for="ShowOrigin">afficher les origines</label>
           </div>
+
+          <h3>Autres options</h3>
           <!-- <div class="field-checkbox">
             <p-checkbox
               formControlName="replacesOthers"
