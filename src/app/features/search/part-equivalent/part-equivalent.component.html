@@ -1,30 +1,34 @@
 <div class="container" *ngIf="part">
-    <div class="part-equivalent-header">
-        <h1>Produits Equivalents à: </h1>
-        <div class="part-badges">
-            <span class="part-badge">{{ part.name }}</span>
-            <span class="part-badge">Réf: {{ part.partNumber}}</span>
-            <span class="part-badge"><img src="/assets/img/logo.png" alt=""></span>
-        </div>
+  <div class="part-equivalent-header">
+    <h1>Produits Equivalents à:</h1>
+    <div class="part-badges">
+      <span class="part-badge">{{ part.name }}</span>
+      <span class="part-badge">Réf: {{ part.partNumber }}</span>
+      <span class="part-badge"><img src="/assets/img/logo.png" alt="" /></span>
     </div>
+  </div>
 
-    <div class="cards-container" *ngIf="equivalentParts && equivalentParts.length > 0">
-        <div class="card" *ngFor="let equivalent of equivalentParts">
-            <div class="card-header">
-                <img [src]="equivalent.imageUrl" [alt]="equivalent.name" class="part-image" />
-            </div>
-            <div class="card-body">
-                <img class="equivalent-brand-logo" src="/assets/img/logo.png" alt="">
-                <h2>{{ equivalent.name }}</h2>
-                <p>Réf: {{ equivalent.partNumber }}</p>
-                <div class="part-purchase-container">
-                    <app-add-to-cart [stock]="part.stock" [price]="part.price" [isAvailable]="part.stock > 0"
-                        priceSize="small" (addToCart)="addToCart($event)">
-                    </app-add-to-cart>
-                    <button pButton label="Voir détails de produit" class="details-button"></button>
-                </div>
-            </div>
+  <div class="cards-container" *ngIf="equivalentParts && equivalentParts.length > 0">
+    <div class="card" *ngFor="let equivalent of equivalentParts">
+      <div class="card-header">
+        <img [src]="equivalent.imageUrl" [alt]="equivalent.name" class="part-image" />
+      </div>
+      <div class="card-body">
+        <img class="equivalent-brand-logo" src="/assets/img/logo.png" alt="" />
+        <h2>{{ equivalent.name }}</h2>
+        <p>Réf: {{ equivalent.partNumber }}</p>
+        <div class="part-purchase-container">
+          <app-add-to-cart
+            [stock]="part.stock"
+            [price]="part.price"
+            [isAvailable]="part.stock > 0"
+            priceSize="small"
+            (getQuantity)="addToCart($event)"
+          >
+          </app-add-to-cart>
+          <button pButton label="Voir détails de produit" class="details-button"></button>
         </div>
+      </div>
     </div>
-
+  </div>
 </div>

@@ -2,13 +2,37 @@
   background-color: #fff;
   padding: 5px 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  height: 9ch;
+  height: 95px;
   h2,
   p {
     margin: 0;
   }
 }
 
+:host ::ng-deep .p-checkbox .p-checkbox-box {
+  border-radius: 0;
+}
+:host ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+  background-color: #fff;
+  border-color: #d1d5db;
+}
+:host ::ng-deep .p-checkbox .p-checkbox-box .p-checkbox-icon {
+  color: #000;
+}
+
+:host ::ng-deep .p-slider .p-slider-range {
+  background-color: var(--secondary-color);
+}
+
+:host ::ng-deep.p-slider .p-slider-handle {
+  background: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+.see-more {
+  color: #003984;
+  font-size: 14px;
+  cursor: pointer;
+}
 .search-header {
   text-align: center;
   margin-bottom: var(--spacing-lg);

@@ -1,7 +1,7 @@
-<div class="container mt-3">
+<div class="container mt-5">
   <!-- Main search bar has been moved to the header component -->
 
-  <div class="card-car-choiced flex justify-content-between mb-2">
+  <div class="card-car-choiced flex justify-content-between my-2">
     <div class="flex">
       <div class="flex align-items-center justify-content-center p-3">
         <img src="assets/img/ix_car-filled.png" alt="" />
@@ -17,14 +17,58 @@
       <button pButton type="button" label="Modifier" class="p-button-primary"></button>
     </div>
   </div>
+  <div class="results-header">
+    <div>
+      <h2>Résultats de la recherche</h2>
+      <div class="results-meta" *ngIf="!isLoading">
+        <span *ngIf="parts.length > 0">{{parts.length}} résultats compatibles</span>
+        <span *ngIf="parts.length === 0">Aucune pièce trouvée</span>
+      </div>
+    </div>
+    <div class="p-1 flex">
+      <div class="p-1 flex justify-content-center align-items-center">
+        <div class="p-2" style="cursor: pointer" (click)="isGrid=true">
+          <i
+            class="pi pi-th-large"
+            style="font-size: 28px"
+            [ngStyle]="{color:(isGrid)?'#000':'#35343d44'}"
+          ></i>
+        </div>
+        <div style="height: 100%; border-left: 1px #35343d44 solid"></div>
+        <div class="p-2" style="cursor: pointer" (click)="isGrid=false">
+          <i
+            class="pi pi-list"
+            [ngStyle]="{color:(!isGrid)?'#000':'#35343d44'}"
+            style="font-size: 28px"
+          ></i>
+        </div>
+      </div>
+      <div [formGroup]="filterForm" class="px-3">
+        <p-dropdown
+          id="carBrand"
+          formControlName="carBrand"
+          [options]="carBrands"
+          placeholder="Populaire"
+          [style]="{ width: '200px' }"
+          [showClear]="false"
+          styleClass="w-full"
+        ></p-dropdown>
+      </div>
+    </div>
+  </div>
   <div class="search-content">
     <!-- Filters -->
     <aside class="filters-panel">
-      <p-card header="Filtres">
+      <p-card>
         <form [formGroup]="filterForm">
-          <h3>Vehicle</h3>
+          <div class="grid align-items-center">
+            <img src="assets/img/filter.svg" class="mx-2" alt="" />
+            <h2 class="m-0">Filter</h2>
+          </div>
+          <p-divider></p-divider>
+          <h3 class="mt-3">Marque de produit</h3>
           <div class="field" style="max-height: 250px; overflow: auto">
-            <label for="carBrand">Marque de produit</label>
+            <!-- <label for="carBrand">Marque de produit</label> -->
             <!-- <p-dropdown
               id="carBrand"
               formControlName="carBrand"
@@ -40,9 +84,10 @@
               <label for="ny" class="ml-2">{{item.label}}</label>
             </div>
           </div>
-
+          <p-divider></p-divider>
+          <h3 class="mt-3">Catégorie</h3>
           <div class="field">
-            <label for="carModel">Catégorie</label>
+            <!-- <label for="carModel">Catégorie</label> -->
             <!-- <p-dropdown
               id="carModel"
               formControlName="carModel"
@@ -58,6 +103,7 @@
               <p-checkbox formControlName="carModel" [value]="item.label" [inputId]="item.id" />
               <label for="ny" class="ml-2">{{item.label}}</label>
             </div>
+            <span class="see-more">Voir plus(10)</span>
           </div>
 
           <!-- <div class="field">
@@ -138,7 +184,11 @@
           <h3>Disponibilité</h3>
           <div class="field-checkbox">
             <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
-            <label for="inStock">En stock seulement</label>
+            <label for="inStock">En stock</label>
+          </div>
+          <div class="field-checkbox">
+            <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
+            <label for="inStock">Non disponible</label>
           </div>
           <h3>afficher les origines</h3>
 
@@ -151,6 +201,8 @@
             ></p-checkbox>
             <label for="ShowOrigin">afficher les origines</label>
           </div>
+
+          <h3>Autres options</h3>
           <!-- <div class="field-checkbox">
             <p-checkbox
               formControlName="replacesOthers"
@@ -182,47 +234,6 @@
 
     <!-- Results -->
     <section class="results-panel">
-      <div class="results-header">
-        <div>
-          <h2>Résultats de la recherche</h2>
-          <div class="results-meta" *ngIf="!isLoading">
-            <span *ngIf="parts.length > 0">{{parts.length}} résultats compatibles</span>
-            <span *ngIf="parts.length === 0">Aucune pièce trouvée</span>
-          </div>
-        </div>
-        <div class="p-1 flex">
-          <div class="p-1 flex justify-content-center align-items-center">
-            <div class="p-2" style="cursor: pointer" (click)="isGrid=true">
-              <i
-                class="pi pi-th-large"
-                style="font-size: 28px"
-                [ngStyle]="{color:(isGrid)?'#000':'#35343d44'}"
-              ></i>
-            </div>
-            <div style="height: 100%; border-left: 1px #35343d44 solid"></div>
-            <div class="p-2" style="cursor: pointer" (click)="isGrid=false">
-              <i
-                class="pi pi-list"
-                [ngStyle]="{color:(!isGrid)?'#000':'#35343d44'}"
-                style="font-size: 28px"
-              ></i>
-            </div>
-          </div>
-          <div [formGroup]="filterForm" class="px-3">
-            <p-dropdown
-              id="carBrand"
-              formControlName="carBrand"
-              [options]="carBrands"
-              placeholder="Populaire"
-              [filter]="true"
-              [showClear]="true"
-              (onChange)="onCarBrandChange($event)"
-              styleClass="w-full"
-            ></p-dropdown>
-          </div>
-        </div>
-      </div>
-
       <div class="loading-container" *ngIf="isLoading">
         <p-progressSpinner></p-progressSpinner>
         <p>Searching for parts...</p>

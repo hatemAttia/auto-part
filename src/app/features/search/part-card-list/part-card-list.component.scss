@@ -197,5 +197,18 @@
   border-bottom: 1px solid #3d3b3438;
 }
 h3 {
-  color: var(--secondary-color);
+  color: var(--neutral-900);
+}
+
+:host ::ng-deep .p-inputnumber-input {
+  width: 64px !important;
+  text-align: center;
+  max-width: 100px;
+}
+
+:host ::ng-deep .p-inputnumber-button-up,
+:host ::ng-deep .p-inputnumber-button-down {
+  border-color: var(--neutral-300);
+  background-color: transparent;
+  color: var(--main-font-color);
 }
