@@ -241,18 +241,7 @@
   display: flex;
 }
 
-:host ::ng-deep .p-inputnumber-input {
-  width: 64px !important;
-  text-align: center;
-  max-width: 100px;
-}
 
-:host ::ng-deep .p-inputnumber-button-up,
-:host ::ng-deep .p-inputnumber-button-down {
-  border-color: var(--neutral-300);
-  background-color: transparent;
-  color: var(--main-font-color)
-}
 
 .label {
   font-size: 1rem;

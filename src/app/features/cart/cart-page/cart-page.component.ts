@@ -13,6 +13,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { CartService } from "../../../core/services/cart.service";
 import { CartItem } from "../../../shared/models/cart-item.model";
+import { formatPrice } from "../../../core/utils/format.utils";
 
 @Component({
   selector: "app-cart-page",
@@ -113,5 +114,9 @@ export class CartPageComponent implements OnInit {
     this.orderPlacedDialog = false;
     this.cartService.clearCart();
     this.router.navigate(["/search"]);
+  }
+
+  formatPrice(value: number): string {
+    return value.toFixed(3) + ' TND'
   }
 }

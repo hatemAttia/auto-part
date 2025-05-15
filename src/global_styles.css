@@ -17,9 +17,9 @@
   --accent-color: #FF0000;
   --accent-light: #FF0000;
   --accent-dark: #c43c00;
-  --success-color: #388e3c;
+  --success-color: #1CA947;
   --warning-color: #f9a825;
-  --error-color: #d32f2f;
+  --error-color: #FF0000;
   --neutral-50: #fafafa;
   --neutral-100: #f5f5f5;
   --neutral-200: #eeeeee;
@@ -158,6 +158,10 @@ button.p-button-accent:hover {
 
 .part-card:hover {
   transform: translateY(-4px);
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* Animation */

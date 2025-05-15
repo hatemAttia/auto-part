@@ -47,23 +47,23 @@
 
 .item-name {
   font-weight: 600;
-  color: var(--neutral-900);
+  color: var(--main-font-color);
 }
 
 .item-part-number,
 .item-provider {
-  font-size: 0.85rem;
-  color: var(--neutral-600);
+  font-size: 0.8rem;
+  color: var(--main-font-color);
 }
 
 .price-column,
 .total-column {
-  font-weight: 600;
-  color: var(--neutral-800);
+  font-weight: 400;
+  color: var(--main-font-color);
 }
 
 .total-column {
-  color: var(--primary-color);
+  color: var(--main-font-color);
 }
 
 .cart-actions {
@@ -161,6 +161,42 @@
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
 }
+
+:host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+  background-color: var(--secondary-color);
+  color: var(--primary-light);
+  font-weight: 400;
+}
+
+:host ::ng-deep .p-inputnumber-input {
+  width: 64px !important;
+  text-align: center;
+  max-width: 100px;
+  border-right: none;
+  border-left: none;
+}
+
+:host ::ng-deep .p-inputnumber-button-up,
+:host ::ng-deep .p-inputnumber-button-down {
+  border-color: var(--neutral-300);
+  background-color: transparent;
+  color: var(--main-font-color);
+  padding: var(--spacing-sm) 0;
+  
+  span {
+    font-size: 0.7rem;
+    font-weight: 400;
+  }
+}
+
+:host ::ng-deep .p-inputnumber-button-up{
+  border-left: none;
+}
+
+:host ::ng-deep .p-inputnumber-button-down{
+  border-right: none;
+}
+
 
 @media screen and (max-width: 992px) {
   .cart-content {
