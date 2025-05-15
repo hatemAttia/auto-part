@@ -44,7 +44,7 @@
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     justify-content: center;
 
     align-items: stretch;
@@ -107,6 +107,7 @@
         }
 
         .part-purchase-container {
+            width: 100%;
             margin-top: auto;
             display: flex;
             flex-direction: column;
@@ -114,6 +115,11 @@
             justify-content: flex-start;
             align-items: flex-start;
             max-width: 400px;
+
+            app-add-to-cart {
+                width: 100%;
+                margin: 1rem 0 0 0;
+            }
 
             hr {
                 width: 100%;
@@ -186,17 +192,4 @@
             font-weight: 600;
         }
     }
-}
-
-:host ::ng-deep .p-inputnumber-input {
-    width: 48px !important;
-    text-align: center;
-    max-width: 100px;
-}
-
-:host ::ng-deep .p-inputnumber-button-up,
-:host ::ng-deep .p-inputnumber-button-down {
-    border-color: var(--neutral-300);
-    background-color: transparent;
-    color: var(--main-font-color)
 }

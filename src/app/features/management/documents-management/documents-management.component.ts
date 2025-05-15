@@ -29,7 +29,7 @@ interface Column {
     RouterModule
   ],
   templateUrl: './documents-management.component.html',
-  styleUrl: './documents-management.component.css'
+  styleUrl: './documents-management.component.scss'
 })
 export class DocumentsManagementComponent implements OnInit {
   currentDocType: string = 'orders';

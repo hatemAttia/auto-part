@@ -1,0 +1,116 @@
+.part-purchase-container {
+    background-color: transparent;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.part-availibility-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.availability-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.dot-available {
+    background-color: var(--success-color);
+    & + .availability-text {
+        color: var(--success-color);
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+}
+
+.dot-unavailable {
+    background-color: var(--error-color);
+    & + .availability-text {
+        color: var(--error-color);
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+}
+
+.availability-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0;
+}
+
+.part-price-section {
+    margin-bottom: 15px;
+}
+
+.part-price {
+    font-weight: 700;
+    color: var(--main-font-color);
+}
+
+.price-small {
+    font-size: 1.2rem;
+}
+
+.price-medium {
+    font-size: 1.5rem;
+}
+
+.price-large {
+    font-size: 2rem;
+}
+
+.part-quantity-purchase {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-xs);
+}
+
+.part-quantity {
+    flex: 1;
+}
+
+.cart-button {
+    min-width: 120px;
+    width: 100%;
+    flex-grow: 1;
+}
+
+// :host ::ng-deep .p-inputnumber-input {
+//   width: 64px !important;
+//   text-align: center;
+//   max-width: 100px;
+// }
+
+// :host ::ng-deep .p-inputnumber-button-up,
+// :host ::ng-deep .p-inputnumber-button-down {
+//   border-color: var(--neutral-300);
+//   background-color: transparent;
+//   color: var(--main-font-color)
+// }
+
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button {
+  background: white;
+  border: 1px solid var(--neutral-300);
+}
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up {
+  border-left: none;
+  width: 30px;
+}
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
+  width: 30px;
+  border-right: none;
+}
+ 
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  border-left: none;
+  border-right: none;
+  text-align: center;
+}

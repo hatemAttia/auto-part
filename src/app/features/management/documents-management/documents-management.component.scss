@@ -89,9 +89,7 @@ p-table {
     color: var(--primary-light);
 }
 
-.text-center {
-    text-align: center;
-}
+
 
 /* PrimeNG Calendar styling */
 :host ::ng-deep .p-calendar-w-btn input {
@@ -131,6 +129,10 @@ p-table {
 
 :host ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
     background-color: var(--primary-contrast-color);
+}
+
+:host ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+    background-color: var(--primary-light);
 }
 
 :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
