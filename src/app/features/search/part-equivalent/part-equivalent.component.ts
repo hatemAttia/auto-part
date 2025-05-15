@@ -6,11 +6,12 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CartService } from '../../../core/services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
 import { PartCardComponent } from '../part-card/part-card.component';
 
 @Component({
   selector: 'app-part-equivalent',
-  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule, PartCardComponent],
+  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule, CarouselModule, PartCardComponent],
   templateUrl: './part-equivalent.component.html',
   styleUrl: './part-equivalent.component.scss'
 })
@@ -23,11 +24,29 @@ export class PartEquivalentComponent {
 
   equivalentParts!: Part[] | null;
   quantityMap: Map<string, number> = new Map();
-
   quantity: number = 1;
   addedToCartDialog: boolean = false;
 
   part: Part | undefined;
+  
+  // Carousel responsive options
+  responsiveOptions = [
+    {
+      breakpoint: '1400px',
+      numVisible: 5,
+      numScroll: 3
+    },
+    {
+      breakpoint: '1024px',
+      numVisible: 4,
+      numScroll: 2
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+      numScroll: 1
+    }
+  ];
 
   ngOnInit() {
     this.loadPartDetails('1')

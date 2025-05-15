@@ -46,154 +46,208 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     justify-content: center;
-
     align-items: stretch;
-
     gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
+}
 
-    .card {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        background-color: var(--primary-light);
-        border: var(--border-thickness) solid var(--border-color);
-        border-radius: var(--border-radius);
-    }
+// PrimeNG Carousel styles
+.carousel-container {
+    margin-top: var(--spacing-lg);
+    padding: 1rem;
+}
 
-    .card-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        background-color: var(--primary-contrast-color);
-        border-radius: 8px 8px 0 0;
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
 
-        img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+:host ::ng-deep {
+    .p-carousel {
+        .p-carousel-indicators {
+            margin-top: 1rem;
         }
 
-        ;
-    }
+        .p-carousel-indicator>button {
+            background-color: var(--neutral-400);
 
-    .card-body {
-        padding: var(--spacing-lg);
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+            &.p-highlight {
+                background-color: var(--primary-color);
+            }
+        }
 
-        h2 {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 500;
+        .p-carousel-prev,
+        .p-carousel-next {
             color: var(--main-font-color);
-        }
-
-        p {
-            margin: 0;
-            font-size: 1rem;
-            color: var(--neutral-600);
-        }
-
-        .equivalent-brand-logo {
-            width: 100%;
-            max-width: 64px;
-            max-height: 32px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-        }
-
-        .part-purchase-container {
-            width: 100%;
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xs);
-            justify-content: flex-start;
-            align-items: flex-start;
-            max-width: 400px;
-
-            app-add-to-cart {
-                width: 100%;
-                margin: 1rem 0 0 0;
-            }
-
-            hr {
-                width: 100%;
-                border: 1px solid var(--neutral-200);
-            }
-
-            .part-price-section {
-                .part-price {
-                    font-size: 1.2rem;
-                    font-weight: 500;
-                }
-            }
-
-            .part-quantity-purchase {
-                display: flex;
-                flex-direction: row;
-                width: 100%;
-                gap: var(--spacing-xs);
-                align-items: center;
-                justify-content: center;
-
-                button {
-                    height: 100%;
-                    width: 100%;
-                    margin: 0
-                }
-            }
-
-            .part-quantity {
-                display: flex;
-            }
-
-            .details-button {
-                width: 100%;
-                background-color: var(--neutral-50);
-                border: var(--border-thickness) solid var(--neutral-200);
-                color: var(--secondary-color);
-                transition: all 0.3s ease;
-
-                &:hover {
-                    background-color: var(--primary-contrast-color);
-                    border-color: var(--secondary-color);
-                }
-
-                .p-button-label {
-                    font-weight: 400 !important;
-
-
-                }
-            }
-        }
-
-        .availability-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
+            border: 1px solid var(--neutral-300);
+            background-color: white;
             border-radius: 50%;
-            margin-right: 8px;
+            margin: 0 0.5rem;
+
+            &:hover {
+                background-color: var(--primary-light);
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
         }
 
-        .dot-available {
-            background-color: var(--success-color);
-        }
-
-        .dot-unavailable {
-            background-color: var(--error-color);
-        }
-
-        .availability-text {
-            font-weight: 600;
-        }
+        
     }
 }
 
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    background-color: var(--primary-light);
+    border: var(--border-thickness) solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-contrast-color);
+    border-radius: 8px 8px 0 0;
+
+    img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    ;
+}
+
+.card-body {
+    padding: var(--spacing-lg);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--main-font-color);
+    }
+
+    p {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--neutral-600);
+    }
+
+    .equivalent-brand-logo {
+        width: 100%;
+        max-width: 64px;
+        max-height: 32px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+    }
+
+    .part-purchase-container {
+        width: 100%;
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        justify-content: flex-start;
+        align-items: flex-start;
+        max-width: 400px;
+
+        app-add-to-cart {
+            width: 100%;
+            margin: 1rem 0 0 0;
+        }
+
+        hr {
+            width: 100%;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .part-price-section {
+            .part-price {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+        }
+
+        .part-quantity-purchase {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: var(--spacing-xs);
+            align-items: center;
+            justify-content: center;
+
+            button {
+                height: 100%;
+                width: 100%;
+                margin: 0
+            }
+        }
+
+        .part-quantity {
+            display: flex;
+        }
+
+        .details-button {
+            width: 100%;
+            background-color: var(--neutral-50);
+            border: var(--border-thickness) solid var(--neutral-200);
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: var(--primary-contrast-color);
+                border-color: var(--secondary-color);
+            }
+
+            .p-button-label {
+                font-weight: 400 !important;
+
+
+            }
+        }
+    }
+
+    .availability-dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+
+    .dot-available {
+        background-color: var(--success-color);
+    }
+
+    .dot-unavailable {
+        background-color: var(--error-color);
+    }
+
+    .availability-text {
+        font-weight: 600;
+    }
+}
+
+
 .result-count span {
     color: #89888d
+}
+
+:host ::ng-deep .p-carousel-next,
+:host ::ng-deep .p-carousel-prev {
+    border-radius: 0px !important;
+    border-color: var(--secondary-color) !important;
+    color: var(--secondary-color) !important;
+    padding: var(--spacing-md);
 }
