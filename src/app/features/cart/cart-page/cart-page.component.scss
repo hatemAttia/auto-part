@@ -1,9 +1,16 @@
+.container {
+  padding: var(--spacing-lg);
+  background-color: var(--primary-color);
+}
+
 .cart-header {
-  margin-bottom: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
 }
 
 .cart-header h1 {
-  color: var(--primary-color);
+  color: var(--main-font-color);
+  margin: 0;
+  padding: 0;
 }
 
 .cart-content {
@@ -18,6 +25,7 @@
 .cart-summary-section {
   flex: 1;
   min-width: 300px;
+  background-color: var(--primary-light);
 }
 
 .cart-table ::ng-deep .p-datatable-wrapper {
@@ -79,18 +87,26 @@
 .summary-content {
   display: flex;
   flex-direction: column;
+  background-color: var(--primary-light);
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--spacing-sm);
+  
 }
 
 .total-row {
   font-weight: 700;
   font-size: 1.2rem;
   color: var(--primary-color);
+}
+
+.grand-total{
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 2rem 0;
+  color: var(--main-font-color);
 }
 
 .checkout-button {
@@ -168,37 +184,68 @@
   font-weight: 400;
 }
 
-:host ::ng-deep .p-inputnumber-input {
-  width: 64px !important;
-  text-align: center;
-  max-width: 100px;
-  border-right: none;
-  border-left: none;
-}
+// :host ::ng-deep .p-inputnumber-input {
+//   width: 64px !important;
+//   text-align: center;
+//   max-width: 100px;
+//   border-right: none;
+//   border-left: none;
+// }
 
-:host ::ng-deep .p-inputnumber-button-up,
-:host ::ng-deep .p-inputnumber-button-down {
-  border-color: var(--neutral-300);
-  background-color: transparent;
-  color: var(--main-font-color);
-  padding: var(--spacing-sm) 0;
+// :host ::ng-deep .p-inputnumber-button-up,
+// :host ::ng-deep .p-inputnumber-button-down {
+//   border-color: var(--neutral-300);
+//   background-color: transparent;
+//   color: var(--main-font-color);
+//   padding: var(--spacing-sm) 0;
   
-  span {
-    font-size: 0.7rem;
-    font-weight: 400;
-  }
-}
+//   span {
+//     font-size: 0.7rem;
+//     font-weight: 400;
+//   }
+// }
 
-:host ::ng-deep .p-inputnumber-button-up{
+// :host ::ng-deep .p-inputnumber-button-up{
+//   border-left: none;
+// }
+
+// :host ::ng-deep .p-inputnumber-button-down{
+//   border-right: none;
+// }
+
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button {
+  background: white;
+  border: 1px solid var(--neutral-300);
+}
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up {
   border-left: none;
+  width: 30px;
 }
-
-:host ::ng-deep .p-inputnumber-button-down{
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
+  width: 30px;
   border-right: none;
 }
+ 
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  border-left: none;
+  border-right: none;
+  text-align: center;
+}
 
+:host ::ng-deep .p-divider.p-divider-horizontal {
+  margin: 0;
+}
 
-@media screen and (max-width: 992px) {
+:host ::ng-deep .p-card  {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+:host ::ng-deep .p-card .p-card-body {
+  padding: var(--spacing-lg);
+}
+
+@media screen and (max-width: 1200px) {
   .cart-content {
     flex-direction: column;
   }

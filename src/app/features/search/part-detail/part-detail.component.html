@@ -16,12 +16,7 @@
         <i class="pi pi-exclamation-triangle not-found-icon"></i>
         <h2>Part Not Found</h2>
         <p>The requested part could not be found or may have been removed.</p>
-        <button
-          pButton
-          label="Return to Search"
-          icon="pi pi-search"
-          [routerLink]="['/search']"
-        ></button>
+        <button pButton label="Return to Search" icon="pi pi-search" [routerLink]="['/search']"></button>
       </div>
     </p-card>
   </div>
@@ -53,9 +48,9 @@
 
           <div class="part-info part-provider-section">
             <span class="label">Fournisseur: </span>
-            <span class="value"
-              >{{ part.provider.name }} <img src="/assets/img/logo.png" alt=""
-            /></span>
+            <span class="value">
+              <img src="/assets/img/logo.png" alt="" />
+            </span>
           </div>
 
           <div class="part-info other-info-section">
@@ -64,13 +59,8 @@
           </div>
         </div>
 
-        <app-add-to-cart
-          [stock]="part.stock"
-          [price]="part.price"
-          [isAvailable]="part.stock > 0"
-          priceSize="large"
-          (getQuantity)="addToCart($event)"
-        >
+        <app-add-to-cart [stock]="part.stock" [price]="part.price" [isAvailable]="part.stock > 0" priceSize="large"
+          (getQuantity)="addToCart($event)">
         </app-add-to-cart>
       </div>
 
@@ -152,41 +142,26 @@
 
           <p-tabPanel header="Related Parts" [disabled]="relatedParts.length === 0">
             <div class="related-parts-grid">
-              <app-part-card
-                *ngFor="let relatedPart of relatedParts"
-                [part]="relatedPart"
-                (viewDetails)="onRelatedPartClick($event)"
-                (addToCart)="onAddRelatedToCart($event)"
-              ></app-part-card>
+              <app-part-card *ngFor="let relatedPart of relatedParts" [part]="relatedPart"
+                (viewDetails)="onRelatedPartClick($event)" (addToCart)="onAddRelatedToCart($event)"></app-part-card>
             </div>
           </p-tabPanel>
 
-          <p-tabPanel
-            header="Replacement Info"
-            [disabled]="part.replaces.length === 0 && part.replacedBy.length === 0"
-          >
+          <p-tabPanel header="Replacement Info" [disabled]="part.replaces.length === 0 && part.replacedBy.length === 0">
             <div class="replacement-info">
               <div *ngIf="part.replacedBy.length > 0" class="replaced-by-section">
                 <h3>This part is replaced by:</h3>
                 <div class="related-parts-grid">
-                  <app-part-card
-                    *ngFor="let replacementPart of replacedByParts"
-                    [part]="replacementPart"
-                    (viewDetails)="onRelatedPartClick($event)"
-                    (addToCart)="onAddRelatedToCart($event)"
-                  ></app-part-card>
+                  <app-part-card *ngFor="let replacementPart of replacedByParts" [part]="replacementPart"
+                    (viewDetails)="onRelatedPartClick($event)" (addToCart)="onAddRelatedToCart($event)"></app-part-card>
                 </div>
               </div>
 
               <div *ngIf="part.replaces.length > 0" class="replaces-section">
                 <h3>This part replaces:</h3>
                 <div class="related-parts-grid">
-                  <app-part-card
-                    *ngFor="let replacedPart of replacesParts"
-                    [part]="replacedPart"
-                    (viewDetails)="onRelatedPartClick($event)"
-                    (addToCart)="onAddRelatedToCart($event)"
-                  ></app-part-card>
+                  <app-part-card *ngFor="let replacedPart of replacesParts" [part]="replacedPart"
+                    (viewDetails)="onRelatedPartClick($event)" (addToCart)="onAddRelatedToCart($event)"></app-part-card>
                 </div>
               </div>
             </div>
@@ -199,14 +174,8 @@
 
 <p-toast position="bottom-right"></p-toast>
 
-<p-dialog
-  [(visible)]="addedToCartDialog"
-  header="Added to Cart"
-  [style]="{ width: '450px' }"
-  [modal]="true"
-  [draggable]="false"
-  [resizable]="false"
->
+<p-dialog [(visible)]="addedToCartDialog" header="Added to Cart" [style]="{ width: '450px' }" [modal]="true"
+  [draggable]="false" [resizable]="false">
   <div class="dialog-content">
     <i class="pi pi-check-circle success-icon"></i>
     <div class="dialog-message">
@@ -215,19 +184,8 @@
     </div>
   </div>
   <div class="dialog-actions">
-    <button
-      pButton
-      label="Continue Shopping"
-      icon="pi pi-search"
-      class="p-button-outlined p-button-secondary"
-      (click)="addedToCartDialog = false"
-    ></button>
-    <button
-      pButton
-      label="View Cart"
-      icon="pi pi-shopping-cart"
-      class="p-button-primary"
-      (click)="goToCart()"
-    ></button>
+    <button pButton label="Continue Shopping" icon="pi pi-search" class="p-button-outlined p-button-secondary"
+      (click)="addedToCartDialog = false"></button>
+    <button pButton label="View Cart" icon="pi pi-shopping-cart" class="p-button-primary" (click)="goToCart()"></button>
   </div>
 </p-dialog>

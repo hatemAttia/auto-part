@@ -31,7 +31,7 @@ export class PartsService {
       replacedBy: [],
       replaces: ['3'],
       imageUrl: 'https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'High-performance brake disc with superior heat dissipation and durability.'
+      description: 'High-performance brake disc with superior heat dissipation and durability. Manufactured from premium carbon-ceramic composite materials for extended lifespan and consistent braking performance under extreme conditions. Features precision-engineered ventilation channels to reduce brake fade during prolonged use. DOT and ECE certified for safety compliance. Includes mounting hardware and installation guide.'
     },
     {
       id: '2',
@@ -55,7 +55,7 @@ export class PartsService {
       replacedBy: [],
       replaces: [],
       imageUrl: 'https://images.pexels.com/photos/13009437/pexels-photo-13009437.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Premium ceramic brake pads offering quiet braking and minimal dust.'
+      description: 'Premium ceramic brake pads offering quiet braking and minimal dust. Advanced formula provides excellent fade resistance and superior stopping power in both wet and dry conditions. The low-metallic composition ensures reduced rotor wear and longer service life. Chamfered and slotted design minimizes noise, vibration, and break-in time. Includes high-quality shims and hardware kit for complete installation. Exceeds OEM specifications for performance and durability.'
     },
     {
       id: '3',
@@ -79,7 +79,7 @@ export class PartsService {
       replacedBy: ['1'],
       replaces: [],
       imageUrl: 'https://images.pexels.com/photos/10481830/pexels-photo-10481830.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Standard brake disc for older model vehicles. Compatible with original manufacturer specifications.'
+      description: 'Standard brake disc for older model vehicles. Compatible with original manufacturer specifications. Cast from high-quality iron with precision machining for balanced performance. Features direct OEM replacement design for straightforward installation without modifications. Optimized cooling vanes help maintain proper operating temperatures and prevent warping. Factory-applied protective coating prevents corrosion during shipping and storage. Each disc undergoes rigorous quality control testing to ensure dimensional accuracy and material integrity.'
     },
     {
       id: '4',
@@ -104,7 +104,7 @@ export class PartsService {
       replacedBy: [],
       replaces: [],
       imageUrl: 'https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'High-efficiency air filter for improved engine performance and fuel economy.'
+      description: 'High-efficiency air filter for improved engine performance and fuel economy. Constructed with multiple layers of advanced filtering media to trap 99.5% of harmful contaminants and dust particles. The pleated design maximizes surface area to enhance airflow while maintaining superior filtration. Reinforced frame prevents collapse under high airflow conditions. Designed to last up to 12,000 miles under normal driving conditions. Installation requires no special tools and takes just minutes. Helps maintain optimal engine performance and reduces emissions.'
     },
     {
       id: '5',
@@ -128,7 +128,7 @@ export class PartsService {
       replacedBy: [],
       replaces: [],
       imageUrl: 'https://images.pexels.com/photos/4480526/pexels-photo-4480526.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'High-performance brake caliper with precision engineering for optimal braking force.'
+      description: 'High-performance brake caliper with precision engineering for optimal braking force. Manufactured from aircraft-grade aluminum alloy for superior strength and heat dissipation. Features stainless steel pistons with dust boots for smooth operation and longevity. The multi-piston design provides even pad wear and consistent braking pressure. Each unit is pressure-tested at the factory to ensure leak-free performance. Anodized finish resists corrosion in harsh conditions. Includes high-temperature seals, mounting brackets, and bleeder screws for complete installation.'
     },
     {
       id: '6',
@@ -153,7 +153,7 @@ export class PartsService {
       replacedBy: [],
       replaces: [],
       imageUrl: 'https://images.pexels.com/photos/3819864/pexels-photo-3819864.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Premium oil filter designed to remove harmful contaminants from engine oil.'
+      description: 'Premium oil filter designed to remove harmful contaminants from engine oil. Features a synthetic blend filter media that captures particles down to 25 microns, protecting vital engine components from abrasive damage. The heavy-duty canister construction withstands high oil pressure and engine vibration. Equipped with an anti-drainback valve to prevent dry starts and a bypass valve to ensure oil flow in cold conditions. Silicone anti-slip texture provides easy installation and removal. Compatible with all conventional, synthetic, and blend motor oils. Recommended replacement interval of 5,000 miles for optimal engine protection.'
     }
   ];
 

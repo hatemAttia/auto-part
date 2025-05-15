@@ -160,10 +160,10 @@
 .part-info {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: var(--spacing-xs);
+  column-gap: var(--spacing-xs);
   flex: 1;
 
   img {

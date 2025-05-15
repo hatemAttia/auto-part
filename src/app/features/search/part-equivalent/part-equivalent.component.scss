@@ -154,8 +154,8 @@
 
             .details-button {
                 width: 100%;
-                background-color: rgb(230, 230, 230);
-                border: var(--border-thickness) solid var(--border-color);
+                background-color: var(--neutral-50);
+                border: var(--border-thickness) solid var(--neutral-200);
                 color: var(--secondary-color);
                 transition: all 0.3s ease;
 
