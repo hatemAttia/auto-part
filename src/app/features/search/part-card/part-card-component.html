@@ -12,6 +12,8 @@
         [price]="part.price"
         [isAvailable]="part.stock > 0"
         priceSize="small"
+        availabilitySize="small"
+        [showLabel]="false"
         (addToCart)="addToCart.emit(part)"
       >
       </app-add-to-cart>

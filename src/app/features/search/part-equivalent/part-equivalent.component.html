@@ -1,19 +1,32 @@
 <div class="container" *ngIf="part">
-  <div class="part-equivalent-header">
-    <h1>Produits Equivalents à:</h1>
-    <div class="part-badges">
-      <span class="part-badge">{{ part.name }}</span>
-      <span class="part-badge">Réf: {{ part.partNumber }}</span>
-      <span class="part-badge"><img src="/assets/img/logo.png" alt="" /></span>
+    <div class="part-equivalent-header">
+        <h1>Produits Equivalents à:</h1>
+        <div class="part-badges">
+            <span class="part-badge">{{ part.name }}</span>
+            <span class="part-badge">Réf: {{ part.partNumber }}</span>
+            <span class="part-badge"><img src="/assets/img/logo.png" alt="" /></span>
+        </div>
     </div>
-  </div>
 
-  <div class="cards-container" *ngIf="equivalentParts && equivalentParts.length > 0">
-    <app-part-card 
-      *ngFor="let equivalent of equivalentParts" 
-      [part]="equivalent" 
-      (viewDetails)="onViewDetails(equivalent)" 
-      (addToCart)="onAddToCart(equivalent)">
-    </app-part-card>
-  </div>
+    <div class="part-equivalents-container" *ngIf="equivalentParts && equivalentParts.length > 0">
+        <p class="result-count">
+            <span *ngIf="equivalentParts.length > 1">
+                {{ equivalentParts.length }} résultats compatibles
+            </span>
+            <span *ngIf="equivalentParts.length === 1">
+                {{ equivalentParts.length }} résultat compatible
+            </span>
+        </p>
+
+        <div class="cards-container">
+
+            <app-part-card *ngFor="let equivalent of equivalentParts" [part]="equivalent"
+                (viewDetails)="onViewDetails(equivalent)" (addToCart)="onAddToCart(equivalent)">
+            </app-part-card>
+        </div>
+    </div>
+
+
+
+
 </div>

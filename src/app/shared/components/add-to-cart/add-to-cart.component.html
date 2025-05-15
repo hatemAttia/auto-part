@@ -1,5 +1,5 @@
 <div class="part-purchase-container">
-  <div class="part-availibility-section">
+  <div class="part-availibility-section" [ngClass]="'availability-' + availabilitySize">
     <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
     <span class="availability-text">{{ getStockStatusText() }}</span>
   </div>
@@ -28,11 +28,10 @@
           <i class="pi pi-plus" style="color: black; font-size: 13px"></i>
         </ng-template>
       </p-inputNumber>
-    </div>
-    <button
+    </div>    <button
       pButton
-      label="Commander"
-      icon="pi pi-shopping-cart"
+      [label]="showLabel ? 'Commander' : ''"
+      [icon]="showIcon ? 'pi pi-shopping-cart' : ''"
       class="p-button-primary cart-button"
       [disabled]="!isAvailable || stock === 0"
       (click)="onAddQuantity()"

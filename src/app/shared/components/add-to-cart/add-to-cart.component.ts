@@ -16,6 +16,9 @@ export class AddToCartComponent {
   @Input() price: number = 0;
   @Input() priceSize: "small" | "medium" | "large" = "medium";
   @Input() isAvailable: boolean = true;
+  @Input() availabilitySize: "small" | "medium" | "large" = "medium";
+  @Input() showLabel: boolean = true;
+  @Input() showIcon: boolean = true;
 
   @Output() getQuantity = new EventEmitter<number>();
 

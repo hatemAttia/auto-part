@@ -11,8 +11,6 @@
 }
 
 .availability-dot {
-    width: 12px;
-    height: 12px;
     border-radius: 50%;
     margin-right: 8px;
 }
@@ -21,7 +19,6 @@
     background-color: var(--success-color);
     & + .availability-text {
         color: var(--success-color);
-        font-size: 1.4rem;
         font-weight: 500;
     }
 }
@@ -30,13 +27,42 @@
     background-color: var(--error-color);
     & + .availability-text {
         color: var(--error-color);
-        font-size: 1.4rem;
         font-weight: 500;
     }
 }
 
+// Availability sizes
+.availability-small {
+    .availability-dot {
+        width: 8px;
+        height: 8px;
+    }
+    .availability-text {
+        font-size: 1rem;
+    }
+}
+
+.availability-medium {
+    .availability-dot {
+        width: 12px;
+        height: 12px;
+    }
+    .availability-text {
+        font-size: 1.4rem;
+    }
+}
+
+.availability-large {
+    .availability-dot {
+        width: 16px;
+        height: 16px;
+    }
+    .availability-text {
+        font-size: 1.8rem;
+    }
+}
+
 .availability-text {
-    font-size: 14px;
     font-weight: 500;
 }
 
@@ -101,16 +127,25 @@ hr {
   border: 1px solid var(--neutral-300);
 }
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up {
-  border-left: none;
+  border-left: 1px solid transparent;
   width: 30px;
 }
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
   width: 30px;
-  border-right: none;
+  border-right: 1px solid transparent;
 }
  
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
-  border-left: none;
-  border-right: none;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
   text-align: center;
+}
+
+:host ::ng-deep .p-inputnumber:hover > * {
+    border: 1px solid var(--secondary-color);
+}
+
+:host ::ng-deep .p-inputnumber:hover > *:nth-child(1){
+    border-left: 1px solid transparent;
+    border-right:  1px solid transparent;
 }
