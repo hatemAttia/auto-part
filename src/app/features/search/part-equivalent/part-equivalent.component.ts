@@ -6,11 +6,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CartService } from '../../../core/services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { AddToCartComponent } from '../../../shared/components/add-to-cart/add-to-cart.component';
+import { PartCardComponent } from '../part-card/part-card.component';
 
 @Component({
   selector: 'app-part-equivalent',
-  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule, AddToCartComponent],
+  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule, PartCardComponent],
   templateUrl: './part-equivalent.component.html',
   styleUrl: './part-equivalent.component.scss'
 })
@@ -80,7 +80,6 @@ export class PartEquivalentComponent {
   setQuantity(partId: string, quantity: number): void {
     this.quantityMap.set(partId, quantity);
   }
-
   formatPrice(price: number): string {
     // make it a string with 3 digits after the decimal point and a 'dt' at the end
     return price.toFixed(3) + ' TND';
@@ -96,4 +95,15 @@ export class PartEquivalentComponent {
     return this.part.stock > 0 ? 'En stock' : 'Épuisé';
   }
 
+  onViewDetails(part: Part): void {
+    // Navigate to part details
+    console.log('View details for part:', part);
+    // Implement navigation logic here
+  }
+
+  onAddToCart(part: Part): void {
+    // Add the part to the cart with quantity 1
+    this.cartService.addToCart(part, 1);
+    console.log('Added to cart:', part);
+  }
 }
