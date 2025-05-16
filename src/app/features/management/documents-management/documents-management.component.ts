@@ -7,8 +7,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
+import { DropdownModule } from 'primeng/dropdown';
 import { DocumentsManagementService } from '../../../core/services/documents-management.service';
 import { formatPrice } from '../../../core/utils/format.utils';
+import { TableParams } from '../../../shared/models/tableParams.interface';
 
 interface Column {
   field: string;
@@ -26,33 +28,61 @@ interface Column {
     ButtonModule, 
     InputTextModule,
     BadgeModule,
-    RouterModule
+    RouterModule,
+    DropdownModule
   ],
   templateUrl: './documents-management.component.html',
   styleUrl: './documents-management.component.scss'
 })
 export class DocumentsManagementComponent implements OnInit {
-  currentDocType: string = 'orders';
+    currentDocType: string = 'orders';
   displayData: any[] = [];
   columns: Column[] = [];
   
   orders: any[] = [];
   deliveries: any[] = [];
   invoices: any[] = [];
-
-  startDate: Date | null = null;
-  endDate: Date | null = null;
+    // Table parameters using the TableParams interface
+  tableParams: TableParams = {
+    pageSize: 10,
+    pageNumber: 0,
+    startDate: undefined,
+    endDate: undefined,
+    sortField: undefined,
+    order: 'ASC',
+    filters: {
+      status: '',
+      isPaid: null
+    }
+  };
+  
+  // Filter options
+  statusOptions: { label: string, value: string }[] = [
+    { label: 'Tous', value: '' },
+    { label: 'En cours', value: 'IN_PROGRESS' },
+    { label: 'Livré', value: 'DELIVERED' },
+    { label: 'En attente', value: 'PENDING' },
+    { label: 'Annulé', value: 'CANCELLED' }
+  ];
+  
+  paymentStatusOptions: { label: string, value: boolean | null }[] = [
+    { label: 'Tous', value: null },
+    { label: 'Payé', value: true },
+    { label: 'Non payé', value: false }
+  ];
 
   constructor(
     private documentsService: DocumentsManagementService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
-
+  ) {}  
+  
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.currentDocType = params['type'] || 'orders';
       this.setColumns();
+      // Reset filters when changing document type
+      this.resetFilters();
       this.loadData();
     });
   }
@@ -91,7 +121,7 @@ export class DocumentsManagementComponent implements OnInit {
         this.columns = [
           { field: 'invoiceNumber', header: 'N° facture', type: 'text' },
           { field: 'date', header: 'Date', type: 'date' },
-          { field: 'isPaid', header: 'Statut', type: 'boolean' }
+          { field: 'isPaid', header: 'Payé', type: 'boolean' }
         ];
         break;
       default:
@@ -175,8 +205,68 @@ export class DocumentsManagementComponent implements OnInit {
         return '';
     }
   }
-
   formatPrice(price: number): string {
     return formatPrice(price);
+  }
+    applyFilters(): void {
+    let filteredData: any[] = [];
+    
+    switch (this.currentDocType) {
+      case 'orders':
+        filteredData = [...this.orders];        // Apply status filter if selected
+        const statusFilter = this.tableParams.filters?.['status'];
+        if (statusFilter) {
+          filteredData = filteredData.filter(order => order.status === statusFilter);
+        }
+        break;
+        
+      case 'deliveries':
+        filteredData = [...this.deliveries];
+        break;
+        
+      case 'invoices':
+        filteredData = [...this.invoices];        // Apply payment status filter if selected
+        const isPaidFilter = this.tableParams.filters?.['isPaid'];
+        if (isPaidFilter !== undefined) {
+          filteredData = filteredData.filter(invoice => invoice.isPaid === isPaidFilter);
+        }
+        break;
+        
+      default:
+        filteredData = [];
+    }
+    
+    // Apply date filters if selected
+    if (this.tableParams.startDate) {
+      filteredData = filteredData.filter(item => {
+        const itemDate = new Date(item.date || item.deliveryDate);
+        return itemDate >= this.tableParams.startDate!;
+      });
+    }
+    
+    if (this.tableParams.endDate) {
+      filteredData = filteredData.filter(item => {
+        const itemDate = new Date(item.date || item.deliveryDate);
+        return itemDate <= this.tableParams.endDate!;
+      });
+    }
+    
+    this.displayData = filteredData;
+  }
+    // Reset filters
+  resetFilters(): void {
+    this.tableParams = {
+      pageSize: 10,
+      pageNumber: 0,
+      startDate: undefined,
+      endDate: undefined,
+      sortField: undefined,
+      order: 'ASC',
+      filters: {
+        status: '',
+        isPaid: null
+      }
+    };
+    this.loadData();
   }
 }
