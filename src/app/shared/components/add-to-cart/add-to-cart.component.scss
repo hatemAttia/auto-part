@@ -107,6 +107,7 @@ hr {
     min-width: 120px;
     width: 100%;
     flex-grow: 1;
+    border-radius: var(--border-radius) !important;
 }
 
 // :host ::ng-deep .p-inputnumber-input {
