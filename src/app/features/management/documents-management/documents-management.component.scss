@@ -14,7 +14,7 @@ p {
 
 h2 {
     color: var(--main-font-color);
-    font-weight: 500;
+    font-weight: 600;
     margin: 0 0 0rem 0;
     padding: 0;
 }
@@ -22,6 +22,7 @@ h2 {
 /* Table styles */
 p-table {
     width: 100%;
+    margin-bottom: var(--spacing-xl);
 }
 
 .table-header {
@@ -46,10 +47,19 @@ p-table {
     font-weight: 400;
 }
 
-.date-select p {
+.date-select p,
+.status-filter p {
     font-weight: 400;
     white-space: nowrap;
     color: var(--main-font-color);
+    margin: 0;
+}
+
+.status-filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .search {
@@ -87,6 +97,24 @@ p-table {
 .search button:hover {
     background-color: var(--secondary-dark);
     color: var(--primary-light);
+}
+
+/* Button styling */
+:host ::ng-deep .p-button {
+    padding: var(--spacing-sm);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Dropdown styling */
+:host ::ng-deep .p-dropdown {
+    border-radius: var(--border-radius);
+    border: var(--border-thickness) solid var(--primary-contrast-color);
+    background-color: var(--primary-light);
+    color: var(--main-font-color);
+}
+
+:host ::ng-deep .p-dropdown:hover {
+    border: var(--border-thickness) solid var(--secondary-color);
 }
 
 
@@ -138,4 +166,35 @@ p-table {
 
 :host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
     padding: 0 1rem;
+}
+
+//pagination
+
+:host ::ng-deep .p-paginator {
+    gap: var(--spacing-sm);
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+    border-radius: var(--border-radius);
+    border: var(--border-thickness) solid var(--border-color);
+    color: var(--main-font-color);
+    font-weight: 700;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: transparent;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-prev,
+:host ::ng-deep .p-paginator .p-paginator-next {
+    border-radius: var(--border-radius);
+    border: var(--border-thickness) solid var(--border-color);
+    color: var(--main-font-color);
+    font-weight: 700;
+}
+
+.error-text {
+    color: var(--error-color);
 }
