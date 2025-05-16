@@ -184,9 +184,10 @@ button {
   font-weight: 500;
 } */
 
-.container {
-  width: 100%;
-  max-width: 1200px;
+::ng-deep .main-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 0 var(--space-md);
 }

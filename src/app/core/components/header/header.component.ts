@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, RouterLink } from "@angular/router";
-import { CommonModule } from "@angular/common";
+import { Component, OnInit, HostListener } from "@angular/core";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { CommonModule, NgClass } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { MenubarModule } from "primeng/menubar";
@@ -17,32 +17,50 @@ import { User } from "../../../shared/models/user.model";
   selector: "app-header",
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterLink, 
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    NgClass,
     FormsModule,
-    ButtonModule, 
-    MenubarModule, 
-    BadgeModule, 
+    ButtonModule,
+    MenubarModule,
+    BadgeModule,
     TooltipModule,
-    InputTextModule
+    InputTextModule,
   ],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
-  currentUser: User | null = null;
+  currentUser: any;
   cartItemCount = 0;
   cartTotal = 0;
   menuItems: MenuItem[] = [];
-  searchTerm = '';
+  searchTerm = "";
+  mobileMenuOpen = false;
+  isMobileView = false;
 
   constructor(
     private authService: AuthService,
     private cartService: CartService,
     private searchService: SearchService,
     private router: Router
-  ) {}
+  ) {
+    this.checkScreenSize();
+  }
+
+  @HostListener("window:resize", ["$event"])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isMobileView = window.innerWidth < 768;
+    if (!this.isMobileView) {
+      this.mobileMenuOpen = false;
+    }
+  }
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe((user) => {
@@ -60,7 +78,7 @@ export class HeaderComponent implements OnInit {
     });
 
     // Subscribe to search service to keep the search bar in sync
-    this.searchService.searchTerm$.subscribe(term => {
+    this.searchService.searchTerm$.subscribe((term) => {
       this.searchTerm = term;
     });
   }
@@ -68,40 +86,42 @@ export class HeaderComponent implements OnInit {
   updateMenuItems(): void {
     if (this.isLoggedIn) {
       this.menuItems = [
-        // {
-        //   label: "Search Parts",
-        //   icon: "pi pi-search",
-        //   routerLink: "/search",
-        // },
-        // {
-        //   label: "My Cart",
-        //   icon: "pi pi-shopping-cart",
-        //   routerLink: "/cart",
-        //   badge: this.cartItemCount.toString(),
-        //   visible: this.cartItemCount > 0,
-        // },
+        // Mobile menu items can go here if needed
       ];
     } else {
       this.menuItems = [];
     }
   }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen = false;
+  }
+
   goToCart(): void {
     this.router.navigate(["/private/cart"]);
+    this.closeMobileMenu();
   }
 
   search(): void {
     console.log("Searching for:", this.searchTerm);
-    
-    this.searchService.updateSearchTerm(this.searchTerm);
-    // Navigate to the search page if we're not already there
-    if (!this.router.url.includes('/priavte/search')) {
-      this.router.navigate(['/private/search']);
+
+    if (this.searchTerm.trim()) {
+      this.searchService.updateSearchTerm(this.searchTerm);
+      // Navigate to the search page if we're not already there
+      if (!this.router.url.includes("/private/search")) {
+        this.router.navigate(["/private/search"]);
+      }
+      this.closeMobileMenu();
     }
   }
 
   formatPrice(price: number): string {
     // make it a string with 3 digits after the decimal point and a 'dt' at the end
-    return price.toFixed(3) + ' dt';
+    return price.toFixed(3) + " dt";
   }
 
   logout(): void {

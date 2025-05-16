@@ -9,12 +9,11 @@
 }
 
 .part-image {
-  height: 180px;
+  height: 150px;
   background-size: cover;
   background-position: center;
   position: relative;
   cursor: pointer;
-  border-radius: 6px 6px 0 0;
   transition: opacity 0.2s ease;
 }
 
@@ -211,4 +210,19 @@ h3 {
   border-color: var(--neutral-300);
   background-color: transparent;
   color: var(--main-font-color);
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li {
+  flex-grow: 1;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav,
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: #b9b9b918;
+}
+:host ::ng-deep .p-tabview .p-tabview-panels {
+  background: #b9b9b918;
+  padding: 0.3rem;
 }
