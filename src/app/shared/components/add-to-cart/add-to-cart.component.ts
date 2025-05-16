@@ -27,10 +27,9 @@ export class AddToCartComponent {
   getStockStatusClass(): string {
     return this.isAvailable ? "dot-available" : "dot-unavailable";
   }
-  
 
   getStockStatusText(): string {
-    return this.isAvailable ? "En stock" : "Épuisé";
+    return this.isAvailable ? "En stock" : "Non disponible";
   }
 
   formatPrice(price: number): string {

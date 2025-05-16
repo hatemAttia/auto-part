@@ -5,7 +5,14 @@
   </div>
   <hr />
   <div class="part-price-section">
-    <span class="part-price" [ngClass]="'price-' + priceSize">{{ formatPrice(price) }}</span>
+    <span
+      class="part-price"
+      [ngClass]="'price-' + priceSize"
+      [style]="{
+        color: stock === 0 ? '#35343D28' : ''
+      }"
+      >{{ formatPrice(price) }}</span
+    >
   </div>
   <div class="part-quantity-purchase">
     <div class="part-quantity">
@@ -28,7 +35,8 @@
           <i class="pi pi-plus" style="color: black; font-size: 13px"></i>
         </ng-template>
       </p-inputNumber>
-    </div>    <button
+    </div>
+    <button
       pButton
       [label]="showLabel ? 'Commander' : ''"
       [icon]="showIcon ? 'pi pi-shopping-cart' : ''"

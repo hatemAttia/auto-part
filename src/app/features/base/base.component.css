@@ -1,13 +1,13 @@
 app-header {
-    z-index: 1000000;
+  z-index: 1;
 }
 
 .app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .main-content {
-    flex-grow: 1;
+  flex-grow: 1;
 }

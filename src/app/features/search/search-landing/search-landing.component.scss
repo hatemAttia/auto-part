@@ -214,3 +214,51 @@ h3 {
     gap: 1rem;
   }
 }
+
+.step-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  /* Light gray for inactive */
+  color: white;
+  font-size: 0.85rem;
+}
+
+.step-circle.active {
+  background-color: #003c8f;
+  /* Dark blue for active step */
+}
+
+.step-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  /* Light gray for default */
+  color: white;
+  font-size: 0.85rem;
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  z-index: 20;
+}
+
+.step-circle.active {
+  background-color: #003c8f;
+  /* Dark blue for active */
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder {
+  padding-left: 50px;
+}
+
+:host ::ng-deep .container {
+  max-width: 1280px;
+}
