@@ -1,7 +1,4 @@
-.container {
-  padding: var(--spacing-lg);
-  background-color: var(--primary-color);
-}
+
 
 .cart-header {
   margin: var(--spacing-md) 0;
@@ -24,7 +21,7 @@
 
 .cart-summary-section {
   flex: 1;
-  min-width: 300px;
+  min-width: 200px;
   background-color: var(--primary-light);
 }
 
@@ -93,7 +90,7 @@
 .summary-row {
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 .total-row {
@@ -102,7 +99,7 @@
   color: var(--primary-color);
 }
 
-.grand-total{
+.grand-total {
   font-weight: 600;
   font-size: 1.5rem;
   margin: 2rem 0;
@@ -198,7 +195,7 @@
 //   background-color: transparent;
 //   color: var(--main-font-color);
 //   padding: var(--spacing-sm) 0;
-  
+
 //   span {
 //     font-size: 0.7rem;
 //     font-weight: 400;
@@ -217,15 +214,17 @@
   background: white;
   border: 1px solid var(--neutral-300);
 }
+
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up {
   border-left: none;
   width: 30px;
 }
+
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
   width: 30px;
   border-right: none;
 }
- 
+
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
   border-left: none;
   border-right: none;
@@ -236,7 +235,7 @@
   margin: 0;
 }
 
-:host ::ng-deep .p-card  {
+:host ::ng-deep .p-card {
   box-shadow: none;
   background-color: transparent;
 }

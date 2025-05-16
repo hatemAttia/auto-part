@@ -44,6 +44,7 @@
   .hero-content {
     flex-wrap: wrap;
   }
+
   .hero-content h1 {
     font-size: 2rem;
   }
@@ -57,9 +58,11 @@
   .hero {
     height: 100%;
   }
+
   .hero-content {
     flex-wrap: wrap;
   }
+
   .hero-content h1 {
     font-size: 1.75rem;
   }
@@ -173,6 +176,7 @@ a {
 a:hover {
   color: var(--primary-dark);
 }
+
 /* 
 button {
   cursor: pointer;
@@ -187,9 +191,7 @@ button {
 ::ng-deep .main-content {
   width: 100% !important;
   max-width: 100% !important;
-  /* max-width: 1200px; */
-  margin: 0 auto;
-  padding: 0 var(--space-md);
+
 }
 
 .section {
@@ -245,6 +247,7 @@ button {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -255,6 +258,7 @@ button {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -281,6 +285,7 @@ button {
     --space-xxl: 24px;
   }
 }
+
 .step-circle {
   display: inline-flex;
   align-items: center;
@@ -288,14 +293,17 @@ button {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: #d1d5db; /* Light gray for inactive */
+  background-color: #d1d5db;
+  /* Light gray for inactive */
   color: white;
   font-size: 0.85rem;
 }
 
 .step-circle.active {
-  background-color: #003c8f; /* Dark blue for active step */
+  background-color: #003c8f;
+  /* Dark blue for active step */
 }
+
 .step-circle {
   display: inline-flex;
   align-items: center;
@@ -303,7 +311,8 @@ button {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: #d1d5db; /* Light gray for default */
+  background-color: #d1d5db;
+  /* Light gray for default */
   color: white;
   font-size: 0.85rem;
   position: absolute;
@@ -313,12 +322,14 @@ button {
 }
 
 .step-circle.active {
-  background-color: #003c8f; /* Dark blue for active */
+  background-color: #003c8f;
+  /* Dark blue for active */
 }
 
 :host ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder {
   padding-left: 50px;
 }
+
 :host ::ng-deep .container {
   max-width: 1280px;
 }

@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="container">
+  <div >
     <div class="header-content">
       <!-- Mobile menu toggle -->
       <div class="menu-toggle" (click)="toggleMobileMenu()">
@@ -23,20 +23,21 @@
           </li>
           <li
             class="nav-link"
-            [routerLink]="isLoggedIn ? '/private/documents/deliveries' : '/login'"
-            [routerLinkActive]="'active'"
-            (click)="closeMobileMenu()"
-          >
-            <a>Bons de livraison</a>
-          </li>
-          <li
-            class="nav-link"
             [routerLink]="isLoggedIn ? '/private/documents/invoices' : '/login'"
             [routerLinkActive]="'active'"
             (click)="closeMobileMenu()"
           >
             <a>Factures</a>
           </li>
+          <li
+            class="nav-link"
+            [routerLink]="isLoggedIn ? '/private/documents/deliveries' : '/login'"
+            [routerLinkActive]="'active'"
+            (click)="closeMobileMenu()"
+          >
+            <a>Bons de livraison</a>
+          </li>
+          
         </ul>
       </div>
 

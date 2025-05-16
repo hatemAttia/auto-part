@@ -60,7 +60,6 @@
 
 .part-detail {
   background-color: var(--primary-light);
-  padding: var(--spacing-lg);
   flex: 1;
 }
 
@@ -134,7 +133,7 @@
 .part-image-section {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-xxl);
   align-items: start;
 

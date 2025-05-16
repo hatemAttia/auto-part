@@ -1,4 +1,4 @@
-<div class="container">
+<div >
   <div class="cart-header">
     <h1>Mon panier</h1>
   </div>
@@ -17,7 +17,7 @@
   <div class="cart-content" *ngIf="cartItems.length > 0">
     <div class="cart-table-section">
 
-      <p-table [value]="cartItems" [tableStyle]="{ 'min-width': '50rem' }" dataKey="part.id" styleClass="cart-table">
+      <p-table [value]="cartItems" [tableStyle]="{ 'min-width': '30rem' }" dataKey="part.id" styleClass="cart-table">
         <ng-template pTemplate="header">
           <tr>
             <th>Produit</th>
