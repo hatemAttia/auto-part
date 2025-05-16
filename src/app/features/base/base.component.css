@@ -10,4 +10,5 @@ app-header {
 
 .main-content {
     flex-grow: 1;
+    padding-top: 3.5rem;
 }

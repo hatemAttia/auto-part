@@ -58,11 +58,12 @@ p-table {
     justify-content: flex-end;
     align-items: center;
     width: 50%;
+    position: relative;
 }
 
 .search input {
-    width: 70%;
-    padding: var(--spacing-md);
+    width: 250px;
+    padding: var(--spacing-sm);
     border-radius: var(--border-radius);
     border: var(--border-thickness) solid var(--primary-contrast-color);
     background-color: var(--primary-light);
@@ -75,10 +76,10 @@ p-table {
 }
 
 .search button {
-    width: 30%;
+    width: 130px;
     background-color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     color: var(--primary-light);
     transition: all 0.2s ease-in-out;
 }
@@ -92,7 +93,7 @@ p-table {
 
 /* PrimeNG Calendar styling */
 :host ::ng-deep .p-calendar-w-btn input {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     background-color: var(--primary-light);
     border: var(--border-thickness) solid var(--primary-contrast-color);
     color: var(--main-font-color);
@@ -114,6 +115,7 @@ p-table {
 :host ::ng-deep .p-datatable-header {
     border: none;
     background-color: transparent;
+    padding: 0;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
@@ -126,14 +128,14 @@ p-table {
     border-radius: 0 !important;
 }
 
-:host ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
+:host ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(odd) {
     background-color: var(--primary-contrast-color);
 }
 
-:host ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+:host ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(even) {
     background-color: var(--primary-light);
 }
 
-:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
     padding: 0 1rem;
 }

@@ -62,14 +62,14 @@
     <div class="table-header">
         <div class="date-select">
             <p>Date :</p>
-            <p-calendar [(ngModel)]="startDate" [showIcon]="true" [showOnFocus]="true" />
+            <p-calendar [(ngModel)]="startDate" [style]="{width: '180px'}" [showIcon]="true" [showOnFocus]="true" />
             -
-            <p-calendar [(ngModel)]="endDate" [showIcon]="true" [showOnFocus]="true" />
+            <p-calendar [(ngModel)]="endDate" [style]="{width: '180px'}" [showIcon]="true" [showOnFocus]="true" />
         </div>
 
         <div class="search">
             <input type="text" pInputText placeholder="Rechercher" />
-            <button class="btn search-btn">Rechercher</button>
+            <button class="btn search-btn p-button-primary">Rechercher</button>
         </div>
     </div>
 </ng-template>
