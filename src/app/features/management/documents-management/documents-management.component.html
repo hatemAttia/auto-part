@@ -64,12 +64,13 @@
                 [showOnFocus]="true" />
             -
             <p-calendar [(ngModel)]="tableParams.endDate" [style]="{width: '180px'}" [showIcon]="true"
-                [showOnFocus]="true" />
-            <!-- Conditional Status filter for Orders -->
+                [showOnFocus]="true" />            <!-- Conditional Status filter for Orders -->
             <div class="status-filter" *ngIf="currentDocType === 'orders'">
-                <p-dropdown [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']" optionLabel="label"
-                    optionValue="value" [style]="{width: '180px'}" placeholder="Tous">
-                </p-dropdown>
+                <p-multiSelect [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']" 
+                    optionLabel="label" optionValue="value" [style]="{width: '180px'}" 
+                    placeholder="Tous les statuts" [showClear]="false" [filter]="true"
+                    display="chip">
+                </p-multiSelect>
             </div>
 
             <!-- Conditional Payment Status filter for Invoices -->

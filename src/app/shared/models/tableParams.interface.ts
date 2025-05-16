@@ -7,7 +7,7 @@ export interface TableParams {
     sortField?: string;
     order: 'ASC' | 'DESC';
     filters?: {
-        [key: string]: any;
+        [key: string]: any[] | any;
     };
     keywords?: string;
 

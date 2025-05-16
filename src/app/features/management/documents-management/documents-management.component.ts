@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { DocumentsManagementService } from '../../../core/services/documents-management.service';
 import { formatPrice } from '../../../core/utils/format.utils';
 import { TableParams } from '../../../shared/models/tableParams.interface';
@@ -29,7 +30,8 @@ interface Column {
     InputTextModule,
     BadgeModule,
     RouterModule,
-    DropdownModule
+    DropdownModule,
+    MultiSelectModule
   ],
   templateUrl: './documents-management.component.html',
   styleUrl: './documents-management.component.scss'
@@ -42,7 +44,7 @@ export class DocumentsManagementComponent implements OnInit {
   orders: any[] = [];
   deliveries: any[] = [];
   invoices: any[] = [];
-    // Table parameters using the TableParams interface
+  // Table parameters using the TableParams interface
   tableParams: TableParams = {
     pageSize: 10,
     pageNumber: 0,
@@ -51,7 +53,7 @@ export class DocumentsManagementComponent implements OnInit {
     sortField: undefined,
     order: 'ASC',
     filters: {
-      status: '',
+      status: [],
       isPaid: null
     }
   };
@@ -215,8 +217,8 @@ export class DocumentsManagementComponent implements OnInit {
       case 'orders':
         filteredData = [...this.orders];        // Apply status filter if selected
         const statusFilter = this.tableParams.filters?.['status'];
-        if (statusFilter) {
-          filteredData = filteredData.filter(order => order.status === statusFilter);
+        if (statusFilter && Array.isArray(statusFilter) && statusFilter.length > 0) {
+          filteredData = filteredData.filter(order => statusFilter.includes(order.status));
         }
         break;
         
@@ -253,7 +255,7 @@ export class DocumentsManagementComponent implements OnInit {
     
     this.displayData = filteredData;
   }
-    // Reset filters
+  // Reset filters
   resetFilters(): void {
     this.tableParams = {
       pageSize: 10,
@@ -263,7 +265,7 @@ export class DocumentsManagementComponent implements OnInit {
       sortField: undefined,
       order: 'ASC',
       filters: {
-        status: '',
+        status: [],
         isPaid: null
       }
     };
