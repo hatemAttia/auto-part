@@ -1,20 +1,40 @@
 <header class="header">
   <div class="container">
     <div class="header-content">
+      <!-- Mobile menu toggle -->
+      <div class="menu-toggle" (click)="toggleMobileMenu()">
+        <i class="pi" [ngClass]="mobileMenuOpen ? 'pi-times' : 'pi-bars'"></i>
+      </div>
+
       <div class="logo-nav-links">
         <div class="logo" [routerLink]="isLoggedIn ? '/search' : '/login'">
-          <img src="assets/img/logo-t.png" alt="">
-        </div>        <ul class="nav-links">
-          <!-- <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents' : '/login'">
-            <a>Mes documents</a>
-          </li> -->
-          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents/orders' : '/login'" [routerLinkActive]="'active'" >
+          <img src="assets/img/logo-t.png" alt="" />
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links" [ngClass]="{ 'nav-links-mobile': mobileMenuOpen }">
+          <li
+            class="nav-link"
+            [routerLink]="isLoggedIn ? '/private/documents/orders' : '/login'"
+            [routerLinkActive]="'active'"
+            (click)="closeMobileMenu()"
+          >
             <a>Commandes</a>
           </li>
-          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents/deliveries' : '/login'" [routerLinkActive]="'active'">
+          <li
+            class="nav-link"
+            [routerLink]="isLoggedIn ? '/private/documents/deliveries' : '/login'"
+            [routerLinkActive]="'active'"
+            (click)="closeMobileMenu()"
+          >
             <a>Bons de livraison</a>
           </li>
-          <li class="nav-link" [routerLink]="isLoggedIn ? '/private/documents/invoices' : '/login'" [routerLinkActive]="'active'">
+          <li
+            class="nav-link"
+            [routerLink]="isLoggedIn ? '/private/documents/invoices' : '/login'"
+            [routerLinkActive]="'active'"
+            (click)="closeMobileMenu()"
+          >
             <a>Factures</a>
           </li>
         </ul>
@@ -24,8 +44,8 @@
         <div class="user-container">
           <i class="pi pi-user"></i>
           <div class="user">
-            <span>Nom d'utilisateur</span>
-            <span class="logout"> Déconnexion </span>
+            <span>{{ currentUser?.name || "Nom d'utilisateur" }}</span>
+            <span class="logout" (click)="logout()"> Déconnexion </span>
           </div>
         </div>
 
@@ -37,31 +57,30 @@
           </i>
           <div class="cart">
             <span>Mon panier</span>
-            
             <span class="totalPrice">{{ formatPrice(cartTotal) }} </span>
           </div>
         </div>
       </div>
 
-
-
       <div class="search-bar-container">
-
         <div class="button history-button">
           <i class="pi pi-history"></i>
         </div>
 
         <div class="outer-search-container">
           <div class="search-container">
-            <input type="text" [(ngModel)]="searchTerm" placeholder="Entrer la référence ou la piéce" 
-              (keyup.enter)="search()"/>
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              placeholder="Entrer la référence ou la piéce"
+              (keyup.enter)="search()"
+            />
           </div>
         </div>
 
         <div class="button search-button" (click)="search()">
           <i class="pi pi-search"></i>
         </div>
-
       </div>
     </div>
   </div>

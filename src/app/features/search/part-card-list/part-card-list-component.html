@@ -2,12 +2,12 @@
   <!-- <ng-template pTemplate="header"> </ng-template> -->
 
   <div class="part-content">
-    <div class="flex justify-content-between">
-      <div class="">
+    <div class="flex justify-content-between flex-wrap">
+      <div class="pr-3" style="flex-grow: 1">
         <div class="flex w-full">
           <div
             class="part-image"
-            style="width: 200px"
+            style="width: 150px"
             [style.background-image]="'url(' + part.imageUrl + ')'"
           >
             <!-- <div class="part-badges">
@@ -20,7 +20,7 @@
           <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
         </div> -->
           </div>
-          <div class="p-3" style="flex-grow: 1">
+          <div class="px-3" style="flex-grow: 1">
             <div class="part-header">
               <h3 class="part-name">{{ part.name }}</h3>
               <span class="part-number"> Réf : {{ part.partNumber }}</span><br />
@@ -48,50 +48,56 @@
           </div>
         </div>
         <p-divider></p-divider>
-        <div class="part-details">
-          <h3>Informations</h3>
+        <div class="">
+          <h3 class="pb-3 m-0">Informations</h3>
 
-          <div class="grid">
-            <div class="col-6 grid p-3">
-              <div class="col-6 p-0">
-                <div class="th">Références d'origine</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
+          <p-tabView styleClass="part-tabs">
+            <p-tabPanel header="Réferences origine">
+              <div class="description-content">
+                <div class="p-1" style="border-bottom: 1px solid gray">
+                  <h3 class="m-0">
+                    <i class="pi pi-minus mx-2" style="color: var(--secondary-color)"></i> Valeo
+                  </h3>
+                  <div class="px-3 py-1">
+                    <p class="m-0">1.6 102ch04-2015</p>
+                    <p class="m-0">1.6 102ch04-2015</p>
+                    <p class="m-0">1.6 102ch04-2015</p>
+                  </div>
+                </div>
+                <div class="p-2" style="border-bottom: 1px solid gray">
+                  <h3 class="m-0">
+                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Doga
+                  </h3>
+                </div>
+                <div class="p-2" style="border-bottom: 1px solid gray">
+                  <h3 class="m-0">
+                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Sorea
+                  </h3>
+                </div>
+                <div class="p-2" style="border-bottom: 1px solid gray">
+                  <h3 class="m-0">
+                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Elring
+                  </h3>
+                </div>
+                <div class="p-2" style="border-bottom: 1px solid gray">
+                  <h3 class="m-0">
+                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Graf
+                  </h3>
+                </div>
               </div>
-              <div class="col-6 p-0">
-                <div class="th">Véhicules compatibles</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
+            </p-tabPanel>
+            <p-tabPanel header="véhicules compatibles">
+              <div class="description-content">
+                <p>{{ part.description }}</p>
+                <h3>Compatibility</h3>
               </div>
-            </div>
-
-            <div class="col-6 grid p-3">
-              <div class="col-6 p-0">
-                <div class="th">Références d'origine</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-              </div>
-              <div class="col-6 p-0">
-                <div class="th">Véhicules compatibles</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-                <div class="td">1.6 102ch04-2015</div>
-              </div>
-            </div>
-          </div>
+            </p-tabPanel>
+          </p-tabView>
         </div>
       </div>
-
       <div>
-        <div class="flex align-items-end h-full">
-          <div>
+        <div class="flex h-full">
+          <div class="flex flex-column w-full">
             <!-- <div class="py-5">
               <div class="part-purchase-container mb-3">
                 <div class="part-availibility-section">
@@ -143,25 +149,30 @@
               (getQuantity)="getQuantity($event)"
               [isAvailable]="part.stock > 0"
             ></app-add-to-cart>
-            <div class="py-2">
-              <button
-                pButton
-                type="button"
-                label="Voir equivalence de la piéce"
-                [disabled]="part.stock === 0"
-                class="p-button-primary w-full"
-                (click)="addToCart.emit(part)"
-                pRipple
-              ></button>
+            <div class="flex gap-2 align-items-center" style="flex-grow: 1">
+              <div class="w-full">
+                <div class="py-2">
+                  <button
+                    pButton
+                    type="button"
+                    label="Voir equivalence de la piéce"
+                    [disabled]="part.stock === 0"
+                    class="p-button-primary w-full"
+                    (click)="addToCart.emit(part)"
+                    pRipple
+                  ></button>
+                </div>
+                <div>
+                  <button
+                    pButton
+                    type="button"
+                    label="Voir plus details sur le produit"
+                    class="p-button-outlined p-button-secondary w-full"
+                    (click)="viewDetails.emit(part)"
+                  ></button>
+                </div>
+              </div>
             </div>
-            <button
-              pButton
-              type="button"
-              label="Details"
-              icon="pi pi-info-circle"
-              class="p-button-outlined p-button-secondary w-full"
-              (click)="viewDetails.emit(part)"
-            ></button>
           </div>
         </div>
       </div>

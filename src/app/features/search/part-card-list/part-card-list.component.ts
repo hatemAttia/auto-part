@@ -12,6 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { AddToCartComponent } from "../../../shared/components/add-to-cart/add-to-cart.component";
 import { DividerModule } from "primeng/divider";
+import { TabViewModule } from "primeng/tabview";
 
 @Component({
   selector: "app-part-card-list",
@@ -24,6 +25,7 @@ import { DividerModule } from "primeng/divider";
     TagModule,
     BadgeModule,
     RatingModule,
+    TabViewModule,
     RippleModule,
     FormsModule,
     InputNumberModule,

@@ -17,9 +17,9 @@
   --accent-color: #ff0000;
   --accent-light: #ff0000;
   --accent-dark: #c43c00;
-  --success-color: #1CA947;
+  --success-color: #1ca947;
   --warning-color: #f9a825;
-  --error-color: #FF0000;
+  --error-color: #ff0000;
   --neutral-50: #fafafa;
   --neutral-100: #f5f5f5;
   --neutral-200: #eeeeee;
@@ -103,11 +103,52 @@ h6 {
 }
 
 .container {
-  /* max-width: 1280px; */
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 var(--spacing-sm);
 }
 
+@media (min-width: 576px) {
+  .container-sm,
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-xxl,
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1320px;
+  }
+}
 /* Buttons and form elements */
 button.p-button {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -161,7 +202,7 @@ button.p-button-accent:hover {
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 /* Animation */
