@@ -1,113 +1,113 @@
 .part-purchase-container {
-    background-color: transparent;
-    border-radius: 8px;
-    width: 100%;
+  background-color: transparent;
+  border-radius: 8px;
+  width: 100%;
 }
 
 .part-availibility-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .availability-dot {
-    border-radius: 50%;
-    margin-right: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
 .dot-available {
-    background-color: var(--success-color);
-    & + .availability-text {
-        color: var(--success-color);
-        font-weight: 500;
-    }
+  background-color: var(--success-color);
+  & + .availability-text {
+    color: var(--success-color);
+    font-weight: 500;
+  }
 }
 
 .dot-unavailable {
-    background-color: var(--error-color);
-    & + .availability-text {
-        color: var(--error-color);
-        font-weight: 500;
-    }
+  background-color: var(--error-color);
+  & + .availability-text {
+    color: var(--error-color);
+    font-weight: 500;
+  }
 }
 
 // Availability sizes
 .availability-small {
-    .availability-dot {
-        width: 8px;
-        height: 8px;
-    }
-    .availability-text {
-        font-size: 1rem;
-    }
+  .availability-dot {
+    width: 8px;
+    height: 8px;
+  }
+  .availability-text {
+    font-size: 1rem;
+  }
 }
 
 .availability-medium {
-    .availability-dot {
-        width: 12px;
-        height: 12px;
-    }
-    .availability-text {
-        font-size: 1.4rem;
-    }
+  .availability-dot {
+    width: 12px;
+    height: 12px;
+  }
+  .availability-text {
+    font-size: 1.4rem;
+  }
 }
 
 .availability-large {
-    .availability-dot {
-        width: 16px;
-        height: 16px;
-    }
-    .availability-text {
-        font-size: 1.8rem;
-    }
+  .availability-dot {
+    width: 16px;
+    height: 16px;
+  }
+  .availability-text {
+    font-size: 1.8rem;
+  }
 }
 
 .availability-text {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 hr {
-    border: none;
-    border-top: 1px solid #e0e0e0;
-    margin: 10px 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 10px 0;
 }
 
 .part-price-section {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .part-price {
-    font-weight: 700;
-    color: var(--main-font-color);
+  font-weight: 700;
+  color: var(--main-font-color);
 }
 
 .price-small {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .price-medium {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .price-large {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .part-quantity-purchase {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--spacing-xs);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
 }
 
 .part-quantity {
-    flex: 1;
+  flex: 1;
 }
 
 .cart-button {
-    min-width: 120px;
-    width: 100%;
-    flex-grow: 1;
-    border-radius: var(--border-radius) !important;
+  min-width: 100px;
+  width: 100%;
+  flex-grow: 1;
+  border-radius: var(--border-radius) !important;
 }
 
 // :host ::ng-deep .p-inputnumber-input {
@@ -135,7 +135,7 @@ hr {
   width: 30px;
   border-right: 1px solid transparent;
 }
- 
+
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
@@ -143,10 +143,10 @@ hr {
 }
 
 :host ::ng-deep .p-inputnumber:hover > * {
-    border: 1px solid var(--secondary-color);
+  border: 1px solid var(--secondary-color);
 }
 
-:host ::ng-deep .p-inputnumber:hover > *:nth-child(1){
-    border-left: 1px solid transparent;
-    border-right:  1px solid transparent;
+:host ::ng-deep .p-inputnumber:hover > *:nth-child(1) {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }

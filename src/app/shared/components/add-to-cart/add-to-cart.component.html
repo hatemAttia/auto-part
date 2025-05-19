@@ -41,6 +41,7 @@
       [label]="showLabel ? 'Commander' : ''"
       [icon]="showIcon ? 'pi pi-shopping-cart' : ''"
       class="p-button-primary cart-button"
+      appButtonResize
       [disabled]="!isAvailable || stock === 0"
       (click)="onAddQuantity()"
     ></button>

@@ -170,7 +170,6 @@ h3 {
 .filter-actions {
   display: flex;
   gap: var(--spacing-sm);
-
 }
 
 .loading-container {
@@ -197,11 +196,11 @@ h3 {
   .filters-panel ::ng-deep .p-card {
     margin-bottom: var(--spacing-md);
   }
-  
+
   /* Filter collapsible behavior for mobile */
   .filter-header {
     align-items: center;
-    
+
     .filter-button {
       cursor: pointer;
       padding: 1rem;
@@ -212,22 +211,20 @@ h3 {
       }
     }
   }
-  
-  .filter-toggle-icon {
 
-    
+  .filter-toggle-icon {
     font-size: 1.2rem;
     margin-left: 8px;
     transition: transform 0.3s ease;
   }
-  
+
   .filter-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
     padding: 0 1rem;
   }
-  
+
   .filter-content.expanded {
     max-height: fit-content; /* Large enough to contain all filter content */
   }
@@ -314,9 +311,8 @@ h3 {
 }
 
 @media screen and (max-width: 768px) {
-
   .current-vehicle-container {
-    &>div {
+    & > div {
       padding: 0 !important;
     }
   }
@@ -324,11 +320,10 @@ h3 {
   .results-header {
     margin-bottom: 0;
   }
-
 }
 
 .results-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
   gap: var(--spacing-md);
 }
