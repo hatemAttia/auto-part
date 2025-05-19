@@ -319,16 +319,16 @@ h3 {
     &>div {
       padding: 0 !important;
     }
-
-    .current-vehicle {
-      p {
-        display: none;
-      }
-    }
   }
 
   .results-header {
     margin-bottom: 0;
   }
 
+}
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: var(--spacing-md);
 }

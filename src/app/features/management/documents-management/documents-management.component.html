@@ -64,19 +64,21 @@
             -
             <p-calendar [(ngModel)]="tableParams.endDate" [style]="{width: '180px'}" [showIcon]="true"
                 [showOnFocus]="true" /> <!-- Conditional Status filter for Orders -->
-            <div class="status-filter" *ngIf="currentDocType === 'orders'">
-                <p-multiSelect [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']"
-                    optionLabel="label" optionValue="value" [style]="{width: '180px'}" placeholder="Tous les statuts"
-                    [showClear]="false" [filter]="true" display="chip">
-                </p-multiSelect>
-            </div>
 
-            <!-- Conditional Payment Status filter for Invoices -->
-            <div class="status-filter" *ngIf="currentDocType === 'invoices'">
-                <p-dropdown [options]="paymentStatusOptions" [(ngModel)]="tableParams.filters!['isPaid']"
-                    optionLabel="label" optionValue="value" [style]="{width: '180px'}" placeholder="Tous">
-                </p-dropdown>
-            </div>
+        </div>
+
+        <div class="status-filter" *ngIf="currentDocType === 'orders'">
+            <p-multiSelect [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']" optionLabel="label"
+                optionValue="value" [style]="{width: '180px'}" placeholder="Tous les statuts" [showClear]="false"
+                [filter]="true" display="chip">
+            </p-multiSelect>
+        </div>
+
+        <!-- Conditional Payment Status filter for Invoices -->
+        <div class="status-filter" *ngIf="currentDocType === 'invoices'">
+            <p-dropdown [options]="paymentStatusOptions" [(ngModel)]="tableParams.filters!['isPaid']"
+                optionLabel="label" optionValue="value" [style]="{width: '180px'}" placeholder="Tous">
+            </p-dropdown>
         </div>
 
         <div class="search">

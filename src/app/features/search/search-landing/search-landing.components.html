@@ -12,7 +12,7 @@
       <div class="flex align-items-center justify-content-center p-3">
         <div class="current-vehicle">
           <h2 class="">Dacia 2015</h2>
-          <p>DOKKER Monospace (KE_) ( 11-2012 > )</p>
+          <p class="hidden md:block">DOKKER Monospace (KE_) ( 11-2012 > )</p>
         </div>
       </div>
     </div>
@@ -159,7 +159,7 @@
 
   <div class="results-header">
     <div>
-      <h2 class="sm:hidden md:block">Résultats de la recherche</h2>
+      <h2 class="hidden md:block">Résultats de la recherche</h2>
       <div class="results-meta" *ngIf="!isLoading">
         <span *ngIf="parts.length > 0">{{parts.length}} résultats compatibles</span>
         <span *ngIf="parts.length === 0">Aucune pièce trouvée</span>
