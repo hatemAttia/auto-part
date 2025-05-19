@@ -84,7 +84,7 @@
 }
 
 .filters-panel {
-  width: 320px;
+  width: 250px;
   flex-shrink: 0;
 }
 
@@ -205,6 +205,8 @@ h3 {
       cursor: pointer;
       padding: 1rem;
       transition: all 0.3s ease;
+      border: 2px solid var(--neutral-300);
+      border-radius: var(--border-radius);
 
       &:hover {
         background-color: var(--neutral-200);
@@ -324,6 +326,8 @@ h3 {
 
 .results-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   gap: var(--spacing-md);
 }
+
+

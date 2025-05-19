@@ -52,7 +52,7 @@ export class PartCardListComponent {
   constructor(public dialogService: DialogService) {
     this.oemList = [
       {
-        make: "volswagen",
+        make: "Volkswagen",
         oems: [
           { id: "123", oem: "OEM 123", mark: "OEM 123" },
           { id: "456", oem: "OEM 456", mark: "OEM 456" },
@@ -61,7 +61,7 @@ export class PartCardListComponent {
         ],
       },
       {
-        make: "bmw",
+        make: "BMW",
         oems: [
           { id: "123", oem: "OEM 123", mark: "OEM 123" },
           { id: "456", oem: "OEM 456", mark: "OEM 456" },

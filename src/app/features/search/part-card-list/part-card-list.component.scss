@@ -199,6 +199,15 @@ h3 {
   color: var(--neutral-900);
 }
 
+.description-content {
+  div {
+    h3 {
+      font-weight: 400;
+      font-size: 1rem;
+    }
+  }
+}
+
 :host ::ng-deep .p-inputnumber-input {
   width: 64px !important;
   text-align: center;
@@ -225,4 +234,11 @@ h3 {
 :host ::ng-deep .p-tabview .p-tabview-panels {
   background: #b9b9b918;
   padding: 0.3rem;
+}
+:host ::ng-deep .p-tabview-title {
+  white-space: pre-wrap;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 12px;
 }

@@ -1,18 +1,12 @@
-<p-card
-  styleClass="part-card"
-  [style]="{'height': '100%',   'background': part.stock === 0 ?'rgba(185, 185, 185, 0.15)':''}"
->
+<p-card styleClass="part-card"
+  [style]="{'height': '100%',   'background': part.stock === 0 ?'rgba(185, 185, 185, 0.15)':''}">
   <!-- <ng-template pTemplate="header"> </ng-template> -->
 
   <div class="part-content">
     <div class="flex justify-content-between flex-wrap grid">
       <div class="pr-3 col-7">
         <div class="flex w-full">
-          <div
-            class="part-image"
-            style="width: 150px"
-            [style.background-image]="'url(' + part.imageUrl + ')'"
-          >
+          <div class="part-image" style="width: 150px" [style.background-image]="'url(' + part.imageUrl + ')'">
             <div class="part-badges">
               <!-- <p-tag
                 *ngIf="part.replaces.length > 0"
@@ -20,11 +14,7 @@
                 value="Replacement Part"
               ></p-tag> -->
               <p-tag *ngIf=" part.stock > 0" severity="success" value="En stock"></p-tag>
-              <p-tag
-                *ngIf="part.stock <= 10 && part.stock > 0"
-                severity="warning"
-                value="Low Stock"
-              ></p-tag>
+              <p-tag *ngIf="part.stock <= 10 && part.stock > 0" severity="warning" value="Low Stock"></p-tag>
               <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
             </div>
           </div>
@@ -33,8 +23,7 @@
               <h3 class="part-name">{{ part.name }}</h3>
               <span class="part-number"> Réf : {{ part.partNumber }}</span><br />
               <span class="part-number">
-                Fournisseur : <img [src]="part.provider.image" style="height: 30px" alt=""
-              /></span>
+                Fournisseur : <img [src]="part.provider.image" style="height: 30px" alt="" /></span>
               <br />
               <span class="part-number"> Autre infos : : {{ part.partNumber }}</span>
             </div>
@@ -44,12 +33,8 @@
                 {{ model.brand }} {{ model.model }} ({{ model.yearFrom }}-{{ model.yearTo }})
                 <span *ngIf="!i">, </span>
               </span>
-              <span
-                *ngIf="part.compatibleModels.length > 2"
-                class="more-models"
-                pTooltip="View all compatible models"
-                (click)="viewDetails.emit(part)"
-              >
+              <span *ngIf="part.compatibleModels.length > 2" class="more-models" pTooltip="View all compatible models"
+                (click)="viewDetails.emit(part)">
                 +{{ part.compatibleModels.length - 2 }} more
               </span>
             </div>
@@ -62,17 +47,10 @@
           <p-tabView styleClass="part-tabs">
             <p-tabPanel header="Réferences origine">
               <div class="description-content" style="max-height: 180px; overflow: auto">
-                <div
-                  class="p-2"
-                  style="border-bottom: 1px solid #cbcbcb"
-                  *ngFor="let item of oemList"
-                >
+                <div class="p-2" style="border-bottom: 1px solid #cbcbcb" *ngFor="let item of oemList">
                   <h3 class="m-0" (click)="item.display = !item.display">
-                    <i
-                      class="pi mx-2"
-                      [class]="item.display?'pi-minus':'pi-plus'"
-                      style="color: var(--secondary-color)"
-                    ></i>
+                    <i class="pi mx-2" [class]="item.display?'pi-minus':'pi-plus'"
+                      style="color: var(--secondary-color)"></i>
                     {{item.make}}
                   </h3>
                   <div class="px-3 py-1" *ngIf="item.display">
@@ -137,33 +115,17 @@
               (click)="addToCart.emit(part)"
               pRipple
             ></button> -->
-            <app-add-to-cart
-              [part]="part"
-              [stock]="part.stock"
-              [price]="part.price"
-              (getQuantity)="getQuantity($event)"
-              [isAvailable]="part.stock > 0"
-            ></app-add-to-cart>
+            <app-add-to-cart [part]="part" [stock]="part.stock" [price]="part.price" (getQuantity)="getQuantity($event)"
+              [isAvailable]="part.stock > 0"></app-add-to-cart>
             <div class="flex gap-2 align-items-center" style="flex-grow: 1">
               <div class="w-full">
                 <div class="py-2">
-                  <button
-                    pButton
-                    type="button"
-                    label="Voir equivalence de la piéce"
-                    class="p-button-primary w-full"
-                    (click)="showEquivalents()"
-                    pRipple
-                  ></button>
+                  <button pButton type="button" label="Voir equivalence de la piéce" class="p-button-primary w-full"
+                    (click)="showEquivalents()" pRipple></button>
                 </div>
                 <div>
-                  <button
-                    pButton
-                    type="button"
-                    label="Voir plus details sur le produit"
-                    class="p-button-outlined p-button-secondary w-full"
-                    (click)="showDetails()"
-                  ></button>
+                  <button pButton type="button" label="Voir plus details sur le produit"
+                    class="p-button-outlined p-button-secondary w-full" (click)="showDetails()"></button>
                 </div>
               </div>
             </div>

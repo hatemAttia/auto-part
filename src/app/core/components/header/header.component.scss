@@ -152,16 +152,11 @@
 
         &:hover {
           background-color: gainsboro;
-          color: var(--main-font-color);
 
-          &::placeholder {
-            color: var(--main-font-color);
-          }
+          
         }
 
-        &::placeholder {
-          color: var(--border-color);
-        }
+        
       }
     }
   }
@@ -181,7 +176,6 @@
 
     &:hover {
       background-color: gainsboro;
-      color: var(--main-font-color);
     }
   }
 
