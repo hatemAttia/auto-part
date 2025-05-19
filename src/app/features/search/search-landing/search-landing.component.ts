@@ -278,7 +278,6 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
   canSearch(): boolean {
     return !!(this.selectedMake && this.selectedModel && this.selectedYear);
   }
-
   changeCar() {
     console.log("Searching for parts with:", {
       make: this.selectedMake,
@@ -289,4 +288,12 @@ export class SearchLandingComponent implements OnInit, OnDestroy {
     // In a real application, this would navigate to search results
     alert("Search functionality would be implemented here");
   }
+  // Tracks whether filters are expanded (true) or collapsed (false) on mobile
+  filtersExpanded = false; // Default to expanded on desktop
+
+  toggleFilters() {
+    this.filtersExpanded = !this.filtersExpanded;
+  }
 }
+
+

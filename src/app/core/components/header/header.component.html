@@ -2,14 +2,16 @@
   <div>
     <div class="header-content">
       <!-- Mobile menu toggle -->
-      <div class="menu-toggle" (click)="toggleMobileMenu()">
-        <i class="pi" [ngClass]="mobileMenuOpen ? 'pi-times' : 'pi-bars'"></i>
-      </div>
+      
 
       <div class="logo-nav-links">
-        <div class="logo" [routerLink]="isLoggedIn ? '/search' : '/login'">
+        <div class="logo" [routerLink]="isLoggedIn ? '/private/search' : '/login'">
           <img src="assets/img/logo-t.png" alt="" />
         </div>
+
+        <div class="menu-toggle" (click)="toggleMobileMenu()">
+        <i class="pi" [ngClass]="mobileMenuOpen ? 'pi-times' : 'pi-bars'"></i>
+      </div>
 
         <!-- Navigation Links -->
         <ul class="nav-links" [ngClass]="{ 'nav-links-mobile': mobileMenuOpen }">
@@ -35,7 +37,10 @@
             [routerLinkActive]="'active'"
             (click)="closeMobileMenu()"
           >
-            <a>Bons de livraison</a>
+            <a>
+              <span class="full-text">Bons de livraison</span>
+              <span class="short-text">BLs</span>
+            </a>
           </li>
         </ul>
       </div>

@@ -12,3 +12,10 @@ app-header {
   padding-top: 3.5rem;
   flex-grow: 1;
 }
+
+
+@media screen and (max-width: 992px) {
+  .main-content {
+    padding-top: 2rem;
+  }
+}

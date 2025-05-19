@@ -1,8 +1,9 @@
 .card-car-choiced {
   background-color: #fff;
-  padding: 5px 20px;
+  padding: 1rem 1rem 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  height: 95px;
+  height: fit-content;
+
   h2,
   p {
     margin: 0;
@@ -12,10 +13,12 @@
 :host ::ng-deep .p-checkbox .p-checkbox-box {
   border-radius: 0;
 }
+
 :host ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
   background-color: #fff;
   border-color: #d1d5db;
 }
+
 :host ::ng-deep .p-checkbox .p-checkbox-box .p-checkbox-icon {
   color: #000;
 }
@@ -28,11 +31,13 @@
   background: var(--secondary-color);
   border: 2px solid var(--secondary-color);
 }
+
 .see-more {
   color: #003984;
   font-size: 14px;
   cursor: pointer;
 }
+
 .search-header {
   text-align: center;
   margin-bottom: var(--spacing-lg);
@@ -86,6 +91,17 @@
 .filters-panel ::ng-deep .p-card {
   height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: center;
 }
 
 .results-panel {
@@ -154,7 +170,7 @@ h3 {
 .filter-actions {
   display: flex;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
+
 }
 
 .loading-container {
@@ -180,6 +196,40 @@ h3 {
 
   .filters-panel ::ng-deep .p-card {
     margin-bottom: var(--spacing-md);
+  }
+  
+  /* Filter collapsible behavior for mobile */
+  .filter-header {
+    align-items: center;
+    
+    .filter-button {
+      cursor: pointer;
+      padding: 1rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--neutral-200);
+      }
+    }
+  }
+  
+  .filter-toggle-icon {
+
+    
+    font-size: 1.2rem;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .filter-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    padding: 0 1rem;
+  }
+  
+  .filter-content.expanded {
+    max-height: fit-content; /* Large enough to contain all filter content */
   }
 }
 
@@ -261,4 +311,24 @@ h3 {
 
 :host ::ng-deep .container {
   max-width: 1280px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .current-vehicle-container {
+    &>div {
+      padding: 0 !important;
+    }
+
+    .current-vehicle {
+      p {
+        display: none;
+      }
+    }
+  }
+
+  .results-header {
+    margin-bottom: 0;
+  }
+
 }
