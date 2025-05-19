@@ -66,8 +66,8 @@
 
       <!-- bottom row - Details -->
       <div class="part-details-section">
-        <p-tabView styleClass="part-tabs">
-          <p-tabPanel header="Description">
+        <p-tabView styleClass="part-tabs" [activeIndex]="2">
+          <p-tabPanel header="Caractéristiques">
             <div class="description-content">
               <p>{{ part.description }}</p>
 
@@ -93,7 +93,7 @@
             </div>
           </p-tabPanel>
 
-          <p-tabPanel header="Specifications">
+          <p-tabPanel header="Réferences d'origine">
             <div class="specifications-content">
               <p-accordion [multiple]="true">
                 <p-accordionTab header="Part Details">
@@ -140,14 +140,49 @@
             </div>
           </p-tabPanel>
 
-          <p-tabPanel header="Related Parts" [disabled]="relatedParts.length === 0">
-            <div class="related-parts-grid">
+          <p-tabPanel header="Véhicules compatibles" [disabled]="relatedParts.length === 0">
+            <p-accordion [multiple]="true" expandIcon="pi pi-plus" collapseIcon="pi pi-minus" [activeIndex]="[0]">
+              <p-accordionTab header="Audi">
+                <div class="flex flex-column ml-6 p-0">
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                </div>
+              </p-accordionTab>
+              <p-accordionTab header="Fiat">
+                <div class="flex flex-column ml-6 p-0">
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                </div>
+              </p-accordionTab>
+              <p-accordionTab header="Dacia">
+                <div class="flex flex-column ml-6 p-0">
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                </div>
+              </p-accordionTab>
+              <p-accordionTab header="MG">
+                <div class="flex flex-column ml-6 p-0">
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                  <span class="spec-value">1.6 102ch04-2015</span>
+                </div>
+              </p-accordionTab>
+            </p-accordion>
+            <!-- <div class="related-parts-grid">
               <app-part-card *ngFor="let relatedPart of relatedParts" [part]="relatedPart"
                 (viewDetails)="onRelatedPartClick($event)" (addToCart)="onAddRelatedToCart($event)"></app-part-card>
-            </div>
+            </div> -->
           </p-tabPanel>
 
-          <p-tabPanel header="Replacement Info" [disabled]="part.replaces.length === 0 && part.replacedBy.length === 0">
+          <p-tabPanel header="Produits équivalents"
+            [disabled]="part.replaces.length === 0 && part.replacedBy.length === 0">
             <div class="replacement-info">
               <div *ngIf="part.replacedBy.length > 0" class="replaced-by-section">
                 <h3>This part is replaced by:</h3>
