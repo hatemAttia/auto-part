@@ -1,26 +1,29 @@
-import { Component } from '@angular/core';
-import { Part } from '../../../shared/models/part.model';
-import { PartsService } from '../../../core/services/parts.service';
-import { CommonModule } from '@angular/common';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { CartService } from '../../../core/services/cart.service';
-import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { CarouselModule } from 'primeng/carousel';
-import { PartCardComponent } from '../part-card/part-card.component';
+import { Component } from "@angular/core";
+import { Part } from "../../../shared/models/part.model";
+import { PartsService } from "../../../core/services/parts.service";
+import { CommonModule } from "@angular/common";
+import { InputNumberModule } from "primeng/inputnumber";
+import { CartService } from "../../../core/services/cart.service";
+import { FormsModule } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
+import { CarouselModule } from "primeng/carousel";
+import { PartCardComponent } from "../part-card/part-card.component";
 
 @Component({
-  selector: 'app-part-equivalent',
-  imports: [CommonModule, InputNumberModule, FormsModule, ButtonModule, CarouselModule, PartCardComponent],
-  templateUrl: './part-equivalent.component.html',
-  styleUrl: './part-equivalent.component.scss'
+  selector: "app-part-equivalent",
+  imports: [
+    CommonModule,
+    InputNumberModule,
+    FormsModule,
+    ButtonModule,
+    CarouselModule,
+    PartCardComponent,
+  ],
+  templateUrl: "./part-equivalent.component.html",
+  styleUrl: "./part-equivalent.component.scss",
 })
 export class PartEquivalentComponent {
-
-  constructor(
-    private partsService: PartsService,
-    private cartService: CartService,
-  ) { }
+  constructor(private partsService: PartsService, private cartService: CartService) {}
 
   equivalentParts!: Part[] | null;
   quantityMap: Map<string, number> = new Map();
@@ -28,29 +31,28 @@ export class PartEquivalentComponent {
   addedToCartDialog: boolean = false;
 
   part: Part | undefined;
-  
+
   // Carousel responsive options
   responsiveOptions = [
     {
-      breakpoint: '1400px',
+      breakpoint: "1400px",
       numVisible: 5,
-      numScroll: 3
+      numScroll: 3,
     },
     {
-      breakpoint: '1024px',
+      breakpoint: "1024px",
       numVisible: 4,
-      numScroll: 2
+      numScroll: 2,
     },
     {
-      breakpoint: '768px',
+      breakpoint: "768px",
       numVisible: 3,
-      numScroll: 1
-    }
+      numScroll: 1,
+    },
   ];
 
   ngOnInit() {
-    this.loadPartDetails('1')
-
+    this.loadPartDetails("1");
   }
 
   getEquivalentParts(id: string) {
@@ -59,12 +61,12 @@ export class PartEquivalentComponent {
         this.equivalentParts = [...response, ...response, ...response];
         // Initialize quantities for each part
 
-        this.equivalentParts.forEach(part => {
+        this.equivalentParts.forEach((part) => {
           this.quantityMap.set(part.id, 1);
         });
       },
       (error) => {
-        console.error('Error fetching equivalent parts:', error);
+        console.error("Error fetching equivalent parts:", error);
       }
     );
   }
@@ -78,7 +80,7 @@ export class PartEquivalentComponent {
         }
       },
       (error) => {
-        console.error('Error fetching part details:', error);
+        console.error("Error fetching part details:", error);
       }
     );
   }
@@ -101,28 +103,28 @@ export class PartEquivalentComponent {
   }
   formatPrice(price: number): string {
     // make it a string with 3 digits after the decimal point and a 'dt' at the end
-    return price.toFixed(3) + ' TND';
+    return price.toFixed(3) + " TND";
   }
 
   getStockStatusClass(): string {
-    if (!this.part) return '';
-    return this.part.stock > 0 ? 'dot-available' : 'dot-unavailable';
+    if (!this.part) return "";
+    return this.part.stock > 0 ? "dot-available" : "dot-unavailable";
   }
 
   getStockStatusText(): string {
-    if (!this.part) return '';
-    return this.part.stock > 0 ? 'En stock' : 'Épuisé';
+    if (!this.part) return "";
+    return this.part.stock > 0 ? "En stock" : "Non disponible";
   }
 
   onViewDetails(part: Part): void {
     // Navigate to part details
-    console.log('View details for part:', part);
+    console.log("View details for part:", part);
     // Implement navigation logic here
   }
 
   onAddToCart(part: Part): void {
     // Add the part to the cart with quantity 1
     this.cartService.addToCart(part, 1);
-    console.log('Added to cart:', part);
+    console.log("Added to cart:", part);
   }
 }

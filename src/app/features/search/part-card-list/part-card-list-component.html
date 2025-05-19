@@ -1,31 +1,39 @@
-<p-card styleClass="part-card" [style]="{'height': '100%'}">
+<p-card
+  styleClass="part-card"
+  [style]="{'height': '100%',   'background': part.stock === 0 ?'rgba(185, 185, 185, 0.15)':''}"
+>
   <!-- <ng-template pTemplate="header"> </ng-template> -->
 
   <div class="part-content">
-    <div class="flex justify-content-between flex-wrap">
-      <div class="pr-3" style="flex-grow: 1">
+    <div class="flex justify-content-between flex-wrap grid">
+      <div class="pr-3 col">
         <div class="flex w-full">
           <div
             class="part-image"
             style="width: 150px"
             [style.background-image]="'url(' + part.imageUrl + ')'"
           >
-            <!-- <div class="part-badges">
-          <p-tag *ngIf="part.replaces.length > 0" severity="info" value="Replacement Part"></p-tag>
-          <p-tag
-            *ngIf="part.stock <= 10 && part.stock > 0"
-            severity="warning"
-            value="Low Stock"
-          ></p-tag>
-          <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
-        </div> -->
+            <div class="part-badges">
+              <!-- <p-tag
+                *ngIf="part.replaces.length > 0"
+                severity="info"
+                value="Replacement Part"
+              ></p-tag> -->
+              <p-tag *ngIf=" part.stock > 0" severity="success" value="En stock"></p-tag>
+              <p-tag
+                *ngIf="part.stock <= 10 && part.stock > 0"
+                severity="warning"
+                value="Low Stock"
+              ></p-tag>
+              <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
+            </div>
           </div>
           <div class="px-3" style="flex-grow: 1">
             <div class="part-header">
               <h3 class="part-name">{{ part.name }}</h3>
               <span class="part-number"> Réf : {{ part.partNumber }}</span><br />
               <span class="part-number">
-                Fournisseur : <img src="assets/img/ticket.png" style="height: 20px" alt=""
+                Fournisseur : <img [src]="part.provider.image" style="height: 30px" alt=""
               /></span>
               <br />
               <span class="part-number"> Autre infos : : {{ part.partNumber }}</span>
@@ -53,36 +61,23 @@
 
           <p-tabView styleClass="part-tabs">
             <p-tabPanel header="Réferences origine">
-              <div class="description-content">
-                <div class="p-1" style="border-bottom: 1px solid gray">
-                  <h3 class="m-0">
-                    <i class="pi pi-minus mx-2" style="color: var(--secondary-color)"></i> Valeo
+              <div class="description-content" style="max-height: 180px; overflow: auto">
+                <div
+                  class="p-2"
+                  style="border-bottom: 1px solid #cbcbcb"
+                  *ngFor="let item of oemList"
+                >
+                  <h3 class="m-0" (click)="item.display = !item.display">
+                    <i
+                      class="pi mx-2"
+                      [class]="item.display?'pi-minus':'pi-plus'"
+                      style="color: var(--secondary-color)"
+                    ></i>
+                    {{item.make}}
                   </h3>
-                  <div class="px-3 py-1">
-                    <p class="m-0">1.6 102ch04-2015</p>
-                    <p class="m-0">1.6 102ch04-2015</p>
-                    <p class="m-0">1.6 102ch04-2015</p>
+                  <div class="px-3 py-1" *ngIf="item.display">
+                    <p class="m-0" *ngFor="let el of item.oems">{{el.oem}}</p>
                   </div>
-                </div>
-                <div class="p-2" style="border-bottom: 1px solid gray">
-                  <h3 class="m-0">
-                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Doga
-                  </h3>
-                </div>
-                <div class="p-2" style="border-bottom: 1px solid gray">
-                  <h3 class="m-0">
-                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Sorea
-                  </h3>
-                </div>
-                <div class="p-2" style="border-bottom: 1px solid gray">
-                  <h3 class="m-0">
-                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Elring
-                  </h3>
-                </div>
-                <div class="p-2" style="border-bottom: 1px solid gray">
-                  <h3 class="m-0">
-                    <i class="pi pi-plus mx-2" style="color: var(--secondary-color)"></i> Graf
-                  </h3>
                 </div>
               </div>
             </p-tabPanel>
@@ -95,7 +90,7 @@
           </p-tabView>
         </div>
       </div>
-      <div>
+      <div class="col-fixed" style="width: 300px">
         <div class="flex h-full">
           <div class="flex flex-column w-full">
             <!-- <div class="py-5">
@@ -156,9 +151,8 @@
                     pButton
                     type="button"
                     label="Voir equivalence de la piéce"
-                    [disabled]="part.stock === 0"
                     class="p-button-primary w-full"
-                    (click)="addToCart.emit(part)"
+                    (click)="showEquivalents()"
                     pRipple
                   ></button>
                 </div>
@@ -168,7 +162,7 @@
                     type="button"
                     label="Voir plus details sur le produit"
                     class="p-button-outlined p-button-secondary w-full"
-                    (click)="viewDetails.emit(part)"
+                    (click)="showDetails()"
                   ></button>
                 </div>
               </div>

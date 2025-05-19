@@ -23,6 +23,8 @@ export class PartsService {
       stock: 45,
       provider: {
         id: "1",
+        image:
+          "https://www.piecesautos.tn/static/equipementier_pics/150X150/150X150a7f57956cf957dc4.jpeg",
         name: "AutoParts Express",
         rating: 4.7,
         deliveryTime: "2-3 business days",
@@ -30,8 +32,7 @@ export class PartsService {
       relatedParts: ["2", "5"],
       replacedBy: [],
       replaces: ["3"],
-      imageUrl:
-        "https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageUrl: "/assets/img/placeHolder-img.png",
       description: "High-performance brake ",
     },
     {
@@ -50,13 +51,14 @@ export class PartsService {
         id: "1",
         name: "AutoParts Express",
         rating: 4.7,
+        image:
+          "https://www.piecesautos.tn/static/equipementier_pics/150X150/150X150a7f57956cf957dc4.jpeg",
         deliveryTime: "2-3 business days",
       },
       relatedParts: ["1", "6"],
       replacedBy: [],
       replaces: [],
-      imageUrl:
-        "https://images.pexels.com/photos/13009437/pexels-photo-13009437.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageUrl: "https://www.piecesautos.tn/static/piece_pics/Or/62396b057e7a9586.jpeg",
       description: "Premium ceramic brake pads offering quiet braking and minimal dust.",
     },
     {
@@ -73,6 +75,8 @@ export class PartsService {
       stock: 12,
       provider: {
         id: "2",
+        image:
+          "https://www.piecesautos.tn/static/equipementier_pics/150X150/150X150a7f57956cf957dc4.jpeg",
         name: "Parts Unlimited",
         rating: 4.5,
         deliveryTime: "3-5 business days",
@@ -80,8 +84,7 @@ export class PartsService {
       relatedParts: ["4"],
       replacedBy: ["1"],
       replaces: [],
-      imageUrl:
-        "https://images.pexels.com/photos/10481830/pexels-photo-10481830.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageUrl: "/assets/img/placeHolder-img.png",
       description:
         "Standard brake disc for older model vehicles. Compatible with original manufacturer specifications.",
     },
@@ -99,6 +102,8 @@ export class PartsService {
       price: 19.99,
       stock: 120,
       provider: {
+        image:
+          "https://www.piecesautos.tn/static/equipementier_pics/150X150/150X150a7f57956cf957dc4.jpeg",
         id: "2",
         name: "Parts Unlimited",
         rating: 4.5,
@@ -108,7 +113,7 @@ export class PartsService {
       replacedBy: [],
       replaces: [],
       imageUrl:
-        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://www.piecesautos.tn/static/piece_pics/Or/MANNFILTER_636fd0e1b1c702235b49b6008964adff70369e0e.jpg",
       description: "High-efficiency air filter for improved engine performance and fuel economy.",
     },
     {
@@ -122,18 +127,19 @@ export class PartsService {
         { brand: "Honda", model: "Accord", yearFrom: 2018, yearTo: 2022 },
       ],
       price: 129.99,
-      stock: 23,
+      stock: 0,
       provider: {
         id: "3",
         name: "Premium Auto Supply",
         rating: 4.8,
+        image:
+          "https://www.piecesautos.tn/static/equipementier_pics/150X150/150X150a7f57956cf957dc4.jpeg",
         deliveryTime: "1-2 business days",
       },
       relatedParts: ["1", "2"],
       replacedBy: [],
       replaces: [],
-      imageUrl:
-        "https://images.pexels.com/photos/4480526/pexels-photo-4480526.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageUrl: "/assets/img/placeHolder-img.png",
       description:
         "High-performance brake caliper with precision engineering for optimal braking force.",
     },
@@ -153,17 +159,17 @@ export class PartsService {
       provider: {
         id: "2",
         name: "Parts Unlimited",
+        image:
+          "https://www.piecesautos.tn/static/equipementier_pics/150X150/150X150a7f57956cf957dc4.jpeg",
         rating: 4.5,
         deliveryTime: "3-5 business days",
       },
       relatedParts: [],
       replacedBy: [],
       replaces: [],
-      imageUrl:
-        "https://images.pexels.com/photos/3819864/pexels-photo-3819864.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imageUrl: "/assets/img/placeHolder-img.png",
       description: "Premium oil filter designed to remove harmful contaminants from engine oil.",
     },
-  
   ];
 
   constructor() {}

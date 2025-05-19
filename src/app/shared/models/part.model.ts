@@ -29,5 +29,6 @@ export interface Provider {
   id: string;
   name: string;
   rating: number;
+  image?: string;
   deliveryTime: string;
 }

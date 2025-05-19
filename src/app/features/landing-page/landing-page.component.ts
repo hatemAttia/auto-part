@@ -37,8 +37,13 @@ export class LandingPageComponent {
   models: any[] = [];
 
   // Years from 2023 down to 1990
-  years: number[] = Array.from({ length: 34 }, (_, i) => 2023 - i);
+  // years: number[] = Array.from({ length: 34 }, (_, i) => 2023 - i);
 
+  years = [
+    { id: "camry", name: "Camry" },
+    { id: "corolla", name: "Corolla" },
+    { id: "rav4", name: "RAV4" },
+  ];
   modelsByMake: Record<string, any[]> = {
     toyota: [
       { id: "camry", name: "Camry" },

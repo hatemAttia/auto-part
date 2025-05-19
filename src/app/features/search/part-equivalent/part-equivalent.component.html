@@ -1,46 +1,45 @@
 <div class="main-part-equivalent-container" *ngIf="part">
-    <div class="part-equivalent-header">
-        <h1>Produits Equivalents à:</h1>
-        <div class="part-badges">
-            <span class="part-badge">{{ part.name }}</span>
-            <span class="part-badge">Réf: {{ part.partNumber }}</span>
-            <span class="part-badge"><img src="/assets/img/logo.png" alt="" /></span>
-        </div>
+  <div class="part-equivalent-header">
+    <h1>Produits Equivalents à:</h1>
+    <div class="part-badges">
+      <span class="part-badge">{{ part.name }}</span>
+      <span class="part-badge">Réf: {{ part.partNumber }}</span>
+      <span class="part-badge"><img src="/assets/img/logo.png" alt="" /></span>
     </div>
+  </div>
 
-    <div class="part-equivalents-container" *ngIf="equivalentParts && equivalentParts.length > 0">
-        <p class="result-count">
-            <span *ngIf="equivalentParts.length > 1">
-                {{ equivalentParts.length }} résultats compatibles
-            </span>
-            <span *ngIf="equivalentParts.length === 1">
-                {{ equivalentParts.length }} résultat compatible
-            </span>        </p>
+  <div class="part-equivalents-container" *ngIf="equivalentParts && equivalentParts.length > 0">
+    <p class="result-count m-0">
+      <span *ngIf="equivalentParts.length > 1">
+        {{ equivalentParts.length }} résultats compatibles
+      </span>
+      <span *ngIf="equivalentParts.length === 1">
+        {{ equivalentParts.length }} résultat compatible
+      </span>
+    </p>
 
-        <div class="carousel-container">
-            <p-carousel 
-                [value]="equivalentParts" 
-                [numVisible]="5" 
-                [numScroll]="3" 
-                [circular]="false"
-                [responsiveOptions]="responsiveOptions"
-                [autoplayInterval]="0"
-                [showNavigators]="true"
-                [showIndicators]="false">
-                <ng-template pTemplate="item" let-equivalent>
-                    <div class="carousel-item">
-                        <app-part-card 
-                            [part]="equivalent"
-                            (viewDetails)="onViewDetails(equivalent)" 
-                            (addToCart)="onAddToCart(equivalent)">
-                        </app-part-card>
-                    </div>
-                </ng-template>
-            </p-carousel>
-        </div>
+    <div class="carousel-container">
+      <p-carousel
+        [value]="equivalentParts"
+        [numVisible]="5"
+        [numScroll]="3"
+        [circular]="false"
+        [responsiveOptions]="responsiveOptions"
+        [autoplayInterval]="0"
+        [showNavigators]="true"
+        [showIndicators]="false"
+      >
+        <ng-template pTemplate="item" let-equivalent>
+          <div class="carousel-item">
+            <app-part-card
+              [part]="equivalent"
+              (viewDetails)="onViewDetails(equivalent)"
+              (addToCart)="onAddToCart(equivalent)"
+            >
+            </app-part-card>
+          </div>
+        </ng-template>
+      </p-carousel>
     </div>
-
-
-
-
+  </div>
 </div>

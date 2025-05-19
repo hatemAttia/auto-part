@@ -50,14 +50,15 @@
                 inputId="year"
                 [options]="years"
                 [(ngModel)]="selectedYear"
-                placeholder="Année"
+                placeholder="Choisir le modéle"
                 [style]="{ width: '100%' }"
+                optionValue="id"
                 [disabled]="!selectedMake"
               >
                 <ng-template let-option pTemplate="item">
                   <div class="flex align-items-center">
                     <!-- <span class="step-circle">2</span> -->
-                    <span class="ml-2">{{ option }}</span>
+                    <span class="ml-2">{{ option.name }}</span>
                   </div>
                 </ng-template>
 
@@ -65,7 +66,7 @@
                   <div class="flex align-items-center">
                     <span class="step-circle active">2</span>
                     <span class="ml-2" style="padding-left: 50px">
-                      {{ selectedOption || "Année" }}
+                      {{ selectedOption?.name || "Choisir le modéle" }}
                     </span>
                   </div>
                 </ng-template>
@@ -83,7 +84,7 @@
                 [style]="{ width: '100%' }"
                 optionLabel="name"
                 optionValue="id"
-                placeholder="Choisir le modèle"
+                placeholder="Choisir la version"
                 [disabled]="!selectedMake"
               >
                 <ng-template let-option pTemplate="item">
@@ -97,7 +98,7 @@
                   <div class="flex align-items-center">
                     <span class="step-circle active">3</span>
                     <span class="ml-2" style="padding-left: 50px">
-                      {{ selectedOption?.name || "Choisir le modèle" }}
+                      {{ selectedOption?.name || "Choisir la version" }}
                     </span>
                   </div>
                 </ng-template>
