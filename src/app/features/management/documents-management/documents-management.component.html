@@ -2,8 +2,7 @@
     <h2>Mes {{getHeader()}}</h2>
 
     <p-table [value]="displayData" [paginator]="true" [rowsPerPageOptions]="[5, 15, 30, 50]" [rows]="15"
-     [tableStyle]="{ 'min-width': '50rem' }"
-        styleClass="p-datatable-striped">
+        [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
         <ng-template pTemplate="caption">
             <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
         </ng-template>
@@ -64,12 +63,11 @@
                 [showOnFocus]="true" />
             -
             <p-calendar [(ngModel)]="tableParams.endDate" [style]="{width: '180px'}" [showIcon]="true"
-                [showOnFocus]="true" />            <!-- Conditional Status filter for Orders -->
+                [showOnFocus]="true" /> <!-- Conditional Status filter for Orders -->
             <div class="status-filter" *ngIf="currentDocType === 'orders'">
-                <p-multiSelect [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']" 
-                    optionLabel="label" optionValue="value" [style]="{width: '180px'}" 
-                    placeholder="Tous les statuts" [showClear]="false" [filter]="true"
-                    display="chip">
+                <p-multiSelect [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']"
+                    optionLabel="label" optionValue="value" [style]="{width: '180px'}" placeholder="Tous les statuts"
+                    [showClear]="false" [filter]="true" display="chip">
                 </p-multiSelect>
             </div>
 
