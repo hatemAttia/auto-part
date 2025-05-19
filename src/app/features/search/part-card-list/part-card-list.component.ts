@@ -108,7 +108,9 @@ export class PartCardListComponent {
 
   showDetails() {
     this.ref = this.dialogService.open(PartDetailComponent, {
-      header: "",
+      header: "Details de la pièce",
+      modal: true,
+      closable: true,
       width: "90vw",
       height: "90vh",
     });
@@ -116,9 +118,12 @@ export class PartCardListComponent {
 
   showEquivalents() {
     this.ref = this.dialogService.open(PartEquivalentComponent, {
-      header: "",
+      header: "prodruit équivalent",
       width: "90vw",
       height: "90vh",
+      modal: true,
+      closeOnEscape: true,
+      closable: true,
     });
   }
 }
