@@ -198,6 +198,10 @@ p-table {
     font-weight: 700;
 }
 
+:host ::ng-deep .p-multiselect:not(.p-disabled):hover {
+    border: var(--border-thickness) solid var(--secondary-color);
+}
+
 .error-text {
     color: var(--error-color);
 }

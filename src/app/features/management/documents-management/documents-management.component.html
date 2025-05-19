@@ -58,7 +58,7 @@
 <ng-template #tableHeader let-docType>
     <div class="table-header">
         <div class="date-select">
-            <p>Date :</p>
+            <p class="hidden md:block">Date :</p>
             <p-calendar [(ngModel)]="tableParams.startDate" [style]="{width: '180px'}" [showIcon]="true"
                 [showOnFocus]="true" />
             -
