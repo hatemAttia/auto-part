@@ -63,7 +63,9 @@
 
         .full-text {
           display: block
-        };
+        }
+
+        ;
 
         .short-text {
           display: none;
@@ -152,11 +154,7 @@
 
         &:hover {
           background-color: gainsboro;
-
-          
         }
-
-        
       }
     }
   }
@@ -466,12 +464,13 @@
       .short-text {
         display: block;
       }
+
       .full-text {
         display: none;
       }
     }
   }
-  
+
 }
 
 /* Animation for mobile menu */

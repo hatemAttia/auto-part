@@ -37,7 +37,7 @@
                     </ng-container>
                 </td>
                 <td class="text-center">
-                    <button pButton icon="pi pi-eye" [text]="true"></button>
+                    <button pButton icon="pi pi-eye" [text]="true" (click)="openDocumentDetailsDialog(item)"></button>
 
                     <button pButton icon="pi pi-print" [text]="true"></button>
                 </td>
@@ -60,10 +60,12 @@
         <div class="date-select">
             <p class="hidden md:block">Date :</p>
             <p-calendar [(ngModel)]="tableParams.startDate" [style]="{width: '180px'}" [showIcon]="true"
-                [showOnFocus]="true" />
-            -
+                [showOnFocus]="true" placeholder="début" />
+            <span class="hidden md:block">
+                -
+            </span>
             <p-calendar [(ngModel)]="tableParams.endDate" [style]="{width: '180px'}" [showIcon]="true"
-                [showOnFocus]="true" /> <!-- Conditional Status filter for Orders -->
+                [showOnFocus]="true" placeholder="fin" /> <!-- Conditional Status filter for Orders -->
 
         </div>
 

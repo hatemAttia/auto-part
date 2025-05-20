@@ -5,6 +5,7 @@
     width: 100%;
     align-items: flex-start;
     justify-content: flex-start;
+    padding: 0 var(--spacing-xxl);
 }
 
 p {
@@ -204,4 +205,17 @@ p-table {
 
 .error-text {
     color: var(--error-color);
+}
+
+@media screen and (max-width: 992px) {
+    .main-documents-management-container {
+        padding: 0 var(--spacing-md);
+    }    
+}
+
+@media screen and (max-width: 768px) {
+    .main-documents-management-container {
+        padding: 0 0;
+    }
+    
 }

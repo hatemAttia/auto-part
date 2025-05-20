@@ -12,6 +12,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DocumentsManagementService } from '../../../core/services/documents-management.service';
 import { formatPrice } from '../../../core/utils/format.utils';
 import { TableParams } from '../../../shared/models/tableParams.interface';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CartPageComponent } from '../../cart/cart-page/cart-page.component';
+import { DialogModule } from 'primeng/dialog';
 
 interface Column {
   field: string;
@@ -22,25 +25,28 @@ interface Column {
 @Component({
   selector: 'app-documents-management',
   imports: [
-    TableModule, 
-    CommonModule, 
-    FormsModule, 
-    CalendarModule, 
-    ButtonModule, 
+    TableModule,
+    CommonModule,
+    FormsModule,
+    CalendarModule,
+    ButtonModule,
     InputTextModule,
     BadgeModule,
     RouterModule,
     DropdownModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DialogModule,
+    DynamicDialogModule
   ],
+  providers: [DialogService],
   templateUrl: './documents-management.component.html',
   styleUrl: './documents-management.component.scss'
 })
 export class DocumentsManagementComponent implements OnInit {
-    currentDocType: string = 'orders';
+  currentDocType: string = 'orders';
   displayData: any[] = [];
   columns: Column[] = [];
-  
+
   orders: any[] = [];
   deliveries: any[] = [];
   invoices: any[] = [];
@@ -57,7 +63,7 @@ export class DocumentsManagementComponent implements OnInit {
       isPaid: null
     }
   };
-  
+
   // Filter options
   statusOptions: { label: string, value: string }[] = [
     { label: 'Tous', value: '' },
@@ -66,19 +72,23 @@ export class DocumentsManagementComponent implements OnInit {
     { label: 'En attente', value: 'PENDING' },
     { label: 'Annulé', value: 'CANCELLED' }
   ];
-  
+
   paymentStatusOptions: { label: string, value: boolean | null }[] = [
     { label: 'Tous', value: null },
     { label: 'Payé', value: true },
     { label: 'Non payé', value: false }
   ];
 
+  // Dialog reference
+  dialogRef: DynamicDialogRef | undefined;
+
   constructor(
     private documentsService: DocumentsManagementService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}  
-  
+    private router: Router,
+    private dialogService: DialogService,
+  ) { }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.currentDocType = params['type'] || 'orders';
@@ -210,9 +220,9 @@ export class DocumentsManagementComponent implements OnInit {
   formatPrice(price: number): string {
     return formatPrice(price);
   }
-    applyFilters(): void {
+  applyFilters(): void {
     let filteredData: any[] = [];
-    
+
     switch (this.currentDocType) {
       case 'orders':
         filteredData = [...this.orders];        // Apply status filter if selected
@@ -221,11 +231,11 @@ export class DocumentsManagementComponent implements OnInit {
           filteredData = filteredData.filter(order => statusFilter.includes(order.status));
         }
         break;
-        
+
       case 'deliveries':
         filteredData = [...this.deliveries];
         break;
-        
+
       case 'invoices':
         filteredData = [...this.invoices];        // Apply payment status filter if selected
         const isPaidFilter = this.tableParams.filters?.['isPaid'];
@@ -233,11 +243,11 @@ export class DocumentsManagementComponent implements OnInit {
           filteredData = filteredData.filter(invoice => invoice.isPaid === isPaidFilter);
         }
         break;
-        
+
       default:
         filteredData = [];
     }
-    
+
     // Apply date filters if selected
     if (this.tableParams.startDate) {
       filteredData = filteredData.filter(item => {
@@ -245,14 +255,14 @@ export class DocumentsManagementComponent implements OnInit {
         return itemDate >= this.tableParams.startDate!;
       });
     }
-    
+
     if (this.tableParams.endDate) {
       filteredData = filteredData.filter(item => {
         const itemDate = new Date(item.date || item.deliveryDate);
         return itemDate <= this.tableParams.endDate!;
       });
     }
-    
+
     this.displayData = filteredData;
   }
   // Reset filters
@@ -270,5 +280,47 @@ export class DocumentsManagementComponent implements OnInit {
       }
     };
     this.loadData();
+  }
+
+  openDocumentDetailsDialog(document: any): void {
+    if (this.currentDocType === 'orders') {
+      this.openOrderDetails(document);
+    } else if (this.currentDocType === 'deliveries') {
+      // Open delivery details dialog
+    }
+    else if (this.currentDocType === 'invoices') {
+      // Open invoice details dialog
+    }
+  }
+
+  openOrderDetails(order: any): void {    
+    // Make sure we have all required data
+    const orderData = {
+      orderItems: order.items || [],
+      orderTotal: order.total || 0,
+      orderProcessed: order.status === 'DELIVERED' || order.status === 'CANCELLED',
+      mode: 'orderDetails'
+    };
+    
+    this.dialogRef = this.dialogService.open(CartPageComponent, {
+      data: orderData,
+      header: 'Détails de la commande #' + order.orderNumber,
+      width: '90%',
+      maximizable: true
+    });
+
+    // Handle returned data when dialog is closed
+    this.dialogRef.onClose.subscribe((result: { items: any; total: any; }) => {
+      if (result) {
+        // Handle the updated order items
+        console.log('Updated items:', result.items);
+        console.log('Updated total:', result.total);
+        
+        // Update the order in your service
+        // For now, just update the local data
+        order.items = result.items;
+        order.total = result.total;
+      }
+    });
   }
 }
