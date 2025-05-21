@@ -1,92 +1,129 @@
 <div class="main-documents-management-container">
-    <h2>Mes {{getHeader()}}</h2>
+  <h2>Mes {{ getHeader() }}</h2>
 
-    <p-table [value]="displayData" [paginator]="true" [rowsPerPageOptions]="[5, 15, 30, 50]" [rows]="15"
-        [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
-        <ng-template pTemplate="caption">
-            <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <!-- Dynamic column definitions based on document type -->
-            <tr>
-                <th *ngFor="let col of columns" class="text-center">{{ col.header }}</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
-            <tr>
-                <td *ngFor="let col of columns" class="text-center">
-                    <ng-container [ngSwitch]="col.type">
-                        <ng-container *ngSwitchCase="'date'">
-                            {{ item[col.field] | date: 'dd/MM/yyyy' }}
-                        </ng-container>
-                        <ng-container *ngSwitchCase="'price'">
-                            {{ formatPrice(item[col.field]) }}
-                        </ng-container>
-                        <ng-container *ngSwitchCase="'status'">
-                            {{ getStatusValue(item[col.field]) }}
-                        </ng-container>
-                        <ng-container *ngSwitchCase="'boolean'">
-                            <span [ngClass]="{'error-text': !item[col.field]}">
-                                {{ item[col.field] ? 'Oui' : 'Non' }}
-                            </span>
-                        </ng-container>
-                        <ng-container *ngSwitchDefault>
-                            {{ item[col.field] }}
-                        </ng-container>
-                    </ng-container>
-                </td>
-                <td class="text-center">
-                    <button pButton icon="pi pi-eye" [text]="true" (click)="openDocumentDetailsDialog(item)"></button>
+  <p-table
+    [value]="displayData"
+    [paginator]="true"
+    [rowsPerPageOptions]="[5, 15, 30, 50]"
+    [rows]="15"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="caption">
+      <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <!-- Dynamic column definitions based on document type -->
+      <tr>
+        <th *ngFor="let col of columns" class="text-center">{{ col.header }}</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td *ngFor="let col of columns" class="text-center">
+          <ng-container [ngSwitch]="col.type">
+            <ng-container *ngSwitchCase="'date'">
+              {{ item[col.field] | date : "dd/MM/yyyy" }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'price'">
+              {{ formatPrice(item[col.field]) }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'status'">
+              {{ getStatusValue(item[col.field]) }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'boolean'">
+              <span [ngClass]="{ 'error-text': !item[col.field] }">
+                {{ item[col.field] ? "Oui" : "Non" }}
+              </span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              {{ item[col.field] }}
+            </ng-container>
+          </ng-container>
+        </td>
+        <td class="text-center">
+          <button
+            pButton
+            icon="pi pi-eye"
+            [text]="true"
+            (click)="openDocumentDetailsDialog(item)"
+          ></button>
 
-                    <button pButton icon="pi pi-print" [text]="true"></button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td [attr.colspan]="columns.length + 1" style="text-align: center">
-                    <p *ngIf="currentDocType === 'orders'">Aucune commande trouvée</p>
-                    <p *ngIf="currentDocType === 'deliveries'">Aucun bon de livraison trouvé</p>
-                    <p *ngIf="currentDocType === 'invoices'">Aucune facture trouvée</p>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+          <button pButton icon="pi pi-print" [text]="true"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="columns.length + 1" style="text-align: center">
+          <p *ngIf="currentDocType === 'orders'">Aucune commande trouvée</p>
+          <p *ngIf="currentDocType === 'deliveries'">Aucun bon de livraison trouvé</p>
+          <p *ngIf="currentDocType === 'invoices'">Aucune facture trouvée</p>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
 
 <ng-template #tableHeader let-docType>
-    <div class="table-header">
-        <div class="date-select">
-            <p class="hidden md:block">Date :</p>
-            <p-calendar [(ngModel)]="tableParams.startDate" [style]="{width: '180px'}" [showIcon]="true"
-                [showOnFocus]="true" placeholder="début" />
-            <span class="hidden md:block">
-                -
-            </span>
-            <p-calendar [(ngModel)]="tableParams.endDate" [style]="{width: '180px'}" [showIcon]="true"
-                [showOnFocus]="true" placeholder="fin" /> <!-- Conditional Status filter for Orders -->
-
-        </div>
-
-        <div class="status-filter" *ngIf="currentDocType === 'orders'">
-            <p-multiSelect [options]="statusOptions" [(ngModel)]="tableParams.filters!['status']" optionLabel="label"
-                optionValue="value" [style]="{width: '180px'}" placeholder="Tous les statuts" [showClear]="false"
-                [filter]="true" display="chip">
-            </p-multiSelect>
-        </div>
-
-        <!-- Conditional Payment Status filter for Invoices -->
-        <div class="status-filter" *ngIf="currentDocType === 'invoices'">
-            <p-dropdown [options]="paymentStatusOptions" [(ngModel)]="tableParams.filters!['isPaid']"
-                optionLabel="label" optionValue="value" [style]="{width: '180px'}" placeholder="Tous">
-            </p-dropdown>
-        </div>
-
-        <div class="search">
-            <input type="text" pInputText [placeholder]="'Chercher ' + getHeader().slice(0, -1)"
-                [(ngModel)]="tableParams.keywords" />
-            <button class="btn search-btn p-button-primary" (click)="applyFilters()">Rechercher</button>
-        </div>
+  <div class="table-header">
+    <div class="date-select">
+      <p class="hidden md:block">Date :</p>
+      <p-calendar
+        [(ngModel)]="tableParams.startDate"
+        [style]="{ width: '180px' }"
+        [showIcon]="true"
+        [showOnFocus]="true"
+        placeholder="début"
+      />
+      <span class="hidden md:block"> - </span>
+      <p-calendar
+        [(ngModel)]="tableParams.endDate"
+        [style]="{ width: '180px' }"
+        [showIcon]="true"
+        [showOnFocus]="true"
+        placeholder="fin"
+      />
+      <!-- Conditional Status filter for Orders -->
     </div>
+
+    <div class="status-filter" *ngIf="currentDocType === 'orders'">
+      <p-multiSelect
+        [options]="statusOptions"
+        [(ngModel)]="tableParams.filters!['status']"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '180px' }"
+        placeholder="statut"
+        [showClear]="false"
+        [filter]="true"
+        display="chip"
+      >
+      </p-multiSelect>
+    </div>
+
+    <!-- Conditional Payment Status filter for Invoices -->
+    <div class="status-filter" *ngIf="currentDocType === 'invoices'">
+      <p-dropdown
+        [options]="paymentStatusOptions"
+        [(ngModel)]="tableParams.filters!['isPaid']"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '180px' }"
+        placeholder="Tous"
+      >
+      </p-dropdown>
+    </div>
+
+    <div class="search">
+      <input
+        type="text"
+        pInputText
+        [placeholder]="'Chercher ' + getHeader().slice(0, -1)"
+        [(ngModel)]="tableParams.keywords"
+      />
+      <button class="btn search-btn p-button-primary" (click)="applyFilters()">Rechercher</button>
+    </div>
+  </div>
 </ng-template>

@@ -223,8 +223,6 @@ h3 {
 
   .p-button-label {
     font-weight: 400 !important;
-
-
   }
 }
 
@@ -257,6 +255,7 @@ h3 {
 }
 :host ::ng-deep .p-tabview-title {
   white-space: pre-wrap;
+  text-align: center;
 }
 
 :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {

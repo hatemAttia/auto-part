@@ -1,22 +1,41 @@
 <div>
   <div class="cart-header">
-    <h1>{{ mode === 'cart' ? 'Mon panier' : 'Détails de la commande' }}</h1>
+    <h1>{{ mode === "cart" ? "Mon panier" : "Détails de la commande" }}</h1>
   </div>
 
   <div class="cart-empty" *ngIf="cartItems.length === 0">
     <p-card>
       <div class="empty-content">
         <i class="pi pi-shopping-cart empty-icon"></i>
-        <h2>{{ mode === 'cart' ? 'Votre panier est vide' : 'Aucun article dans cette commande' }}</h2>
-        <p>{{ mode === 'cart' ? 'Vous n\'avez pas encore ajouté de pièces à votre panier.' : 'Aucun article n\'a été trouvé dans cette commande.' }}</p>
-        <button pButton label="Parcourir les pièces" icon="pi pi-search" [routerLink]="['/search']" *ngIf="mode === 'cart'"></button>
+        <h2>
+          {{ mode === "cart" ? "Votre panier est vide" : "Aucun article dans cette commande" }}
+        </h2>
+        <p>
+          {{
+            mode === "cart"
+              ? "Vous n'avez pas encore ajouté de pièces à votre panier."
+              : "Aucun article n'a été trouvé dans cette commande."
+          }}
+        </p>
+        <button
+          pButton
+          class="p-button p-button-primary"
+          label="Parcourir les pièces"
+          icon="pi pi-search"
+          [routerLink]="['/search']"
+          *ngIf="mode === 'cart'"
+        ></button>
       </div>
     </p-card>
   </div>
   <div class="cart-content" *ngIf="cartItems.length > 0">
     <div class="cart-table-section">
-
-      <p-table [value]="cartItems" [tableStyle]="{ 'min-width': '30rem' }" dataKey="part.id" styleClass="cart-table">
+      <p-table
+        [value]="cartItems"
+        [tableStyle]="{ 'min-width': '30rem' }"
+        dataKey="part.id"
+        styleClass="cart-table"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Produit</th>
@@ -31,8 +50,12 @@
           <tr>
             <td>
               <div class="item-details">
-                <img [src]="item.part.imageUrl" [alt]="item.part.name" class="item-thumbnail"
-                  (click)="viewItemDetails(item.part.id)" />
+                <img
+                  [src]="item.part.imageUrl"
+                  [alt]="item.part.name"
+                  class="item-thumbnail"
+                  (click)="viewItemDetails(item.part.id)"
+                />
                 <div class="item-info" (click)="viewItemDetails(item.part.id)">
                   <span class="item-name">{{ item.part.name }}</span>
                   <span class="item-part-number">Réf: {{ item.part.partNumber }}</span>
@@ -42,16 +65,17 @@
             <td class="price-column">{{ formatPrice(item.part.price) }}</td>
             <td class="price-column">{{ formatPrice(item.part.price + 2) }}</td>
             <td class="quantity-column">
-              <p-inputNumber 
-                [(ngModel)]="item.quantity" 
-                [showButtons]="true" 
-                buttonLayout="horizontal" 
+              <p-inputNumber
+                [(ngModel)]="item.quantity"
+                [showButtons]="true"
+                buttonLayout="horizontal"
                 [min]="1"
-                [max]="item.stock" 
-                [inputStyle]="{ width: '80px' }" 
-                [disabled]="item.stock === 0 || (mode === 'orderDetails' && orderProcessed)" 
+                [max]="item.stock"
+                [inputStyle]="{ width: '80px' }"
+                [disabled]="item.stock === 0 || (mode === 'orderDetails' && orderProcessed)"
                 styleClass="p-inputnumber-sm"
-                (onInput)="updateQuantity(item.part.id, item.quantity)">
+                (onInput)="updateQuantity(item.part.id, item.quantity)"
+              >
                 <ng-template pTemplate="decrementbuttonicon">
                   <i class="pi pi-minus" style="color: black; font-size: 12px; margin: 5px"></i>
                 </ng-template>
@@ -61,14 +85,23 @@
               </p-inputNumber>
             </td>
             <td class="total-column">{{ formatPrice(item.part.price * item.quantity) }}</td>
-            <td class="action-column" *ngIf="mode === 'cart' || (mode === 'orderDetails' && !orderProcessed)">
-              <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger"
-                (click)="removeItem(item.part.id)" pTooltip="Supprimer l'article"></button>
+            <td
+              class="action-column"
+              *ngIf="mode === 'cart' || (mode === 'orderDetails' && !orderProcessed)"
+            >
+              <button
+                pButton
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-text p-button-danger"
+                (click)="removeItem(item.part.id)"
+                pTooltip="Supprimer l'article"
+              ></button>
             </td>
           </tr>
         </ng-template>
       </p-table>
-    </div>    <div class="cart-summary-section">
+    </div>
+    <div class="cart-summary-section">
       <p-card header="Récapitulatif" styleClass="order-summary-card">
         <div class="summary-content">
           <div class="summary-row">
@@ -92,26 +125,33 @@
           </div>
 
           <!-- Cart mode: show checkout button -->
-          <button *ngIf="mode === 'cart'" 
-                  pButton 
-                  label="Commander" 
-                  icon="pi pi-shopping-cart" 
-                  class="p-button-primary cart-button"
-                  (click)="checkout()"></button>          <!-- Order details mode: show save changes button if order is not processed and has changes -->
-          <button *ngIf="mode === 'orderDetails' && !orderProcessed && hasChanges" 
-                  pButton 
-                  label="Enregistrer les modifications" 
-                  icon="pi pi-save" 
-                  class="p-button-primary cart-button"
-                  (click)="saveOrderChanges()"></button>
-                  
+          <button
+            *ngIf="mode === 'cart'"
+            pButton
+            label="Commander"
+            icon="pi pi-shopping-cart"
+            class="p-button-primary cart-button"
+            (click)="checkout()"
+          ></button>
+          <!-- Order details mode: show save changes button if order is not processed and has changes -->
+          <button
+            *ngIf="mode === 'orderDetails' && !orderProcessed && hasChanges"
+            pButton
+            label="Enregistrer les modifications"
+            icon="pi pi-save"
+            class="p-button-primary cart-button"
+            (click)="saveOrderChanges()"
+          ></button>
+
           <!-- Order details mode: show close button if opened in dialog -->
-          <button *ngIf="mode === 'orderDetails' && dialogRef" 
-                  pButton 
-                  label="Fermer" 
-                  icon="pi pi-times" 
-                  class="p-button-outlined p-button-secondary mt-2"
-                  (click)="dialogRef.close()"></button>
+          <button
+            *ngIf="mode === 'orderDetails' && dialogRef"
+            pButton
+            label="Fermer"
+            icon="pi pi-times"
+            class="p-button-outlined p-button-secondary mt-2"
+            (click)="dialogRef.close()"
+          ></button>
         </div>
       </p-card>
     </div>
@@ -120,11 +160,22 @@
 
 <p-toast position="top-right"></p-toast>
 
-<p-confirmDialog header="Confirmer la suppression du panier" icon="pi pi-exclamation-triangle" [style]="{ width: '450px' }"
-  acceptButtonStyleClass="p-button-danger" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-confirmDialog
+  header="Confirmer la suppression du panier"
+  icon="pi pi-exclamation-triangle"
+  [style]="{ width: '450px' }"
+  acceptButtonStyleClass="p-button-danger"
+  rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
 
-<p-dialog [(visible)]="checkoutDialog" header="Informations de paiement" [style]="{ width: '450px' }" [modal]="true"
-  [draggable]="false" [resizable]="false">
+<p-dialog
+  [(visible)]="checkoutDialog"
+  header="Informations de paiement"
+  [style]="{ width: '450px' }"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
   <div class="dialog-content">
     <i class="pi pi-info-circle info-icon"></i>
     <div class="dialog-message">
@@ -137,13 +188,32 @@
     </div>
   </div>
   <div class="dialog-actions">
-    <button pButton label="Annuler" icon="pi pi-times" class="p-button-text" (click)="checkoutDialog = false"></button>
-    <button pButton label="Passer la commande" icon="pi pi-check" class="p-button-primary" (click)="placeOrder()"></button>
+    <button
+      pButton
+      label="Annuler"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="checkoutDialog = false"
+    ></button>
+    <button
+      pButton
+      label="Passer la commande"
+      icon="pi pi-check"
+      class="p-button-primary"
+      (click)="placeOrder()"
+    ></button>
   </div>
 </p-dialog>
 
-<p-dialog [(visible)]="orderPlacedDialog" header="Commande passée avec succès" [style]="{ width: '450px' }" [modal]="true"
-  [draggable]="false" [resizable]="false" [closable]="false">
+<p-dialog
+  [(visible)]="orderPlacedDialog"
+  header="Commande passée avec succès"
+  [style]="{ width: '450px' }"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+>
   <div class="dialog-content">
     <i class="pi pi-check-circle success-icon"></i>
     <div class="dialog-message">
@@ -155,7 +225,12 @@
     </div>
   </div>
   <div class="dialog-actions">
-    <button pButton label="Continuer les achats" icon="pi pi-shopping-cart" class="p-button-primary"
-      (click)="finishOrder()"></button>
+    <button
+      pButton
+      label="Continuer les achats"
+      icon="pi pi-shopping-cart"
+      class="p-button-primary"
+      (click)="finishOrder()"
+    ></button>
   </div>
 </p-dialog>
