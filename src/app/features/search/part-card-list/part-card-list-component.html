@@ -3,7 +3,11 @@
 
   <div class="part-content">
     <div class="flex justify-content-between flex-wrap grid">
+     <div class="col-12" >
+       <h3 class="part-name p-">{{ part.name }}</h3>
+     </div>
       <div class="pr-3 col-12 md:col-7">
+        
         <div class="flex w-full">
           <div class="part-image"[style.background-image]="'url(' + part.imageUrl + ')'">
             <div class="part-badges">
@@ -12,18 +16,18 @@
                 severity="info"
                 value="Replacement Part"
               ></p-tag> -->
-              <!-- <p-tag *ngIf=" part.stock > 0" severity="success" value="En stock"></p-tag>
+              <p-tag *ngIf=" part.stock > 0" severity="success" value="En stock"></p-tag>
               <p-tag
                 *ngIf="part.stock <= 10 && part.stock > 0"
                 severity="warning"
                 value="Low Stock"
               ></p-tag>
-              <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag> -->
+              <p-tag *ngIf="part.stock === 0" severity="danger" value="Out of Stock"></p-tag>
             </div>
           </div>
           <div class="part-info px-3" style="flex-grow: 1">
             <div class="part-header">
-              <h3 class="part-name">{{ part.name }}</h3>
+             
               <span class="part-number"> Réf: {{ part.partNumber }}</span>
               <span class="part-number">
                 Fournisseur: <img [src]="part.provider.image" style="height: 30px" alt="" /></span>
@@ -124,7 +128,7 @@
             <app-add-to-cart [part]="part" [stock]="part.stock" [price]="part.price" [priceSize]="'small'"
               (getQuantity)="getQuantity($event)" [isAvailable]="part.stock > 0"></app-add-to-cart>
             <div class="flex gap-2 align-items-center" style="flex-grow: 1">
-              <div class="w-full">
+              <div class="w-full equivalent-details">
                 <div class="py-2">
                   <button pButton type="button" label="Equivalence piéce" class="p-button-primary w-full"
                     (click)="showEquivalents()" pRipple></button>

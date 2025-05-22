@@ -230,6 +230,22 @@ h3 {
   color: var(--neutral-900);
 }
 
+::ng-deep .equivalent-details {
+
+  div {
+
+    button {
+      padding: 8px;
+
+      span {
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+      }
+    }
+  }
+
+}
+
 .description-content {
   div {
     
@@ -313,4 +329,9 @@ h3 {
 
 :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   padding: 12px;
+}
+
+:host ::ng-deep .p-tag-value {
+  font-size: 10px;
+  padding: 0;
 }
