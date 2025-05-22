@@ -103,11 +103,15 @@ hr {
   flex: 1;
 }
 
-.cart-button {
+:host ::ng-deep .cart-button {
  // min-width: 100px;
   width: 100%;
   flex-grow: 1;
   border-radius: var(--border-radius) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center  !important;
 }
 
 // :host ::ng-deep .p-inputnumber-input {
@@ -152,4 +156,8 @@ hr {
 :host ::ng-deep .p-inputnumber:hover > *:nth-child(1) {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
+}
+
+:host ::ng-deep .p-button-label {
+  flex: unset
 }

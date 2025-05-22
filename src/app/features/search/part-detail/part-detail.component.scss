@@ -472,3 +472,7 @@
   color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
+
+:host ::ng-deep .p-accordion p-accordiontab .p-accordion-tab {
+  margin-bottom: 0;
+}
