@@ -4,11 +4,19 @@ import { FormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { ButtonModule } from "primeng/button";
 import { ButtonResizeDirective } from "../../directive/button-resize.directive";
+import { TagModule } from "primeng/tag";
 
 @Component({
   selector: "app-add-to-cart",
   standalone: true,
-  imports: [CommonModule, FormsModule, InputNumberModule, ButtonModule, ButtonResizeDirective],
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputNumberModule,
+    ButtonModule,
+    ButtonResizeDirective,
+    TagModule,
+  ],
   templateUrl: "./add-to-cart.component.html",
   styleUrls: ["./add-to-cart.component.scss"],
 })

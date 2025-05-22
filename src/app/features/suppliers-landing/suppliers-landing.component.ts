@@ -14,11 +14,11 @@ interface Supplier {
     <section class="section suppliers-section">
       <div class="container">
         <h2 class="section-title m-0" style="font-size: 36px;">Nos fournisseurs des piéces</h2>
-        <p class="section-subtitle text-left m-0">
+        <p class="section-subtitle text-left m-0 mb-5">
           Grandes offres de pièces de voiture des meilleurs fabricants.
         </p>
-        <div style="    border-bottom: 3px #D0001A solid; margin: 1rem 0;width: 300px;"></div>
-        <div class="suppliers-slider" #suppliersSlider>
+
+        <div class="suppliers-slider" #suppliersSlider style="margin-top:3rem;">
           <div class="suppliers-track" #suppliersTrack>
             <div *ngFor="let supplier of suppliers" class="supplier-logo">
               <img [src]="supplier.logoUrl" [alt]="supplier.name + ' logo'" />

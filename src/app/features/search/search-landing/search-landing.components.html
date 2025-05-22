@@ -174,7 +174,7 @@
             [ngStyle]="{color:(isGrid)?'#000':'#35343d44'}"
           ></i>
         </div>
-        <div style="height: 100%; border-left: 1px #35343d44 solid"></div>
+        <div style="height: 59%; border-left: 1px #35343d44 solid"></div>
         <div class="p-2" style="cursor: pointer" (click)="isGrid=false">
           <i
             class="pi pi-list"
@@ -189,21 +189,22 @@
           formControlName="carBrand"
           [options]="carBrands"
           placeholder="Populaire"
-          [style]="{ width: '200px' }"
+          [style]="{ 'min-width': '200px' }"
           [showClear]="false"
           styleClass="w-full"
         ></p-dropdown>
       </div>
     </div>
   </div>
-  <div class="search-content">    <!-- Filters -->
+  <div class="search-content">
+    <!-- Filters -->
     <aside class="filters-panel">
       <p-card [styleClass]="'mb-0'">
         <form [formGroup]="filterForm">
-          <div class="flex justify-content-between W-100 filter-header" >
+          <div class="flex justify-content-between W-100 filter-header">
             <div class="flex align-items-center filter-button" (click)="toggleFilters()">
               <img src="assets/img/filter.svg" style="width: 20px" class="mx-2" alt="" />
-              <h2 class="m-0 filter-label">Filter</h2>
+              <h2 class="m-0 filter-label">Filtre</h2>
             </div>
             <div class="filter-actions">
               <button
@@ -218,9 +219,8 @@
             </div>
           </div>
 
-          
           <div class="filter-content" [ngClass]="{'expanded': filtersExpanded}">
-                      <p-divider></p-divider>
+            <p-divider></p-divider>
 
             <h3 class="mt-3">Marque de produit</h3>
             <div class="field" style="max-height: 250px; overflow: auto">
@@ -252,7 +252,7 @@
             </div>
             <p-divider></p-divider>
             <div class="field">
-              <label>Prix </label>
+              <h3>Prix</h3>
               <div class="price-slider">
                 <p-slider
                   formControlName="priceRange"
@@ -267,7 +267,8 @@
                 <span>TND {{filterForm.get('priceRange')?.value[1]}}</span>
               </div>
             </div>
-          </div><!-- End of filter-content div -->
+          </div>
+          <!-- End of filter-content div -->
         </form>
       </p-card>
     </aside>

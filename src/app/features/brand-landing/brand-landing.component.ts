@@ -13,12 +13,12 @@ interface CarBrand {
   template: `
     <section class="section brands-section mt-3">
       <div class="container">
-        <h2 class="section-title m-0" style="font-size: 36px;">Browse Parts by Brand</h2>
-        <p class="section-subtitle  text-left m-0">
-          We offer parts for all major car manufacturers
+        <h2 class="section-title m-0" style="font-size: 36px;">Nos marques automobile</h2>
+        <p class="section-subtitle  text-left m-0 mb-5">
+          Nous proposons des pièces pour tous les principaux fabricants de voitures
         </p>
-        <div style="    border-bottom: 3px #D0001A solid; margin: 1rem 0;width: 300px;"></div>
-        <div class="brands-grid">
+        <!-- <div style="    border-bottom: 3px #D0001A solid; margin: 1rem 0;width: 300px;"></div> -->
+        <div class="brands-grid" style="margin-top:3rem;">
           <a
             *ngFor="let brand of brands; let i = index"
             href="#"

@@ -88,4 +88,11 @@
     flex-direction: column;
     gap: var(--spacing-md);
   }
+
+  .footer-section {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
 }

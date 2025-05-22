@@ -1,7 +1,10 @@
 <div class="part-purchase-container">
   <div class="part-availibility-section" [ngClass]="'availability-' + availabilitySize">
-    <span class="availability-dot" [ngClass]="getStockStatusClass()"></span>
-    <span class="availability-text">{{ getStockStatusText() }}</span>
+    <!-- <span class="availability-dot" [ngClass]="getStockStatusClass()"></span> -->
+    <!-- <span class="availability-text">{{ getStockStatusText() }}</span> -->
+    <p-tag *ngIf="stock > 0" severity="success" value="En stock"></p-tag>
+    <p-tag *ngIf="stock <= 10 && stock > 0" severity="warning" value="Low Stock"></p-tag>
+    <p-tag *ngIf="stock === 0" severity="danger" value="Out of Stock"></p-tag>
   </div>
   <hr />
   <div class="part-price-section">
