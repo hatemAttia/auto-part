@@ -1,6 +1,6 @@
 .card-car-choiced {
   background-color: #fff;
-  padding: 1rem 1rem 0.5rem;
+  padding: var(--spacing-sm) var(--spacing-xxl);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   height: fit-content;
 
@@ -34,7 +34,7 @@
 
 .see-more {
   color: #003984;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   cursor: pointer;
 }
 
@@ -80,17 +80,29 @@
 
 .search-content {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xs);
 }
 
 .filters-panel {
-  width: 250px;
+  width: 217px;
   flex-shrink: 0;
+
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  ::ng-deep .p-divider.p-divider-horizontal {
+    margin: var(--spacing-12) 0;
+  }
 }
 
 .filters-panel ::ng-deep .p-card {
   height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filters-panel ::ng-deep .p-card-content {
+  padding: 0;
 }
 
 .filter-header {
@@ -102,6 +114,14 @@
 .filter-actions {
   display: flex;
   align-items: center;
+
+  button {
+    padding: 0;
+  }
+}
+
+:host ::ng-deep .p-button .p-button-label {
+  font-weight: 500 !important;
 }
 
 .results-panel {
@@ -116,8 +136,19 @@
   margin-top: var(--spacing-md);
 }
 
-.results-header h2 {
-  margin: 0;
+.results-header {
+
+  .results-text {
+    h2 {
+      margin: 0;
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+    }
+
+    .results-meta {
+      font-size: var(--font-size-md);
+    }
+  }
 }
 
 .results-meta {
@@ -131,7 +162,7 @@
 }
 
 .field {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 0;
 }
 
 .field label {
@@ -185,6 +216,28 @@ h3 {
   padding: var(--spacing-lg) 0;
 }
 
+.filter-button {
+  img {
+    width: 21px;
+    height: 15px;
+
+  }
+
+  h2 {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+  }
+}
+
+.filter-content {
+  h3 {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--main-font-color);
+    margin-bottom: var(--spacing-12);
+  }
+}
+
 @media screen and (max-width: 992px) {
   .search-content {
     flex-direction: column;
@@ -229,7 +282,8 @@ h3 {
   }
 
   .filter-content.expanded {
-    max-height: fit-content; /* Large enough to contain all filter content */
+    max-height: fit-content;
+    /* Large enough to contain all filter content */
   }
 }
 
@@ -305,8 +359,22 @@ h3 {
   /* Dark blue for active */
 }
 
-:host ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder {
-  padding-left: 50px;
+.current-vehicle-container {
+  gap: var(--spacing-sm);
+
+  img {
+    width: 48px;
+    height: 48px;
+
+  }
+
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  p {
+    font-size: var(--font-size-sm);
+  }
 }
 
 :host ::ng-deep .container {
@@ -315,8 +383,12 @@ h3 {
 
 @media screen and (max-width: 768px) {
   .current-vehicle-container {
-    & > div {
+    &>div {
       padding: 0 5px !important;
+    }
+
+    h2 {
+      font-size: var(--font-size-xl);
     }
   }
 
@@ -327,11 +399,15 @@ h3 {
 
 .results-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fill, minmax(572px, 1fr));
+  gap: var(--spacing-xs);
 }
 
-.filter-label {
-  font-size: 1.2rem;
-  color: var(--main-font-color);
+@media screen and (max-width: 768px) {
+  .results-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-md);
+  }
+
 }

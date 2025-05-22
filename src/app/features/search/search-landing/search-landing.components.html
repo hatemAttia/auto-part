@@ -1,51 +1,33 @@
 <div>
   <!-- Main search bar has been moved to the header component -->
 
-  <div
-    class="card-car-choiced flex justify-content-between mb-2"
-    *ngIf="showCarBrand && !updateCarBrand"
-  >
+  <div class="card-car-choiced flex justify-content-between mb-2" *ngIf="showCarBrand && !updateCarBrand">
     <div class="flex current-vehicle-container">
-      <div class="flex align-items-center justify-content-center p-3">
+      <div class="flex align-items-center justify-content-center">
         <img src="assets/img/ix_car-filled.png" alt="" />
       </div>
-      <div class="flex align-items-center justify-content-center p-3">
+      <div class="flex align-items-center justify-content-center">
         <div class="current-vehicle">
-          <h2 class="">Dacia 2015</h2>
+          <h2>Dacia</h2>
+          <p>2015</p>
           <p class="hidden md:block">DOKKER Monospace (KE_) ( 11-2012 > )</p>
         </div>
       </div>
     </div>
-    <div class="flex align-items-center justify-content-center md:p-3 sm:p-0">
-      <button
-        pButton
-        type="button"
-        label="Modifier"
-        class="p-button-primary"
-        (click)="updateCarBrand=true"
-      ></button>
+    <div class="flex align-items-center justify-content-center">
+      <button pButton type="button" label="Modifier" class="p-button-primary" (click)="updateCarBrand=true"></button>
     </div>
   </div>
 
-  <div
-    class="card-car-choiced flex justify-content-between mb-2 align-items-center"
-    *ngIf="showCarBrand && updateCarBrand"
-  >
+  <div class="card-car-choiced flex justify-content-between mb-2 align-items-center"
+    *ngIf="showCarBrand && updateCarBrand">
     <div class="search-form grid w-full">
       <!-- (1) Make dropdown with icon -->
       <div class="form-group col" style="position: relative">
         <span class="step-circle" style="left: 29px; top: 23px">1</span>
 
-        <p-dropdown
-          inputId="make"
-          [options]="makes"
-          [(ngModel)]="selectedMake"
-          [style]="{ width: '100%' }"
-          optionLabel="name"
-          optionValue="id"
-          placeholder="Choisir la marque"
-          (onChange)="onMakeChange()"
-        >
+        <p-dropdown inputId="make" [options]="makes" [(ngModel)]="selectedMake" [style]="{ width: '100%' }"
+          optionLabel="name" optionValue="id" placeholder="Choisir la marque" (onChange)="onMakeChange()">
           <!-- Template for dropdown options -->
           <ng-template let-option pTemplate="item">
             <div class="flex align-items-center">
@@ -69,15 +51,8 @@
       <!-- (2) Model dropdown with icon -->
       <div class="form-group col" style="position: relative">
         <span class="step-circle" style="left: 29px; top: 23px">2</span>
-        <p-dropdown
-          inputId="year"
-          [options]="years"
-          [(ngModel)]="selectedYear"
-          placeholder="Choisir le modéle"
-          [style]="{ width: '100%' }"
-          optionValue="id"
-          [disabled]="!selectedMake"
-        >
+        <p-dropdown inputId="year" [options]="years" [(ngModel)]="selectedYear" placeholder="Choisir le modéle"
+          [style]="{ width: '100%' }" optionValue="id" [disabled]="!selectedMake">
           <ng-template let-option pTemplate="item">
             <div class="flex align-items-center">
               <!-- <span class="step-circle">2</span> -->
@@ -100,16 +75,8 @@
       <div class="form-group col" style="position: relative">
         <span class="step-circle" style="left: 29px; top: 23px">3</span>
 
-        <p-dropdown
-          inputId="model"
-          [options]="models"
-          [(ngModel)]="selectedModel"
-          [style]="{ width: '100%' }"
-          optionLabel="name"
-          optionValue="id"
-          placeholder="Choisir la version"
-          [disabled]="!selectedMake"
-        >
+        <p-dropdown inputId="model" [options]="models" [(ngModel)]="selectedModel" [style]="{ width: '100%' }"
+          optionLabel="name" optionValue="id" placeholder="Choisir la version" [disabled]="!selectedMake">
           <ng-template let-option pTemplate="item">
             <div class="flex align-items-center">
               <!-- <span class="step-circle">3</span> -->
@@ -131,36 +98,23 @@
       <!-- Submit button -->
       <div class="col">
         <div class="flex align-items-center justify-content-center h-full">
-          <button
-            pButton
-            (click)="updateCarBrand=false"
-            type="button"
-            class="p-button p-button-primary w-full flex justify-content-center"
-          >
+          <button pButton (click)="updateCarBrand=false" type="button"
+            class="p-button p-button-primary w-full flex justify-content-center">
             <span>{{ "Modifier" }}</span>
           </button>
 
-          <button
-            pButton
-            type="button"
-            label="Fermer"
-            [text]="true"
-            [style]="{     color: 'var(--secondary-color)',
+          <button pButton type="button" label="Fermer" [text]="true" [style]="{     color: 'var(--secondary-color)',
               'text-decoration': 'underline'
-             }"
-            class="p-button-outlined p-button-secondary"
-            (click)="updateCarBrand=false"
-            type="button"
-          ></button>
+             }" class="p-button-outlined p-button-secondary" (click)="updateCarBrand=false" type="button"></button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="results-header">
-    <div>
+    <div class="results-text">
       <h2 class="hidden md:block">Résultats de la recherche</h2>
-      <div class="results-meta" *ngIf="!isLoading">
+      <div class="results-meta hidden sm:block" *ngIf="!isLoading">
         <span *ngIf="parts.length > 0">{{parts.length}} résultats compatibles</span>
         <span *ngIf="parts.length === 0">Aucune pièce trouvée</span>
       </div>
@@ -168,31 +122,16 @@
     <div class="p-1 flex">
       <div class="p-1 flex justify-content-center align-items-center">
         <div class="p-2" style="cursor: pointer" (click)="isGrid=true">
-          <i
-            class="pi pi-th-large"
-            style="font-size: 28px"
-            [ngStyle]="{color:(isGrid)?'#000':'#35343d44'}"
-          ></i>
+          <i class="pi pi-th-large" style="font-size: 28px" [ngStyle]="{color:(isGrid)?'#000':'#35343d44'}"></i>
         </div>
         <div style="height: 59%; border-left: 1px #35343d44 solid"></div>
         <div class="p-2" style="cursor: pointer" (click)="isGrid=false">
-          <i
-            class="pi pi-list"
-            [ngStyle]="{color:(!isGrid)?'#000':'#35343d44'}"
-            style="font-size: 28px"
-          ></i>
+          <i class="pi pi-list" [ngStyle]="{color:(!isGrid)?'#000':'#35343d44'}" style="font-size: 28px"></i>
         </div>
       </div>
       <div [formGroup]="filterForm" class="px-3">
-        <p-dropdown
-          id="carBrand"
-          formControlName="carBrand"
-          [options]="carBrands"
-          placeholder="Populaire"
-          [style]="{ 'min-width': '200px' }"
-          [showClear]="false"
-          styleClass="w-full"
-        ></p-dropdown>
+        <p-dropdown id="carBrand" formControlName="carBrand" [options]="carBrands" placeholder="Populaire"
+          [showClear]="false" styleClass="w-full"></p-dropdown>
       </div>
     </div>
   </div>
@@ -201,28 +140,22 @@
     <aside class="filters-panel">
       <p-card [styleClass]="'mb-0'">
         <form [formGroup]="filterForm">
-          <div class="flex justify-content-between W-100 filter-header">
+          <div class="flex justify-content-between W-100 filter-header pt-3">
             <div class="flex align-items-center filter-button" (click)="toggleFilters()">
-              <img src="assets/img/filter.svg" style="width: 20px" class="mx-2" alt="" />
-              <h2 class="m-0 filter-label">Filtre</h2>
+              <img src="assets/img/filter.svg" class="mr-2" alt="" />
+              <h2 class="m-0 filter-label">Filtres</h2>
             </div>
             <div class="filter-actions">
-              <button
-                pButton
-                type="button"
-                label="Réinitialiser"
-                [text]="true"
-                [style]="{color: 'var(--secondary-color)'}"
-                class="p-button-outlined p-button-secondary"
-                (click)="resetFilters(); $event.stopPropagation()"
-              ></button>
+              <button pButton type="button" label="Réinitialiser" [text]="true"
+                [style]="{color: 'var(--secondary-color)'}" class="p-button-outlined p-button-secondary"
+                (click)="resetFilters(); $event.stopPropagation()"></button>
             </div>
           </div>
 
           <div class="filter-content" [ngClass]="{'expanded': filtersExpanded}">
             <p-divider></p-divider>
 
-            <h3 class="mt-3">Marque de produit</h3>
+            <h3>Marque de produit</h3>
             <div class="field" style="max-height: 250px; overflow: auto">
               <div *ngFor="let item of carBrands" class="flex">
                 <p-checkbox formControlName="carBrand" [value]="item.label" [inputId]="item.id" />
@@ -236,7 +169,7 @@
                 <p-checkbox formControlName="carModel" [value]="item.label" [inputId]="item.id" />
                 <label for="ny" class="ml-2">{{item.label}}</label>
               </div>
-              <span class="see-more">Voir plus(10)</span>
+              <span class="see-more">Voir plus (10)</span>
             </div>
 
             <p-divider></p-divider>
@@ -254,13 +187,8 @@
             <div class="field">
               <h3>Prix</h3>
               <div class="price-slider">
-                <p-slider
-                  formControlName="priceRange"
-                  [range]="true"
-                  [min]="0"
-                  [max]="50000"
-                  styleClass="w-full"
-                ></p-slider>
+                <p-slider formControlName="priceRange" [range]="true" [min]="0" [max]="50000"
+                  styleClass="w-full"></p-slider>
               </div>
               <div class="price-inputs">
                 <span>TND {{filterForm.get('priceRange')?.value[0]}}</span>
@@ -281,28 +209,18 @@
       </div>
 
       <div class="no-results" *ngIf="!isLoading && parts.length === 0">
-        <p-message
-          severity="info"
+        <p-message severity="info"
           text="No parts match your search criteria. Try adjusting your filters or search term."
-          styleClass="w-full"
-        ></p-message>
+          styleClass="w-full"></p-message>
       </div>
 
       <div class="results-grid" *ngIf=" isGrid && !isLoading && parts.length > 0">
-        <app-part-card
-          *ngFor="let part of parts"
-          [part]="part"
-          (viewDetails)="onViewDetails($event)"
-          (addToCart)="onAddToCart($event)"
-        ></app-part-card>
+        <app-part-card *ngFor="let part of parts" [part]="part" (viewDetails)="onViewDetails($event)"
+          (addToCart)="onAddToCart($event)"></app-part-card>
       </div>
       <div class="results-list" *ngIf=" !isGrid && !isLoading && parts.length > 0">
-        <app-part-card-list
-          *ngFor="let part of parts"
-          [part]="part"
-          (viewDetails)="onViewDetails($event)"
-          (addToCart)="onAddToCart($event)"
-        ></app-part-card-list>
+        <app-part-card-list *ngFor="let part of parts" [part]="part" (viewDetails)="onViewDetails($event)"
+          (addToCart)="onAddToCart($event)"></app-part-card-list>
       </div>
     </section>
   </div>

@@ -31,18 +31,20 @@
   --neutral-800: #424242;
   --neutral-900: #212121;
 
-  --border-color: #b5b4b8;
+  --border-color: #35343D29;
   /* --border-color: red; */
   --border-radius: 5px;
   --border-thickness: 1px;
 
   /* Spacing System - 8px grid */
+  /* Spacing System */
   --spacing-xs: 0.5rem; /* 8px */
   --spacing-sm: 1rem; /* 16px */
   --spacing-md: 1.5rem; /* 24px */
   --spacing-lg: 2rem; /* 32px */
   --spacing-xl: 3rem; /* 48px */
   --spacing-xxl: 4rem; /* 64px */
+  --spacing-12: 0.75rem; /* 12px */
 
   --space-xs: 4px;
   --space-sm: 8px;
@@ -52,17 +54,30 @@
   --space-xxl: 48px;
 
   /* Border radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  /* Border radius options from extra small to extra large */
+  --radius-xs: 2px;      /* Extra small - subtle rounding */
+  --radius-sm: 4px;      /* Small - default buttons, cards */
+  --radius-md: 8px;      /* Medium - larger components */
+  --radius-lg: 16px;     /* Large - modals, floating panels */
+  --radius-xl: 24px;     /* Extra large - feature cards */
+  --radius-xxl: 32px;    /* XX-Large - hero elements */
+  --radius-circle: 50%;  /* Perfect circle - avatars, badges */
+  --radius-pill: 9999px; /* Pill shape - tags, labels */
 
   /* Typography */
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-md: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 24px;
-  --font-size-xxl: 32px;
+  --font-size-xs: 0.75rem;     /* 12px at 16px base size */
+  --font-size-sm: 0.875rem;    /* 14px at 16px base size */
+  --font-size-md: 1rem;        /* 16px at 16px base size */
+  --font-size-lg: 1.125rem;    /* 18px at 16px base size */
+  --font-size-xl: 1.25rem;     /* 20px at 16px base size */
+  --font-size-xxl: 1.5rem;     /* 24px at 16px base size */
+  --font-size-xxxl: 2rem;      /* 32px at 16px base size */
+  
+  /* Fluid typography for very small screens */
+  @media screen and (max-width: 480px) {
+    --font-size-xxl: 1.35rem;  /* slightly smaller on mobile */
+    --font-size-xxxl: 1.75rem; /* slightly smaller on mobile */
+  }
 }
 
 body {
@@ -167,8 +182,8 @@ button.p-button {
 }
 
 button.p-button-primary:disabled {
-  background-color: #00398450;
-  border-color: #00398450;
+  /* background-color: #00398450;
+  border-color: #00398450; */
 }
 
 button.p-button-primary {
@@ -196,9 +211,8 @@ button.p-button-accent:hover {
 /* Card styling */
 .p-card {
   border-radius: 0px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: box-shadow 0.3s ease;
-  margin-bottom: var(--spacing-md);
 }
 
 .p-card:hover {

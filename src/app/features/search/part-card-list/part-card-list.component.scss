@@ -1,6 +1,9 @@
-.part-card {
+:host ::ng-deep .part-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 .part-card:hover {
@@ -9,8 +12,10 @@
 }
 
 .part-image {
-  height: 150px;
-  background-size: cover;
+  height: 100px;
+  width: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   position: relative;
   cursor: pointer;
@@ -37,19 +42,33 @@
 }
 
 .part-header {
-  margin-bottom: var(--spacing-sm);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
 }
 
 .part-name {
-  margin: 0 0 4px 0;
-  font-size: 1.1rem;
+  margin: 0;
+  font-size: var(--font-size-sm);
   color: var(--neutral-900);
 }
 
 .part-number {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   color: var(--neutral-600);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+
+  img {
+    max-height: 20px;
+    max-width: 80px;
+    object-fit: contains;
+  }
 }
 
 .part-compatibility {
@@ -132,48 +151,59 @@
   flex: 1;
 }
 
-::ng-deep .p-card-body {
-  padding: var(--spacing-sm);
+.table-section {
+  h3 {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
 }
 
-::ng-deep .p-card-content {
+:host ::ng-deep .p-card-body {
+  padding: var(--spacing-md);
+}
+
+:host ::ng-deep .p-card-content {
   padding: 0;
   height: 100%;
 }
 
-::ng-deep p-rating .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
+:host ::ng-deep .p-divider.p-divider-horizontal {
+  margin: var(--spacing-12) 0;
+}
+
+:host ::ng-deep p-rating .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
   color: var(--warning-color);
 }
 
-::ng-deep .p-card .p-card-footer {
+:host ::ng-deep .p-card .p-card-footer {
   padding-top: var(--spacing-sm);
 }
 
-::ng-deep .custom-quantity-input.p-inputnumber {
+:host ::ng-deep .custom-quantity-input.p-inputnumber {
   display: flex;
   align-items: center;
   width: 120px;
 }
 
-::ng-deep .custom-quantity-input .p-inputnumber-input {
+:host ::ng-deep .custom-quantity-input .p-inputnumber-input {
   flex: 1;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-::ng-deep .custom-quantity-input .p-inputnumber-button-group {
+:host ::ng-deep .custom-quantity-input .p-inputnumber-button-group {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-::ng-deep .custom-quantity-input .p-inputnumber-button {
+:host ::ng-deep .custom-quantity-input .p-inputnumber-button {
   flex: 1;
   border-radius: 0;
   padding: 4px;
 }
 
-::ng-deep .custom-quantity-input .p-inputnumber-button-up {
+:host ::ng-deep .custom-quantity-input .p-inputnumber-button-up {
   border-bottom: 1px solid #ccc;
 }
 
@@ -195,15 +225,31 @@
 .col-6 .td:last-of-type {
   border-bottom: 1px solid #3d3b3438;
 }
+
 h3 {
   color: var(--neutral-900);
 }
 
 .description-content {
   div {
+    
     h3 {
-      font-weight: 400;
-      font-size: 1rem;
+      font-weight: 500;
+      font-size: var(--font-size-xs);
+
+      i {
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+      }
+    }
+
+    div {
+
+      p {
+        font-size: 0.625rem;
+        font-weight: 400;
+        color: var(--main-font-color);
+      }
     }
   }
 }
@@ -238,23 +284,30 @@ h3 {
   background-color: transparent;
   color: var(--main-font-color);
 }
+
 :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
   color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
+
 :host ::ng-deep .p-tabview .p-tabview-nav li {
   flex-grow: 1;
 }
+
 :host ::ng-deep .p-tabview .p-tabview-nav,
 :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   background: #b9b9b918;
 }
+
 :host ::ng-deep .p-tabview .p-tabview-panels {
   background: #b9b9b918;
   padding: 0.3rem;
 }
+
 :host ::ng-deep .p-tabview-title {
-  white-space: pre-wrap;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
   text-align: center;
 }
 

@@ -27,15 +27,15 @@
         buttonLayout="horizontal"
         [min]="1"
         [max]="stock"
-        [inputStyle]="{ width: '80px' }"
+        
         [disabled]="stock === 0"
         styleClass="p-inputnumber-sm"
       >
         <ng-template pTemplate="decrementbuttonicon">
-          <i class="pi pi-minus" style="color: black; font-size: 12px; margin: 5px"></i>
+          <i class="pi pi-minus" style="color: black"></i>
         </ng-template>
         <ng-template pTemplate="incrementbuttonicon">
-          <i class="pi pi-plus" style="color: black; font-size: 13px"></i>
+          <i class="pi pi-plus" style="color: black"></i>
         </ng-template>
       </p-inputNumber>
     </div>

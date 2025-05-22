@@ -17,7 +17,8 @@
 
 .dot-available {
   background-color: var(--success-color);
-  & + .availability-text {
+
+  &+.availability-text {
     color: var(--success-color);
     font-weight: 500;
   }
@@ -25,7 +26,8 @@
 
 .dot-unavailable {
   background-color: var(--error-color);
-  & + .availability-text {
+
+  &+.availability-text {
     color: var(--error-color);
     font-weight: 500;
   }
@@ -37,6 +39,7 @@
     width: 8px;
     height: 8px;
   }
+
   .availability-text {
     font-size: 1rem;
   }
@@ -47,6 +50,7 @@
     width: 12px;
     height: 12px;
   }
+
   .availability-text {
     font-size: 1.4rem;
   }
@@ -57,6 +61,7 @@
     width: 16px;
     height: 16px;
   }
+
   .availability-text {
     font-size: 1.8rem;
   }
@@ -82,7 +87,7 @@ hr {
 }
 
 .price-small {
-  font-size: 1.2rem;
+  font-size: var(--font-size-md);
 }
 
 .price-medium {
@@ -104,15 +109,22 @@ hr {
 }
 
 :host ::ng-deep .cart-button {
- // min-width: 100px;
+  // min-width: 100px;
+  height: min-content;
   width: 100%;
-  flex-grow: 1;
   border-radius: var(--border-radius) !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: center;
-  justify-content: center  !important;
+  justify-content: center !important;
+  gap: var(--spacing-xs) !important;
+  padding: var(--spacing-xs) !important;
+
+  span {
+    margin: 0;
+  }
 }
+
 
 // :host ::ng-deep .p-inputnumber-input {
 //   width: 64px !important;
@@ -130,30 +142,43 @@ hr {
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button {
   background: white;
   border: 1px solid var(--neutral-300);
+  padding: 7px 0;
+  width: 30px;
+  height: min-content !important;
+  i {
+    font-size: 8px;
+    height: min-content;
+  }
 }
+
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up {
   border-left: 1px solid transparent;
-  width: 30px;
+
   border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
 }
+
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
-  width: 30px;
+
   border-right: 1px solid transparent;
-    border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
 }
 
 :host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputnumber-input {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
-  width: 56px !important; //suitable for 3 digits and below
+  width: 36px !important; //suitable for 2 digits and below
   text-align: center;
+  padding: var(--spacing-xs) !important;
+  height: min-content;
+  font-size: var(--font-size-sm);
 }
 
-:host ::ng-deep .p-inputnumber:hover > * {
+:host ::ng-deep .p-inputnumber:hover>* {
   border: 1px solid var(--secondary-color);
+  outline: none;
 }
 
-:host ::ng-deep .p-inputnumber:hover > *:nth-child(1) {
+:host ::ng-deep .p-inputnumber:hover>*:nth-child(1) {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
 }
