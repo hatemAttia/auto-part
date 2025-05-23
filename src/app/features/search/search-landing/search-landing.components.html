@@ -15,7 +15,10 @@
       </div>
     </div>
     <div class="flex align-items-center justify-content-center">
-      <button pButton type="button" label="Modifier" class="p-button-primary" (click)="updateCarBrand=true"></button>
+      <button pButton type="button" label="Modifier" class="p-button-primary edit-current-vehicle"
+        (click)="updateCarBrand=true">
+        <img src="assets/img/edit-pen-to-square.svg" alt="">
+      </button>
     </div>
   </div>
 
@@ -23,8 +26,8 @@
     *ngIf="showCarBrand && updateCarBrand">
     <div class="search-form grid w-full">
       <!-- (1) Make dropdown with icon -->
-      <div class="form-group col" style="position: relative">
-        <span class="step-circle" style="left: 29px; top: 23px">1</span>
+      <div class="col" style="position: relative">
+        <span class="step-circle">1</span>
 
         <p-dropdown inputId="make" [options]="makes" [(ngModel)]="selectedMake" [style]="{ width: '100%' }"
           optionLabel="name" optionValue="id" placeholder="Choisir la marque" (onChange)="onMakeChange()">
@@ -49,8 +52,8 @@
       </div>
 
       <!-- (2) Model dropdown with icon -->
-      <div class="form-group col" style="position: relative">
-        <span class="step-circle" style="left: 29px; top: 23px">2</span>
+      <div class="col" style="position: relative">
+        <span class="step-circle">2</span>
         <p-dropdown inputId="year" [options]="years" [(ngModel)]="selectedYear" placeholder="Choisir le modéle"
           [style]="{ width: '100%' }" optionValue="id" [disabled]="!selectedMake">
           <ng-template let-option pTemplate="item">
@@ -72,8 +75,8 @@
       </div>
 
       <!-- (3) Year dropdown with icon -->
-      <div class="form-group col" style="position: relative">
-        <span class="step-circle" style="left: 29px; top: 23px">3</span>
+      <div class="col" style="position: relative">
+        <span class="step-circle">3</span>
 
         <p-dropdown inputId="model" [options]="models" [(ngModel)]="selectedModel" [style]="{ width: '100%' }"
           optionLabel="name" optionValue="id" placeholder="Choisir la version" [disabled]="!selectedMake">
@@ -98,9 +101,10 @@
       <!-- Submit button -->
       <div class="col">
         <div class="flex align-items-center justify-content-center h-full">
-          <button pButton (click)="updateCarBrand=false" type="button"
-            class="p-button p-button-primary w-full flex justify-content-center">
-            <span>{{ "Modifier" }}</span>
+
+          <button pButton type="button" label="Modifier" class="p-button-primary edit-current-vehicle"
+            (click)="updateCarBrand=false">
+            <img src="assets/img/edit-pen-to-square.svg" alt="">
           </button>
 
           <button pButton type="button" label="Fermer" [text]="true" [style]="{     color: 'var(--secondary-color)',
@@ -159,7 +163,7 @@
             <div class="field" style="max-height: 250px; overflow: auto">
               <div *ngFor="let item of carBrands" class="flex">
                 <p-checkbox formControlName="carBrand" [value]="item.label" [inputId]="item.id" />
-                <label for="ny" class="ml-2">{{item.label}}</label>
+                <label for="ny">{{item.label}}</label>
               </div>
             </div>
             <p-divider></p-divider>
@@ -167,7 +171,7 @@
             <div class="field">
               <div *ngFor="let item of carModels" class="flex">
                 <p-checkbox formControlName="carModel" [value]="item.label" [inputId]="item.id" />
-                <label for="ny" class="ml-2">{{item.label}}</label>
+                <label for="ny">{{item.label}}</label>
               </div>
               <span class="see-more">Voir plus (10)</span>
             </div>
@@ -175,13 +179,16 @@
             <p-divider></p-divider>
 
             <h3>Disponibilité</h3>
-            <div class="field-checkbox">
-              <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
-              <label for="inStock">En stock</label>
-            </div>
-            <div class="field-checkbox">
-              <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
-              <label for="inStock">Non disponible</label>
+            <div class="field">
+              <div>
+                <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
+                <label for="inStock">En stock</label>
+              </div>
+
+              <div>
+                <p-checkbox formControlName="inStock" [binary]="true" inputId="inStock"></p-checkbox>
+                <label for="inStock">Non disponible</label>
+              </div>
             </div>
             <p-divider></p-divider>
             <div class="field">
