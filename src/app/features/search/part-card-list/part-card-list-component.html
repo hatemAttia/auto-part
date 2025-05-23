@@ -126,7 +126,7 @@
               pRipple
             ></button> -->
             <app-add-to-cart [part]="part" [stock]="part.stock" [price]="part.price" [priceSize]="'small'"
-              (getQuantity)="getQuantity($event)" [isAvailable]="part.stock > 0"></app-add-to-cart>
+              (getQuantity)="getQuantity($event)" [showAvailibility]="false" [isAvailable]="part.stock > 0"></app-add-to-cart>
             <div class="flex gap-2 align-items-center" style="flex-grow: 1">
               <div class="w-full equivalent-details">
                 <div class="py-2">

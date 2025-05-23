@@ -60,7 +60,7 @@
         </div>
 
         <app-add-to-cart [stock]="part.stock" [price]="part.price" [isAvailable]="part.stock > 0" priceSize="large"
-          (getQuantity)="addToCart($event)">
+          (getQuantity)="addToCart($event)" [availabilityMode]="'text'">
         </app-add-to-cart>
       </div>
 

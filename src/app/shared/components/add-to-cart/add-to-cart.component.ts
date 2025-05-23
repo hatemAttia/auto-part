@@ -28,6 +28,8 @@ export class AddToCartComponent {
   @Input() availabilitySize: "small" | "medium" | "large" = "medium";
   @Input() showLabel: boolean = true;
   @Input() showIcon: boolean = true;
+  @Input() showAvailibility = true;
+  @Input() availabilityMode: "badge" | "text" = "badge";
 
   @Output() getQuantity = new EventEmitter<number>();
 
