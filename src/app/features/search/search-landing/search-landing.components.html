@@ -27,7 +27,7 @@
     <div class="search-form grid w-full">
       <!-- (1) Make dropdown with icon -->
       <div class="col" style="position: relative">
-        <span class="step-circle">1</span>
+        <span class="step-circle" [ngClass]="{'active': selectedMake}">1</span>
 
         <p-dropdown inputId="make" [options]="makes" [(ngModel)]="selectedMake" [style]="{ width: '100%' }"
           optionLabel="name" optionValue="id" placeholder="Choisir la marque" (onChange)="onMakeChange()">
@@ -42,7 +42,7 @@
           <!-- Template for selected item or placeholder -->
           <ng-template let-selectedOption pTemplate="selectedItem">
             <div class="flex align-items-center">
-              <span class="step-circle active">1</span>
+              <!-- <span class="step-circle active">1</span> -->
               <span class="ml-2" style="padding-left: 50px">
                 {{ selectedOption?.name || "Choisir la marque" }}
               </span>
@@ -53,7 +53,7 @@
 
       <!-- (2) Model dropdown with icon -->
       <div class="col" style="position: relative">
-        <span class="step-circle">2</span>
+        <span class="step-circle" [ngClass]="{'active': selectedYear}">2</span>
         <p-dropdown inputId="year" [options]="years" [(ngModel)]="selectedYear" placeholder="Choisir le modéle"
           [style]="{ width: '100%' }" optionValue="id" [disabled]="!selectedMake">
           <ng-template let-option pTemplate="item">
@@ -65,7 +65,7 @@
 
           <ng-template let-selectedOption pTemplate="selectedItem">
             <div class="flex align-items-center">
-              <span class="step-circle active">2</span>
+              <!-- <span class="step-circle active">2</span> -->
               <span class="ml-2" style="padding-left: 50px">
                 {{ selectedOption?.name || "Choisir le modéle" }}
               </span>
@@ -76,7 +76,8 @@
 
       <!-- (3) Year dropdown with icon -->
       <div class="col" style="position: relative">
-        <span class="step-circle">3</span>
+        <span class="step-circle" [ngClass]="{'active': selectedModel}">3</span>
+
 
         <p-dropdown inputId="model" [options]="models" [(ngModel)]="selectedModel" [style]="{ width: '100%' }"
           optionLabel="name" optionValue="id" placeholder="Choisir la version" [disabled]="!selectedMake">
@@ -89,7 +90,7 @@
 
           <ng-template let-selectedOption pTemplate="selectedItem">
             <div class="flex align-items-center">
-              <span class="step-circle active">3</span>
+              <!-- <span class="step-circle active">3</span> -->
               <span class="ml-2" style="padding-left: 50px">
                 {{ selectedOption?.name || "Choisir la version" }}
               </span>
