@@ -23,17 +23,14 @@
       >{{ formatPrice(price) }}</span
     >
   </div>
-  <div class="part-quantity-purchase">
-    <div class="part-quantity">
-      <!-- <p-inputNumber [(ngModel)]="quantity" [min]="0" [max]="stock" [showButtons]="true" inputId="stacked" mode="decimal"
-        currency="USD" /> -->
+  <div class="part-quantity-purchase">    <div class="part-quantity">
+      <!-- Previously used PrimeNG input component
       <p-inputNumber
         [(ngModel)]="quantity"
         [showButtons]="true"
         buttonLayout="horizontal"
         [min]="1"
         [max]="stock"
-        
         [disabled]="stock === 0"
         styleClass="p-inputnumber-sm"
       >
@@ -44,6 +41,21 @@
           <i class="pi pi-plus" style="color: black"></i>
         </ng-template>
       </p-inputNumber>
+      -->
+      
+      <!-- Custom number input -->
+      <div class="number-input">
+        <button type="button" (click)="decrementQuantity()" [disabled]="quantity <= 1 || stock === 0">−</button>
+        <input 
+          type="number" 
+          [(ngModel)]="quantity" 
+          [min]="1" 
+          [max]="stock" 
+          [disabled]="stock === 0"
+          (change)="validateQuantity()"
+        />
+        <button type="button" (click)="incrementQuantity()" [disabled]="quantity >= stock || stock === 0">+</button>
+      </div>
     </div>
     <button
       pButton

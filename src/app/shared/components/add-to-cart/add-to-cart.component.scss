@@ -186,3 +186,81 @@ hr {
 :host ::ng-deep .p-button-label {
   flex: unset
 }
+
+// Custom number input styles
+.number-input {
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: white;
+  overflow: hidden;
+  transition: all 0.2s ease;
+
+  button {
+    all: unset;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: border 0.2s;
+    
+
+    &:hover:not(:disabled) {
+      border-color: #a0a0a0;
+      background-color: #f5f5f5;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    // Seamless border: remove double borders
+    &:first-child {
+      border-left: none;
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 0;
+
+    // Hide the spinners for number input
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type=number] {
+      -moz-appearance: textfield; // Firefox
+      appearance: textfield; // Standard property
+    }
+
+    &:disabled {
+      background-color: #f9f9f9;
+      color: #999;
+    }
+  }
+
+  &:hover{
+    border-color: var(--secondary-color);
+  }
+
+  &:focus-within {
+    border-color: var(--secondary-color);
+  }
+}

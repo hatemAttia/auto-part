@@ -120,6 +120,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 1rem;
 }
 
 .filter-actions {
@@ -195,7 +196,7 @@ h3 {
 
 .price-inputs {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between !important;
   color: var(--neutral-600);
   font-size: 0.9rem;
 }
@@ -255,6 +256,7 @@ h3 {
   /* Filter collapsible behavior for mobile */
   .filter-header {
     align-items: center;
+    padding-top: 0;
 
     .filter-button {
       cursor: pointer;
@@ -424,6 +426,10 @@ h3 {
   
 }
 
+:host ::ng-deep p-slider {
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .current-vehicle-container {
     &>div {
@@ -438,11 +444,20 @@ h3 {
   .results-header {
     margin-bottom: 0;
   }
+
+  .card-car-choiced {
+    padding: var(--spacing-sm) var(--spacing-md);
+
+    .edit-current-vehicle {
+      width: 100%;
+      min-width: 0;
+    }
+  }
 }
 
 .results-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(530px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   gap: var(--spacing-xs);
 }
 

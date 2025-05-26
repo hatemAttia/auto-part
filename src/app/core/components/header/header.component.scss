@@ -58,6 +58,7 @@
         color: var(--main-font-color);
         font-weight: 500;
         text-decoration: none;
+        font-size: var(--font-size-sm);
         padding: 0px;
         text-overflow: ellipsis;
 
@@ -221,10 +222,10 @@
       justify-content: center;
 
       span {
-        color: black;
+        color: var(--main-font-color);
         margin: 0;
         padding: 0;
-        font-size: normal;
+        font-size: var(--font-size-sm);
 
         &.logout {
           cursor: pointer;
@@ -263,10 +264,10 @@
       justify-content: center;
 
       span {
-        color: black;
+        color: var(--main-font-color);
         margin: 0;
         padding: 0;
-        font-size: normal;
+        font-size: var(--font-size-sm);
 
         &.totalPrice {
           font-weight: normal;

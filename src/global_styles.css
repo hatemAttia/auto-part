@@ -74,6 +74,7 @@
   --font-size-xl: 1.25rem;     /* 20px at 16px base size */
   --font-size-xxl: 1.5rem;     /* 24px at 16px base size */
   --font-size-xxxl: 2rem;      /* 32px at 16px base size */
+  --font-size-36: 2.25rem;   /* 36px at 16px base size */
   
   /* Fluid typography for very small screens */
   @media screen and (max-width: 480px) {
@@ -154,7 +155,7 @@ h6 {
   .container-md,
   .container-sm,
   .container {
-    max-width: 1140px;
+    max-width: 100%;
   }
 }
 @media (min-width: 1400px) {

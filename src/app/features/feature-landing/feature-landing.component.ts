@@ -77,7 +77,8 @@ interface Feature {
 
       .feature-title {
         color: #003984;
-        font-weight: 700;
+        font-weight: 800;
+        font-size: var(--font-size-xl);
         margin-bottom: var(--space-sm);
       }
 

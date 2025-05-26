@@ -13,10 +13,11 @@ interface CarBrand {
   template: `
     <section class="section brands-section mt-3">
       <div class="container">
-        <h2 class="section-title m-0" style="font-size: 36px;">Nos marques automobile</h2>
-        <p class="section-subtitle  text-left m-0 mb-5">
+        <h2 class="section-title m-0">Nos marques automobile</h2>
+        <p class="section-subtitle  text-left">
           Nous proposons des pièces pour tous les principaux fabricants de voitures
         </p>
+        <hr class="red-line">
         <!-- <div style="    border-bottom: 3px #D0001A solid; margin: 1rem 0;width: 300px;"></div> -->
         <div class="brands-grid" style="margin-top:3rem;">
           <a
@@ -34,14 +35,30 @@ interface CarBrand {
   `,
   styles: [
     `
+      .section-title {
+        font-weight: 600;
+        font-size: var(--font-size-xxl);
+
+      }
       .brands-section {
         background-color: var(--neutral-100);
         padding: var(--space-xl) 0 var(--space-xxl);
       }
 
+      .red-line {
+        background-color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        border-radius: 5px 0 0 5px;
+        width: 232px;
+        margin: 0;
+      }
+
       .section-subtitle {
         text-align: center;
-        margin-bottom: var(--space-xl);
+        margin: 0;
+        font-size: var(--font-size-xl);
+        font-weight: 500;
+        margin-bottom: var(--spacing-md);
         color: var(--neutral-700);
       }
 

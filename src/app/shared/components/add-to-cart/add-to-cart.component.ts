@@ -38,13 +38,33 @@ export class AddToCartComponent {
   getStockStatusClass(): string {
     return this.isAvailable ? "dot-available" : "dot-unavailable";
   }
-
   getStockStatusText(): string {
     return this.isAvailable ? "En stock" : "Non disponible";
   }
 
   formatPrice(price: number): string {
     return price.toFixed(3) + " TND";
+  }
+
+  decrementQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  incrementQuantity(): void {
+    if (this.quantity < this.stock) {
+      this.quantity++;
+    }
+  }
+
+  validateQuantity(): void {
+    // Ensure quantity stays within bounds
+    if (this.quantity < 1) {
+      this.quantity = 1;
+    } else if (this.quantity > this.stock) {
+      this.quantity = this.stock;
+    }
   }
 
   onAddQuantity(): void {

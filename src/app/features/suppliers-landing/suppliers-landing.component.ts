@@ -13,10 +13,11 @@ interface Supplier {
   template: `
     <section class="section suppliers-section">
       <div class="container">
-        <h2 class="section-title m-0" style="font-size: 36px;">Nos fournisseurs des piéces</h2>
-        <p class="section-subtitle text-left m-0 mb-5">
+        <h2 class="section-title m-0">Nos fournisseurs des piéces</h2>
+        <p class="section-subtitle text-left">
           Grandes offres de pièces de voiture des meilleurs fabricants.
         </p>
+        <hr class="red-line">
 
         <div class="suppliers-slider" #suppliersSlider style="margin-top:3rem;">
           <div class="suppliers-track" #suppliersTrack>
@@ -30,6 +31,11 @@ interface Supplier {
   `,
   styles: [
     `
+      .section-title {
+        font-weight: 600;
+        font-size: var(--font-size-xxl);
+      }
+
       .suppliers-section {
         background-color: #ffffff;
         padding: var(--space-xl) 0;
@@ -37,8 +43,19 @@ interface Supplier {
 
       .section-subtitle {
         text-align: center;
-        margin-bottom: var(--space-xl);
+        font-size: var(--font-size-xl);
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: var(--spacing-md);
         color: var(--neutral-700);
+      }
+
+      .red-line {
+        background-color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        border-radius: 5px 0 0 5px;
+        width: 232px;
+        margin: 0;
       }
 
       .suppliers-slider {
