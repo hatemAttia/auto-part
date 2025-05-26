@@ -6,7 +6,8 @@
 .part-equivalent-header {
   h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
     color: var(--main-font-color);
   }
 
@@ -26,16 +27,18 @@
 
   .part-badge {
     background-color: var(--primary-contrast-color);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    color: var(--main-font-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      color: var(--main-font-color);
+      font-size: var(--font-size-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius);
 
     img {
       width: 100%;
       max-width: 64px;
-      max-height: 20px;
+      max-height: 30px;
       object-fit: contain;
     }
   }
@@ -233,6 +236,8 @@
 
 .result-count span {
   color: #89888d;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
   margin: 0;
 }
 

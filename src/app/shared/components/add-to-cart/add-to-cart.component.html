@@ -14,16 +14,12 @@
     <hr />
   </ng-container>
   <div class="part-price-section">
-    <span
-      class="part-price"
-      [ngClass]="'price-' + priceSize"
-      [style]="{
+    <span class="part-price" [ngClass]="'price-' + priceSize" [style]="{
         color: stock === 0 ? '#35343D28' : ''
-      }"
-      >{{ formatPrice(price) }}</span
-    >
+      }">{{ formatPrice(price) }}</span>
   </div>
-  <div class="part-quantity-purchase">    <div class="part-quantity">
+  <div class="part-quantity-purchase">
+    <div class="part-quantity">
       <!-- Previously used PrimeNG input component
       <p-inputNumber
         [(ngModel)]="quantity"
@@ -42,30 +38,17 @@
         </ng-template>
       </p-inputNumber>
       -->
-      
+
       <!-- Custom number input -->
       <div class="number-input">
         <button type="button" (click)="decrementQuantity()" [disabled]="quantity <= 1 || stock === 0">−</button>
-        <input 
-          type="number" 
-          [(ngModel)]="quantity" 
-          [min]="1" 
-          [max]="stock" 
-          [disabled]="stock === 0"
-          (change)="validateQuantity()"
-        />
+        <input type="number" [(ngModel)]="quantity" [min]="1" [max]="stock" [disabled]="stock === 0"
+          (change)="validateQuantity()" />
         <button type="button" (click)="incrementQuantity()" [disabled]="quantity >= stock || stock === 0">+</button>
       </div>
     </div>
-    <button 
-      pButton
-      [label]="showLabel ? 'Commander' : ''"
-      [icon]="showIcon ? 'pi pi-shopping-cart' : ''"
-      class="p-button-primary cart-button"
-      [ngClass]="'order-size-' + orderButtonSize"
-      appButtonResize
-      [disabled]="!isAvailable || stock === 0"
-      (click)="onAddQuantity()"
-    ></button>
+    <button pButton [label]="showLabel ? 'Commander' : ''" [icon]="showIcon ? 'pi pi-shopping-cart' : ''"
+      class="p-button-primary cart-button" [ngClass]="'order-size-' + orderButtonSize" appButtonResize
+      [disabled]="!isAvailable || stock === 0" (click)="onAddQuantity()"></button>
   </div>
 </div>

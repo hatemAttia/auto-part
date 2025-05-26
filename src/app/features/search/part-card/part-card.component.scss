@@ -32,21 +32,22 @@
 
   h2 {
     margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: var(--font-size-sm);
+    font-weight: 400;
     color: var(--main-font-color);
   }
 
   p {
     margin: 0;
-    font-size: 1rem;
-    color: var(--neutral-600);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--main-font-color);
   }
 
   .equivalent-brand-logo {
     width: 100%;
     max-width: 64px;
-    max-height: 32px;
+    max-height: 28px;
     object-fit: contain;
     margin-bottom: 1rem;
   }
@@ -187,7 +188,7 @@
   flex: 1;
 }
 
-.details-button {
+:host ::ng-deep .details-button {
   width: 100%;
   background-color: var(--neutral-50);
   border: var(--border-thickness) solid var(--neutral-200);

@@ -1,11 +1,11 @@
-
-
 .cart-header {
   margin: 0 0 var(--spacing-md) 0;
 }
 
 .cart-header h1 {
   color: var(--main-font-color);
+  font-size: var(--font-size-xxl);
+  font-weight: 600;
   margin: 0;
   padding: 0;
 }
@@ -91,12 +91,19 @@
   display: flex;
   justify-content: space-between;
 
+  span {
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+  }
+
 }
 
 .total-row {
   font-weight: 700;
   font-size: 1.2rem;
   color: var(--primary-color);
+
+
 }
 
 .grand-total {
@@ -104,6 +111,11 @@
   font-size: 1.5rem;
   margin: 2rem 0;
   color: var(--main-font-color);
+
+  span {
+    font-weight: 600;
+    font-size: var(--font-size-md);
+  }
 }
 
 .checkout-button {
@@ -178,7 +190,16 @@
 :host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
   background-color: var(--secondary-color);
   color: var(--primary-light);
+  font-size: var(--font-size-sm);
+  text-align: center;
   font-weight: 400;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+  font-size: var(--font-size-sm);
+  color: var(--main-font-color);
+  font-weight: 400;
+  text-align: center;
 }
 
 // :host ::ng-deep .p-inputnumber-input {
@@ -238,10 +259,20 @@
 :host ::ng-deep .p-card {
   box-shadow: none;
   background-color: transparent;
+
+  .p-card-title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+  }
 }
 
 :host ::ng-deep .p-card .p-card-body {
   padding: var(--spacing-lg);
+}
+
+:host ::ng-deep .p-button.cart-button .p-button-label {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1200px) {
