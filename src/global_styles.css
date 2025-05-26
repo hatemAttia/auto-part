@@ -184,10 +184,10 @@ button.p-button {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
-button.p-button-primary:disabled {
-  /* background-color: #00398450;
-  border-color: #00398450; */
-}
+/* button.p-button-primary:disabled {
+  background-color: #00398450;
+  border-color: #00398450;
+} */
 
 button.p-button-primary {
   background-color: var(--secondary-color);
