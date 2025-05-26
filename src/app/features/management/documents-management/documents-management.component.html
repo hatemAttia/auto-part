@@ -56,7 +56,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td [attr.colspan]="columns.length + 1" style="text-align: center">
+        <td [attr.colspan]="columns.length + 1" >
           <p *ngIf="currentDocType === 'orders'">Aucune commande trouvée</p>
           <p *ngIf="currentDocType === 'deliveries'">Aucun bon de livraison trouvé</p>
           <p *ngIf="currentDocType === 'invoices'">Aucune facture trouvée</p>
@@ -98,7 +98,6 @@
         placeholder="statut"
         [showClear]="false"
         [filter]="true"
-        display="chip"
       >
       </p-multiSelect>
     </div>
