@@ -30,6 +30,7 @@ export class AddToCartComponent {
   @Input() showIcon: boolean = true;
   @Input() showAvailibility = true;
   @Input() availabilityMode: "badge" | "text" = "badge";
+  @Input() orderButtonSize: "small" | "medium" | "large" = "medium";
 
   @Output() getQuantity = new EventEmitter<number>();
 

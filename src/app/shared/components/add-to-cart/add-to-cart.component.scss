@@ -1,4 +1,5 @@
 .part-purchase-container {
+  
   background-color: transparent;
   border-radius: 8px;
   width: 100%;
@@ -41,7 +42,7 @@
   }
 
   .availability-text {
-    font-size: 1rem;
+    font-size: var(--font-size-md);
   }
 }
 
@@ -52,7 +53,7 @@
   }
 
   .availability-text {
-    font-size: 1.4rem;
+    font-size: var(--font-size-lg);
   }
 }
 
@@ -63,7 +64,7 @@
   }
 
   .availability-text {
-    font-size: 1.8rem;
+    font-size: var(--font-size-xxl);
   }
 }
 
@@ -91,11 +92,11 @@ hr {
 }
 
 .price-medium {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
 }
 
 .price-large {
-  font-size: 2rem;
+  font-size: var(--font-size-xxxl);
 }
 
 .part-quantity-purchase {
@@ -106,6 +107,46 @@ hr {
 
 .part-quantity {
   flex: 1;
+}
+
+:host ::ng-deep .order-size-small {
+
+  .p-button-icon {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+
+  .p-button-label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+}
+
+:host ::ng-deep .order-size-medium {
+
+  .p-button-icon {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+  }
+
+  .p-button-label {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+  }
+
+}
+
+:host ::ng-deep .order-size-large {
+
+  .p-button-icon {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+
+  .p-button-label {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
 }
 
 :host ::ng-deep .cart-button {
@@ -145,6 +186,7 @@ hr {
   padding: 7px 0;
   width: 30px;
   height: min-content !important;
+
   i {
     font-size: 8px;
     height: min-content;
@@ -208,7 +250,7 @@ hr {
     cursor: pointer;
     user-select: none;
     transition: border 0.2s;
-    
+
 
     &:hover:not(:disabled) {
       border-color: #a0a0a0;
@@ -256,7 +298,7 @@ hr {
     }
   }
 
-  &:hover{
+  &:hover {
     border-color: var(--secondary-color);
   }
 

@@ -76,6 +76,7 @@
       background-color: var(--primary-contrast-color);
       padding: var(--spacing-xs) var(--spacing-sm);
       color: var(--main-font-color);
+      font-size: var(--font-size-sm);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -85,7 +86,7 @@
       img {
         width: 100%;
         max-width: 64px;
-        max-height: 20px;
+        max-height: 30px;
         object-fit: contain;
       }
     }
@@ -115,7 +116,7 @@
 .part-title {
   margin: 0;
   color: var(--main-font-color);
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   font-weight: 500;
 }
 
@@ -133,11 +134,9 @@
 .part-image-section {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
   gap: var(--spacing-xxl);
   align-items: start;
-
-
 
   .part-image-container {
     height: fit-content;
@@ -154,6 +153,10 @@
       margin: 0;
       padding: 0;
     }
+  }
+
+  app-add-to-cart {
+    
   }
 }
 
@@ -175,9 +178,6 @@
   }
 
 }
-
-
-
 
 .part-title-purchase-section {
   margin-top: var(--spacing-md);
@@ -218,8 +218,6 @@
       }
     }
   }
-
-
 }
 
 .part-quantity-purchase {
@@ -241,16 +239,15 @@
   display: flex;
 }
 
-
-
 .label {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   color: var(--main-font-color);
+  font-weight: 400;
   white-space: nowrap;
 }
 
 .value {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   font-weight: 400;
   color: var(--neutral-900);
   display: flex;
@@ -351,8 +348,6 @@
   margin-top: var(--spacing-sm);
 }
 
-
-
 .specification-item {
   display: flex;
   margin-bottom: var(--spacing-xs);
@@ -438,6 +433,12 @@
 
 :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   background-color: transparent;
+
+  .p-tabview-title {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--main-font-color);
+  }
 }
 
 :host ::ng-deep .p-tabview .p-tabview-nav {
@@ -446,6 +447,8 @@
   padding: 0;
   margin: 0 0 1px 0;
   border-bottom: none !important;
+
+
 }
 
 :host ::ng-deep .p-tabview .p-tabview-panels {
@@ -454,6 +457,13 @@
   border-radius: 0 !important;
   border: 1px solid var(--neutral-300);
   border: none !important;
+}
+
+:host ::ng-deep .p-highlight .p-tabview-nav-link {
+  .p-tabview-title {
+    color: var(--secondary-color) !important;
+
+  }
 }
 
 :host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
@@ -467,12 +477,22 @@
   background-color: var(--neutral-100);
   padding: 0 0 0.5rem 0;
 }
- 
+
 :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-  color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
 
 :host ::ng-deep .p-accordion p-accordiontab .p-accordion-tab {
   margin-bottom: 0;
+}
+
+:host ::ng-deep .p-accordion-header-text {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.spec-value {
+  font-weight: 400;
+  color: var(--neutral-800);
+  font-size: var(--font-size-sm);
 }

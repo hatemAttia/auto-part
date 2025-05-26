@@ -57,11 +57,12 @@
         <button type="button" (click)="incrementQuantity()" [disabled]="quantity >= stock || stock === 0">+</button>
       </div>
     </div>
-    <button
+    <button 
       pButton
       [label]="showLabel ? 'Commander' : ''"
       [icon]="showIcon ? 'pi pi-shopping-cart' : ''"
       class="p-button-primary cart-button"
+      [ngClass]="'order-size-' + orderButtonSize"
       appButtonResize
       [disabled]="!isAvailable || stock === 0"
       (click)="onAddQuantity()"
